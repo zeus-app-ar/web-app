@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zeus ⚡ Talento local al instante</title>
+  <meta name="description" content="Zeus conecta vecinos de Palermo (CABA) con profesionales verificados: plomeros, electricistas, gasistas, limpieza, mudanzas y más. Precio claro y pago protegido.">
+
+  <!-- Favicon: el rayo de Zeus como SVG inline -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 36'%3E%3Cpath d='M16 0L0 20H12L10 36L28 14H16L18 0Z' fill='%23C41E1E'/%3E%3C/svg%3E">
+
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<nav>
+  <a href="#" class="nav-logo">
+    <svg width="28" height="36" viewBox="0 0 28 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M16 0L0 20H12L10 36L28 14H16L18 0Z" fill="#C41E1E"/>
+    </svg>
+    <span>ZEUS</span>
+  </a>
+  <a href="#" class="nav-cta" data-wa="contratar" target="_blank" rel="noopener">
+    Contratar ahora
+  </a>
+</nav>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero">
+  <div class="hero-logo">
+    <svg width="60" height="76" viewBox="0 0 28 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M16 0L0 20H12L10 36L28 14H16L18 0Z" fill="#C41E1E"/>
+    </svg>
+  </div>
+  <h1 class="hero-title">
+    El servicio que<br>necesitás, <span>hoy</span>.
+  </h1>
+  <p class="hero-subtitle">
+    Conectamos vecinos de Palermo con profesionales verificados y talento local de confianza. Precio claro, pago seguro, sin vueltas.
+  </p>
+  <div class="hero-btns">
+    <a href="#" class="btn-primary" data-wa="contratar" target="_blank" rel="noopener">
+      💬 Contratar un servicio
+    </a>
+    <a href="#ser-proveedor" class="btn-secondary">
+      🔧 Sumarme como proveedor
+    </a>
+  </div>
+  <p class="hero-trust">
+    ✅ Proveedores verificados · <span>Palermo, CABA</span>
+  </p>
+  <div class="scroll-arrow" aria-hidden="true">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C4C4C4" stroke-width="2">
+      <path d="M6 9l6 6 6-6"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ============================================================
+     CÓMO FUNCIONA
+     ============================================================ -->
+<section class="section">
+  <h2 class="section-title">¿Cómo funciona?</h2>
+  <p class="section-subtitle">Cuatro pasos para resolver lo que necesitás, sin sorpresas.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Elegís el servicio</h3>
+      <p>Seleccioná lo que necesitás de nuestro catálogo de servicios del hogar y talento local.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Te conectamos</h3>
+      <p>Te asignamos el mejor proveedor disponible. Ves el precio antes de confirmar, siempre.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Pagás seguro</h3>
+      <p>El pago queda retenido y se libera solo cuando confirmás que el trabajo quedó bien hecho.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h3>Calificás la experiencia</h3>
+      <p>Tu reseña ayuda a otros vecinos y mejora la calidad de nuestra red.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SERVICIOS
+     Los botones se generan solos desde js/servicios.js:
+     un botón por categoría, en el orden de ese archivo.
+     ============================================================ -->
+<section class="servicios" id="servicios">
+  <h2 class="section-title">Nuestros servicios</h2>
+  <p class="section-subtitle">Tocá cualquier categoría para ver los proveedores disponibles en tu zona.</p>
+
+  <div class="servicios-grid" id="servicios-grid"></div>
+
+  <!-- Panel de proveedores (se completa al tocar una categoría) -->
+  <div class="proveedores-section" id="proveedores-section"></div>
+</section>
+
+<!-- ============================================================
+     POR QUÉ ZEUS
+     ============================================================ -->
+<section class="porque section">
+  <h2 class="section-title">¿Por qué Zeus?</h2>
+  <p class="section-subtitle">Diseñado para resolver lo que el boca a boca nunca pudo garantizar.</p>
+  <div class="features">
+    <div class="feature">
+      <div class="feature-icon">⭐</div>
+      <h3>Reseñas verificadas</h3>
+      <p>Todos los comentarios son de clientes reales que usaron el servicio. Nada de perfiles falsos.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">💲</div>
+      <h3>Precio visible antes</h3>
+      <p>Sabés exactamente cuánto vas a pagar antes de confirmar. Cero sorpresas al final.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🛡️</div>
+      <h3>Identidad verificada</h3>
+      <p>Cada proveedor pasa por un proceso de verificación de identidad antes de operar en Zeus.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">⚡</div>
+      <h3>Respuesta rápida</h3>
+      <p>Matching en minutos. No tenés que esperar 24 horas para que te confirmen si van a venir.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🔒</div>
+      <h3>Pago protegido</h3>
+      <p>Tu dinero queda retenido y se libera solo cuando confirmás que el trabajo quedó bien hecho.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🪛</div>
+      <h3>Arreglatodo incluido</h3>
+      <p>El único marketplace que incluye handymen y arreglos chicos. Más servicios, más frecuencia.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SER PROVEEDOR
+     ============================================================ -->
+<section class="proveedor" id="ser-proveedor">
+  <div class="proveedor-box">
+    <h2>¿Tenés una habilidad?<br>Monetizala con Zeus.</h2>
+    <p>
+      Plomero, electricista, arreglatodo, o simplemente alguien que ayuda con mudanzas o arma muebles: si tenés tiempo y ganas, Zeus te conecta con vecinos que te necesitan. Sin costos de entrada.
+    </p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSctsV77KvJDRsZw6yMwxKK2JXgPJA2XVT912YEHgWZIuGcDnA/viewform" class="btn-primary btn-proveedor" target="_blank" rel="noopener">
+      📝 Quiero ser proveedor
+    </a>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer>
+  <p>©️ 2026 Zeus App S.R.L. · Palermo, Buenos Aires · <a href="https://drive.google.com/file/d/1F1pS1wiif5cclP1WABlVVKix5uauz8_f/view?usp=sharing" target="_blank" rel="noopener">Términos y condiciones</a> · <a href="#" data-wa="simple">WhatsApp</a></p>
+</footer>
+
+<!-- Datos primero, lógica después -->
+<script src="js/servicios.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>

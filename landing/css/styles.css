@@ -1,0 +1,549 @@
+/* ============================================================
+   Zeus ⚡ — Hoja de estilos de la landing
+   Secciones: variables y base, nav, hero, cómo funciona,
+   servicios, proveedores, por qué zeus, ser proveedor,
+   footer, animaciones, responsive.
+   ============================================================ */
+
+/* ---------- Variables y base ---------- */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --red: #C41E1E;
+  --red-dark: #9A1616;
+  --red-hover: #E02D2D;
+  --black: #111;
+  --gray-700: #444;
+  --gray-500: #777;
+  --gray-300: #C4C4C4;
+  --gray-100: #F5F5F5;
+  --white: #FFFFFF;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--white);
+  color: var(--black);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Nav ---------- */
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+  padding: 0.75rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.nav-logo span {
+  font-weight: 900;
+  font-size: 1.4rem;
+  color: var(--black);
+  letter-spacing: -0.03em;
+}
+
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.25rem;
+  background: var(--red);
+  color: white;
+  font-weight: 700;
+  font-size: 0.85rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.nav-cta:hover {
+  background: var(--red-hover);
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 6rem 1.5rem 5rem;
+  background: #fff;
+}
+
+.hero-logo {
+  margin-bottom: 2rem;
+}
+
+.hero-title {
+  font-size: clamp(2.6rem, 6.5vw, 5rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  margin-bottom: 1.25rem;
+  color: var(--black);
+}
+
+.hero-title span {
+  color: var(--red);
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--gray-700);
+  max-width: 520px;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  font-weight: 500;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2rem;
+  background: var(--red);
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.btn-primary:hover {
+  background: var(--red-hover);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2rem;
+  background: var(--gray-100);
+  color: var(--black);
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.btn-secondary:hover {
+  background: #e8e8e8;
+}
+
+.hero-trust {
+  margin-top: 3rem;
+  font-size: 0.85rem;
+  color: var(--gray-500);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hero-trust span {
+  color: var(--red);
+  font-weight: 700;
+}
+
+/* ---------- Secciones genéricas (Cómo funciona) ---------- */
+
+.section {
+  padding: 5rem 1.5rem;
+}
+
+.section-title {
+  text-align: center;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.75rem;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: var(--gray-500);
+  font-size: 1rem;
+  max-width: 480px;
+  margin: 0 auto 3rem;
+  line-height: 1.6;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.step {
+  text-align: center;
+}
+
+.step-num {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--red);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 1.2rem;
+  margin: 0 auto 1rem;
+}
+
+.step h3 {
+  font-weight: 800;
+  font-size: 1.05rem;
+  margin-bottom: 0.4rem;
+}
+
+.step p {
+  font-size: 0.9rem;
+  color: var(--gray-500);
+  line-height: 1.5;
+}
+
+/* ---------- Servicios (grilla de categorías) ---------- */
+
+.servicios {
+  padding: 5rem 1.5rem;
+  background: var(--gray-100);
+}
+
+.servicios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  max-width: 900px;
+  margin: 0 auto 3rem;
+}
+
+.servicio-btn {
+  background: white;
+  border: 2px solid transparent;
+  border-radius: 14px;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: inherit;
+}
+
+.servicio-btn:hover {
+  border-color: var(--red);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(196, 30, 30, 0.12);
+}
+
+.servicio-btn.active {
+  border-color: var(--red);
+  background: #fff5f5;
+}
+
+.servicio-icon {
+  font-size: 2rem;
+}
+
+.servicio-btn span {
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--black);
+}
+
+/* ---------- Proveedores (tarjetas) ---------- */
+
+.proveedores-section {
+  max-width: 900px;
+  margin: 0 auto;
+  display: none;
+}
+
+.proveedores-section.visible {
+  display: block;
+}
+
+.proveedores-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
+.proveedores-title span {
+  color: var(--red);
+}
+
+/* Aclaración chica debajo del título de un grupo (ej: limpieza) */
+.proveedores-title .grupo-sub {
+  display: block;
+  color: var(--gray-500);
+  font-weight: 500;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+/* Separación entre grupos cuando una categoría tiene más de uno */
+.proveedores-grid + .proveedores-title {
+  margin-top: 2.5rem;
+}
+
+.proveedores-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+.proveedor-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.proveedor-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.proveedor-foto {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+  background: var(--gray-100);
+}
+
+.proveedor-info {
+  padding: 1.1rem;
+}
+
+.proveedor-nombre {
+  font-weight: 800;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.proveedor-desc {
+  font-size: 0.82rem;
+  color: var(--gray-500);
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+}
+
+.proveedor-stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.9rem;
+}
+
+.proveedor-pedidos {
+  font-size: 0.78rem;
+  color: var(--gray-500);
+}
+
+.proveedor-pedidos strong {
+  color: var(--black);
+}
+
+.stars {
+  color: #F59E0B;
+  font-size: 0.85rem;
+}
+
+.btn-contratar {
+  display: block;
+  width: 100%;
+  padding: 0.6rem;
+  background: var(--red);
+  color: white;
+  font-weight: 700;
+  font-size: 0.85rem;
+  border-radius: 8px;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.btn-contratar:hover {
+  background: var(--red-hover);
+}
+
+/* ---------- Por qué Zeus ---------- */
+
+.porque {
+  padding: 5rem 1.5rem;
+  background: var(--black);
+  color: white;
+}
+
+.porque .section-title {
+  color: white;
+}
+
+.porque .section-subtitle {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.feature {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 1.75rem;
+}
+
+.feature-icon {
+  font-size: 1.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.feature h3 {
+  font-weight: 800;
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+}
+
+.feature p {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.6;
+}
+
+/* ---------- Ser proveedor ---------- */
+
+.proveedor {
+  padding: 5rem 1.5rem;
+  text-align: center;
+}
+
+.proveedor-box {
+  max-width: 640px;
+  margin: 0 auto;
+  background: var(--gray-100);
+  border-radius: 20px;
+  padding: 3rem 2rem;
+}
+
+.proveedor-box h2 {
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.75rem;
+}
+
+.proveedor-box p {
+  color: var(--gray-700);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.btn-proveedor {
+  display: inline-flex;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+/* ---------- Footer ---------- */
+
+footer {
+  background: var(--black);
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  padding: 2rem 1.5rem;
+  font-size: 0.85rem;
+}
+
+footer a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+}
+
+/* ---------- Animaciones ---------- */
+
+.scroll-arrow {
+  margin-top: 2.5rem;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(6px); }
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 600px) {
+  nav {
+    padding: 0.65rem 1rem;
+  }
+
+  .hero-btns {
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 280px;
+  }
+
+  .servicios-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .proveedores-grid {
+    grid-template-columns: 1fr;
+  }
+}

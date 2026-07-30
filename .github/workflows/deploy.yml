@@ -1,0 +1,39 @@
+# Publica la carpeta landing/ en GitHub Pages cada vez que se pushea a main.
+# Requiere (una sola vez): Settings → Pages → Source: "GitHub Actions".
+name: Deploy landing a GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # permite ejecutarlo a mano desde la pestaña Actions
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Descargar el código
+        uses: actions/checkout@v4
+
+      - name: Configurar Pages
+        uses: actions/configure-pages@v5
+
+      - name: Empaquetar la carpeta landing/
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: landing
+
+      - name: Publicar
+        id: deployment
+        uses: actions/deploy-pages@v4

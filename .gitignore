@@ -1,0 +1,17 @@
+# Sistema
+.DS_Store
+
+# Secretos y configuración local — NUNCA commitear
+.env
+*.env
+
+# Python (backend futuro)
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Node (frontend futuro)
+node_modules/
+dist/
+build/
