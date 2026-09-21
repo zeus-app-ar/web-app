@@ -1,177 +1,463 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zeus ⚡ Talento local al instante</title>
-  <meta name="description" content="Zeus conecta vecinos de Palermo (CABA) con profesionales verificados: plomeros, electricistas, gasistas, limpieza, mudanzas y más. Precio claro y pago protegido.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zeus ⚡ — Servicios para el hogar en Buenos Aires</title>
+<meta name="description" content="Plomeros, electricistas, gasistas, limpieza y más en Buenos Aires. Nos escribís por WhatsApp y te conseguimos a alguien.">
+<meta name="theme-color" content="#111111">
+<meta property="og:title" content="Zeus ⚡ — Servicios para el hogar en Buenos Aires">
+<meta property="og:description" content="Plomeros, electricistas, gasistas, limpieza y más. Nos escribís por WhatsApp y te conseguimos a alguien.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_AR">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23111'/%3E%3Cpath d='M37 6 18 36h12l-4 22 20-32H34z' fill='%23D62828'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --rojo: #D62828;
+    --negro: #111111;
+    --gris: #F5F5F5;
+    --gris-medio: #E0E0E0;
+    --texto: #222222;
+    --texto-suave: #666666;
+    --blanco: #FFFFFF;
+    --titulos: 'Abril Fatface', Georgia, 'Times New Roman', serif;
+    --nav-h: 56px;
+    --bar-h: 72px;
+  }
+  body {
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    color: var(--texto);
+    padding-top: calc(var(--nav-h) + var(--bar-h));
+    line-height: 1.5;
+  }
+  button { font-family: inherit; }
+  /* Abril Fatface solo en el logo y los títulos grandes. Tiene un solo grosor,
+     así que no se le pide negrita. */
+  .logo, h1, h2 {
+    font-family: var(--titulos);
+    font-weight: 400;
+    font-synthesis: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
 
-  <!-- Favicon: el rayo de Zeus como SVG inline -->
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 36'%3E%3Cpath d='M16 0L0 20H12L10 36L28 14H16L18 0Z' fill='%23C41E1E'/%3E%3C/svg%3E">
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--nav-h);
+    background: var(--negro);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    z-index: 100;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--blanco);
+    font-size: 22px;
+    text-decoration: none;
+  }
+  .logo-rayo { color: var(--rojo); font-size: 26px; }
+  .nav-cta {
+    background: var(--rojo);
+    color: var(--blanco);
+    border: none;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+  }
 
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
+  /* BARRA DE SERVICIOS */
+  .service-bar {
+    position: fixed;
+    top: var(--nav-h);
+    left: 0; right: 0;
+    height: var(--bar-h);
+    background: var(--blanco);
+    border-bottom: 1px solid var(--gris-medio);
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    gap: 4px;
+    padding: 0 16px;
+    z-index: 99;
+    scrollbar-width: none;
+  }
+  .service-bar::-webkit-scrollbar { display: none; }
+  .service-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    padding: 8px 14px;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s;
+    min-width: 72px;
+  }
+  .service-btn:hover { background: var(--gris); }
+  .service-btn.active { background: #FFF0F0; }
+  .service-btn .icon { font-size: 22px; line-height: 1; }
+  .service-btn .label { font-size: 11px; color: var(--texto-suave); font-weight: 500; }
+  .service-btn.active .label { color: var(--rojo); font-weight: 700; }
+  /* Dibujos propios donde no hay emoji (rodillo, armario), del tamaño de un emoji */
+  .dibujo { width: 1.1em; height: 1.1em; display: inline-block; vertical-align: -0.18em; }
+  .service-btn .icon .dibujo { width: 26px; height: 26px; vertical-align: middle; }
+
+  /* PANEL DE PROFESIONALES */
+  .providers-panel {
+    display: none;
+    background: var(--gris);
+    border-bottom: 2px solid var(--gris-medio);
+    padding: 20px 24px;
+    scroll-margin-top: calc(var(--nav-h) + var(--bar-h) + 8px);
+  }
+  .providers-panel.open { display: block; }
+  .providers-panel h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--negro);
+  }
+  .providers-panel h3.subsection-title { margin-top: 28px; }
+  .providers-panel h3 .subtitle {
+    font-weight: 400;
+    font-size: 13px;
+    color: var(--texto-suave);
+    margin-left: 4px;
+  }
+  .providers-panel .rubro-desc {
+    font-size: 14px;
+    color: var(--texto-suave);
+    margin: -10px 0 16px;
+  }
+  .providers-panel .vacio { font-size: 14px; color: var(--texto-suave); }
+  .providers-grid {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    scrollbar-width: thin;
+  }
+  .provider-card {
+    background: var(--blanco);
+    border-radius: 12px;
+    padding: 16px;
+    min-width: 180px;
+    max-width: 180px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .provider-card img {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--gris-medio);
+  }
+  .provider-card .sin-foto {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 2px solid var(--gris-medio);
+    background: var(--gris);
+    color: var(--texto-suave);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; font-weight: 800;
+  }
+  .provider-card .prov-name { font-size: 14px; font-weight: 700; color: var(--negro); }
+  .provider-card .prov-desc { font-size: 12px; color: var(--texto-suave); line-height: 1.4; }
+  .provider-card .prov-wa {
+    background: #25D366;
+    color: white;
+    border: none;
+    padding: 7px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    width: 100%;
+    text-align: center;
+    display: block;
+    margin-top: auto;
+  }
+
+  /* PORTADA */
+  .hero {
+    background: var(--negro);
+    color: var(--blanco);
+    padding: 64px 24px 72px;
+    text-align: center;
+  }
+  .hero-rayo { font-size: 56px; line-height: 1; }
+  .hero h1 {
+    font-size: clamp(32px, 6vw, 56px);
+    margin: 16px 0 12px;
+    line-height: 1.05;
+  }
+  .hero p {
+    font-size: 18px;
+    color: #BBBBBB;
+    max-width: 480px;
+    margin: 0 auto 32px;
+    line-height: 1.6;
+  }
+  .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--rojo);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+  }
+  .btn-secondary {
+    background: transparent;
+    color: white;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    border: 2px solid #444;
+    cursor: pointer;
+  }
+
+  /* SECCIONES DE TEXTO */
+  .section {
+    padding: 56px 24px;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .section h2 {
+    font-size: clamp(26px, 4vw, 38px);
+    margin-bottom: 28px;
+    color: var(--negro);
+    text-align: center;
+  }
+  .pasos { list-style: none; counter-reset: paso; }
+  .pasos li {
+    counter-increment: paso;
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 12px;
+    padding: 14px 0;
+    border-top: 1px solid var(--gris-medio);
+  }
+  .pasos li:last-child { border-bottom: 1px solid var(--gris-medio); }
+  .pasos li::before {
+    content: counter(paso);
+    font-family: var(--titulos);
+    font-size: 28px;
+    line-height: 1;
+    color: var(--rojo);
+  }
+  .pasos strong { display: block; font-size: 16px; margin-bottom: 2px; }
+  .pasos p { font-size: 15px; color: var(--texto-suave); }
+
+  .porque { background: var(--gris); }
+  .porque .section { max-width: 640px; }
+  .porque p { font-size: 16px; margin-bottom: 14px; }
+  .porque p:last-child { margin-bottom: 0; }
+
+  /* CIERRE */
+  .cta-final {
+    background: var(--rojo);
+    color: white;
+    padding: 56px 24px;
+    text-align: center;
+  }
+  .cta-final h2 { font-size: clamp(24px, 4vw, 38px); margin-bottom: 12px; }
+  .cta-final p { font-size: 18px; opacity: 0.9; margin-bottom: 28px; }
+  .btn-white {
+    background: white;
+    color: var(--rojo);
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  /* PIE */
+  footer {
+    background: var(--negro);
+    color: #888;
+    text-align: center;
+    padding: 24px;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  footer a { color: #888; }
+
+  /* VENTANA "QUIERO SER PROVEEDOR" */
+  dialog.elegir {
+    margin: auto;
+    width: min(440px, calc(100% - 32px));
+    border: none;
+    border-radius: 12px;
+    padding: 28px 24px 24px;
+    color: var(--texto);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  }
+  dialog.elegir::backdrop { background: rgba(0,0,0,0.6); }
+  .elegir h3 { font-size: 20px; font-weight: 700; color: var(--negro); margin-bottom: 8px; }
+  .elegir .elegir-texto { font-size: 14px; color: var(--texto-suave); margin-bottom: 20px; }
+  .elegir .opcion {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 16px; margin-bottom: 10px;
+    border: 2px solid var(--gris-medio); border-radius: 8px;
+    text-decoration: none; color: var(--texto);
+  }
+  .elegir .opcion:hover { border-color: var(--rojo); background: #FFF0F0; }
+  .elegir .opcion .icon { font-size: 26px; }
+  .elegir .opcion strong { display: block; font-size: 15px; }
+  .elegir .opcion span span { display: block; font-size: 12px; color: var(--texto-suave); margin-top: 2px; }
+  .elegir .aviso { font-size: 12px; color: var(--texto-suave); margin-top: 6px; }
+  .elegir .cerrar {
+    position: absolute; top: 10px; right: 12px;
+    background: none; border: none; font-size: 24px; color: var(--texto-suave); cursor: pointer;
+  }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--rojo); outline-offset: 2px; }
+</style>
 </head>
 <body>
 
-<!-- ============================================================
-     NAV
-     ============================================================ -->
+<!-- Dibujos propios para los rubros que no tienen un emoji adecuado -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- rodillo de pintar paredes -->
+    <symbol id="d-rodillo" viewBox="0 0 32 32">
+      <rect x="4" y="4" width="19" height="8" rx="3" fill="#4A90D9"/>
+      <rect x="4" y="4" width="19" height="3" rx="1.5" fill="#6FAAE6"/>
+      <path d="M23 8h4v7H16v4" fill="none" stroke="#7A7A7A" stroke-width="2.2" stroke-linejoin="round"/>
+      <rect x="13.5" y="19" width="5" height="10" rx="2" fill="#C8743A"/>
+      <path d="M9 12v3.5a1.5 1.5 0 0 0 3 0V12z" fill="#4A90D9"/>
+    </symbol>
+    <!-- armario / placard -->
+    <symbol id="d-armario" viewBox="0 0 32 32">
+      <rect x="5" y="3" width="22" height="24" rx="2" fill="#C8743A"/>
+      <rect x="7" y="5" width="8.5" height="20" rx="1" fill="#DE8F52"/>
+      <rect x="16.5" y="5" width="8.5" height="20" rx="1" fill="#DE8F52"/>
+      <circle cx="13.5" cy="15" r="1.2" fill="#5A3417"/>
+      <circle cx="18.5" cy="15" r="1.2" fill="#5A3417"/>
+      <rect x="7" y="27" width="3" height="3" rx="1" fill="#8A4F22"/>
+      <rect x="22" y="27" width="3" height="3" rx="1" fill="#8A4F22"/>
+    </symbol>
+  </defs>
+</svg>
+
 <nav>
-  <a href="#" class="nav-logo">
-    <svg width="28" height="36" viewBox="0 0 28 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M16 0L0 20H12L10 36L28 14H16L18 0Z" fill="#C41E1E"/>
-    </svg>
-    <span>ZEUS</span>
+  <a class="logo" href="#">
+    <span class="logo-rayo">⚡</span> Zeus
   </a>
-  <a href="#" class="nav-cta" data-wa="contratar" target="_blank" rel="noopener">
-    Contratar ahora
-  </a>
+  <a class="nav-cta" data-wa href="#">Pedir servicio</a>
 </nav>
 
-<!-- ============================================================
-     HERO
-     ============================================================ -->
+<!-- La barra se arma con datos/rubros.js -->
+<div class="service-bar" id="service-bar"></div>
+
+<!-- Los paneles se arman con datos/profesionales.js -->
+<div id="paneles"></div>
+
 <section class="hero">
-  <div class="hero-logo">
-    <svg width="60" height="76" viewBox="0 0 28 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M16 0L0 20H12L10 36L28 14H16L18 0Z" fill="#C41E1E"/>
-    </svg>
-  </div>
-  <h1 class="hero-title">
-    El servicio que<br>necesitás, <span>hoy</span>.
-  </h1>
-  <p class="hero-subtitle">
-    Conectamos vecinos de Palermo con profesionales verificados y talento local de confianza. Precio claro, pago seguro, sin vueltas.
-  </p>
+  <div class="hero-rayo">⚡</div>
+  <h1>Servicios para el hogar</h1>
+  <p>Plomeros, electricistas, gasistas, limpieza y más, en Buenos Aires. Nos escribís por WhatsApp y te conseguimos a alguien.</p>
   <div class="hero-btns">
-    <a href="#" class="btn-primary" data-wa="contratar" target="_blank" rel="noopener">
-      💬 Contratar un servicio
-    </a>
-    <a href="#ser-proveedor" class="btn-secondary">
-      🔧 Sumarme como proveedor
-    </a>
-  </div>
-  <p class="hero-trust">
-    ✅ Proveedores verificados · <span>Palermo, CABA</span>
-  </p>
-  <div class="scroll-arrow" aria-hidden="true">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C4C4C4" stroke-width="2">
-      <path d="M6 9l6 6 6-6"/>
-    </svg>
+    <a class="btn-primary" data-wa href="#">Pedir un servicio</a>
+    <button class="btn-secondary" type="button" id="abrir-proveedor">Quiero ser proveedor</button>
   </div>
 </section>
 
-<!-- ============================================================
-     CÓMO FUNCIONA
-     ============================================================ -->
 <section class="section">
-  <h2 class="section-title">¿Cómo funciona?</h2>
-  <p class="section-subtitle">Cuatro pasos para resolver lo que necesitás, sin sorpresas.</p>
-  <div class="steps">
-    <div class="step">
-      <div class="step-num">1</div>
-      <h3>Elegís el servicio</h3>
-      <p>Seleccioná lo que necesitás de nuestro catálogo de servicios del hogar y talento local.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">2</div>
-      <h3>Te conectamos</h3>
-      <p>Te asignamos el mejor proveedor disponible. Ves el precio antes de confirmar, siempre.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">3</div>
-      <h3>Pagás seguro</h3>
-      <p>El pago queda retenido y se libera solo cuando confirmás que el trabajo quedó bien hecho.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">4</div>
-      <h3>Calificás la experiencia</h3>
-      <p>Tu reseña ayuda a otros vecinos y mejora la calidad de nuestra red.</p>
-    </div>
+  <h2>¿Cómo funciona?</h2>
+  <ol class="pasos">
+    <li>
+      <div>
+        <strong>Contanos qué necesitás</strong>
+        <p>Elegí el rubro en la barra de arriba o escribinos directo por WhatsApp.</p>
+      </div>
+    </li>
+    <li>
+      <div>
+        <strong>Te conseguimos a alguien</strong>
+        <p>Buscamos un profesional disponible en tu zona y te pasamos un precio aproximado. Suele tardar unos 30 minutos.</p>
+      </div>
+    </li>
+    <li>
+      <div>
+        <strong>Se hace el trabajo</strong>
+        <p>El profesional va a tu casa, confirma el precio cuando ve el problema y lo resuelve.</p>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<section class="porque">
+  <div class="section">
+    <h2>¿Por qué Zeus?</h2>
+    <p>Porque conseguir un plomero o un electricista de confianza en Buenos Aires es un lío: preguntar en el grupo del edificio, esperar que alguien conteste, que después no venga.</p>
+    <p>Zeus es tres hermanos que armaron una red de profesionales a los que conocen. Hablamos con cada uno antes de sumarlo. Cuando nos escribís, buscamos nosotros y te pasamos a alguien que pueda ir.</p>
+    <p>El precio siempre es aproximado hasta que el profesional ve el problema en tu casa: no te prometemos un número que después cambia.</p>
+    <p>Y si algo no salió como esperabas, escribinos. Queremos saberlo.</p>
   </div>
 </section>
 
-<!-- ============================================================
-     SERVICIOS
-     Los botones se generan solos desde js/servicios.js:
-     un botón por categoría, en el orden de ese archivo.
-     ============================================================ -->
-<section class="servicios" id="servicios">
-  <h2 class="section-title">Nuestros servicios</h2>
-  <p class="section-subtitle">Tocá cualquier categoría para ver los proveedores disponibles en tu zona.</p>
-
-  <div class="servicios-grid" id="servicios-grid"></div>
-
-  <!-- Panel de proveedores (se completa al tocar una categoría) -->
-  <div class="proveedores-section" id="proveedores-section"></div>
+<section class="cta-final">
+  <h2>¿Necesitás una mano?</h2>
+  <p>Escribinos por WhatsApp y te contestamos a la brevedad.</p>
+  <a class="btn-white" data-wa href="#">Pedir servicio ⚡</a>
 </section>
 
-<!-- ============================================================
-     POR QUÉ ZEUS
-     ============================================================ -->
-<section class="porque section">
-  <h2 class="section-title">¿Por qué Zeus?</h2>
-  <p class="section-subtitle">Diseñado para resolver lo que el boca a boca nunca pudo garantizar.</p>
-  <div class="features">
-    <div class="feature">
-      <div class="feature-icon">⭐</div>
-      <h3>Reseñas verificadas</h3>
-      <p>Todos los comentarios son de clientes reales que usaron el servicio. Nada de perfiles falsos.</p>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">💲</div>
-      <h3>Precio visible antes</h3>
-      <p>Sabés exactamente cuánto vas a pagar antes de confirmar. Cero sorpresas al final.</p>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">🛡️</div>
-      <h3>Identidad verificada</h3>
-      <p>Cada proveedor pasa por un proceso de verificación de identidad antes de operar en Zeus.</p>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">⚡</div>
-      <h3>Respuesta rápida</h3>
-      <p>Matching en minutos. No tenés que esperar 24 horas para que te confirmen si van a venir.</p>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">🔒</div>
-      <h3>Pago protegido</h3>
-      <p>Tu dinero queda retenido y se libera solo cuando confirmás que el trabajo quedó bien hecho.</p>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">🪛</div>
-      <h3>Arreglatodo incluido</h3>
-      <p>El único marketplace que incluye handymen y arreglos chicos. Más servicios, más frecuencia.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     SER PROVEEDOR
-     ============================================================ -->
-<section class="proveedor" id="ser-proveedor">
-  <div class="proveedor-box">
-    <h2>¿Tenés una habilidad?<br>Monetizala con Zeus.</h2>
-    <p>
-      Plomero, electricista, arreglatodo, o simplemente alguien que ayuda con mudanzas o arma muebles: si tenés tiempo y ganas, Zeus te conecta con vecinos que te necesitan. Sin costos de entrada.
-    </p>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSctsV77KvJDRsZw6yMwxKK2JXgPJA2XVT912YEHgWZIuGcDnA/viewform" class="btn-primary btn-proveedor" target="_blank" rel="noopener">
-      📝 Quiero ser proveedor
-    </a>
-  </div>
-</section>
-
-<!-- ============================================================
-     FOOTER
-     ============================================================ -->
 <footer>
-  <p>©️ 2026 Zeus App S.R.L. · Palermo, Buenos Aires · <a href="https://drive.google.com/file/d/1F1pS1wiif5cclP1WABlVVKix5uauz8_f/view?usp=sharing" target="_blank" rel="noopener">Términos y condiciones</a> · <a href="#" data-wa="simple">WhatsApp</a></p>
+  <p>Zeus App S.R.L. — Buenos Aires, Argentina</p>
+  <p><a href="https://drive.google.com/file/d/1F1pS1wiif5cclP1WABlVVKix5uauz8_f/view?usp=sharing" target="_blank" rel="noopener">Términos y condiciones</a> &nbsp;·&nbsp; <a href="https://www.instagram.com/zeusba_/" target="_blank" rel="noopener">Instagram</a> &nbsp;·&nbsp; <a data-wa href="#">WhatsApp</a></p>
 </footer>
 
-<!-- Datos primero, lógica después -->
-<script src="js/servicios.js"></script>
-<script src="js/app.js"></script>
+<!-- "Quiero ser proveedor" pregunta a qué se dedica y lleva al formulario que corresponde -->
+<dialog class="elegir" id="ventana-proveedor" aria-labelledby="t-elegir">
+  <button class="cerrar" type="button" aria-label="Cerrar" data-cerrar>×</button>
+  <h3 id="t-elegir">¿A qué te dedicás?</h3>
+  <p class="elegir-texto">Elegí tu caso y te llevamos al formulario de alta. Tarda unos 5 minutos.</p>
+  <a class="opcion" id="form-limpieza" href="#" target="_blank" rel="noopener">
+    <span class="icon">🧹</span>
+    <span><strong>Limpieza y casas particulares</strong><span>Limpieza por horas o por jornada, cuidado de la casa</span></span>
+  </a>
+  <a class="opcion" id="form-oficios" href="#" target="_blank" rel="noopener">
+    <span class="icon">🛠️</span>
+    <span><strong>Otro oficio</strong><span>Plomería, electricidad, gas, pintura, arreglos, fletes y más</span></span>
+  </a>
+  <p class="aviso" id="aviso-google" hidden>El formulario te va a pedir que entres con tu cuenta de Google.</p>
+</dialog>
 
+<script src="datos/config.js"></script>
+<script src="datos/rubros.js"></script>
+<script src="datos/profesionales.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
