@@ -1,0 +1,158 @@
+# ============================================
+# Zeus ⚡ web — Actualizar los profesionales que muestra la página
+# ============================================
+# Lee de Airtable los prestadores ACTIVOS y DISPONIBLES y escribe
+# datos/profesionales.js con lo mínimo que la página necesita:
+#   nombre de pila + inicial del apellido, rubros, años de experiencia, zonas
+#   generales (Norte, Centro...) y la foto (si está en fotos/).
+#
+# NUNCA saca teléfono, DNI, email, barrios ni direcciones. La página es pública.
+# La clave de Airtable se lee del .env del bot y NO se copia a este repo:
+# la página no se conecta a Airtable (si lo hiciera, la clave quedaría a la
+# vista de cualquiera y con ella se puede leer y borrar toda la base).
+#
+# Uso (desde la carpeta landing/ de web-app):
+#   python herramientas/actualizar_profesionales.py
+#   python herramientas/actualizar_profesionales.py --bot "/ruta/a/Zeus-app/zeus-bot"
+#
+# Por defecto busca el bot en ../../Zeus-app/zeus-bot (web-app y Zeus-app
+# clonados uno al lado del otro).
+#
+# Los nombres que se muestran salen de herramientas/nombres_web.json si la
+# persona está ahí (para corregir a mano casos raros); si no, se arman solos.
+# Las fotos se buscan en fotos/<record_id>.jpg.
+
+import argparse
+import datetime
+import io
+import json
+import os
+import sys
+
+AQUI = os.path.dirname(os.path.abspath(__file__))
+WEB = os.path.dirname(AQUI)                 # landing/
+REPO = os.path.dirname(WEB)                 # web-app/
+BOT_POR_DEFECTO = os.path.join(os.path.dirname(REPO), "Zeus-app", "zeus-bot")
+
+# Opción de "Servicios que ofrece" en Airtable -> clave del rubro (la misma que usa el bot en servicios.py)
+RUBRO_DE_OPCION = {
+    "Electricista": "electricista",
+    "Plomero": "plomero",
+    "Gasista": "gasista",
+    "Gasista Matriculado": "gasista",
+    "Cerrajero": "cerrajero",
+    "Técnico Electrodomésticos": "tecnico_electrodomesticos",
+    "Técnico de Electrodomésticos": "tecnico_electrodomesticos",
+    "Instalación de Aire Acondicionado": "instalacion_aire",
+    "Limpieza Profesional": "limpieza_profesional",
+    "Limpieza Particular": "limpieza_particular",
+    "Arreglatodo / Handyman": "arreglatodo",
+    "Arreglatodo (Handyman)": "arreglatodo",
+    "Armado de Muebles": "armado_muebles",
+    "Mudanza": "mudanza",
+    "Fletes y Mudanzas": "mudanza",
+    "Pintor": "pintor",
+    "Control de Plagas": "control_plagas",
+    # "Paisajismo" no es un rubro del bot: si alguien solo ofrece eso, no aparece.
+}
+
+
+def zonas_para_web(zonas: list) -> str:
+    """'Zona Norte (Palermo, ...)', 'Zona Centro (...)' -> 'Zona Norte y Centro'. Nada de barrios ni direcciones."""
+    cortas = []
+    for z in zonas or []:
+        base = z.split(" (")[0].strip()
+        if base == "Toda CABA":
+            return "Toda CABA"
+        base = base.replace("Microcentro / Zona Este", "Microcentro").replace("Zona ", "")
+        if base not in cortas:
+            cortas.append(base)
+    if len(cortas) >= 5:
+        return "Toda CABA"
+    if not cortas:
+        return ""
+    lista = cortas[0] if len(cortas) == 1 else ", ".join(cortas[:-1]) + " y " + cortas[-1]
+    return ("Zona " + lista) if cortas[0] != "Microcentro" else lista
+
+
+def frase_para_web(f: dict) -> str:
+    """Una línea verdadera sobre la persona: años de experiencia (si los cargó) y zonas."""
+    partes = []
+    anios = f.get("Años de experiencia")
+    if isinstance(anios, (int, float)) and anios > 0:
+        anios = int(anios)
+        partes.append(f"{anios} año{'s' if anios != 1 else ''} de experiencia.")
+    zonas = zonas_para_web(f.get("Zonas de cobertura"))
+    if zonas:
+        partes.append(zonas + ".")
+    return " ".join(partes)
+
+
+def nombre_para_web(completo: str) -> str:
+    partes = [p for p in (completo or "").split() if p]
+    if not partes:
+        return ""
+    nombre = partes[0].capitalize()
+    if len(partes) == 1:
+        return nombre
+    return f"{nombre} {partes[-1][0].upper()}."
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--bot", default=BOT_POR_DEFECTO,
+                    help="carpeta zeus-bot del repo Zeus-app (de ahí se toma el .env)")
+    args = ap.parse_args()
+
+    sys.path.insert(0, args.bot)
+    from dotenv import load_dotenv
+    load_dotenv(os.path.join(args.bot, ".env"))
+    from pyairtable import Api
+
+    api = Api(os.environ["AIRTABLE_API_KEY"])
+    tabla = api.table(os.environ["AIRTABLE_BASE_ID"], "tbltQHlUuIUI3Du2D")  # Prestadores de Servicios
+
+    ruta_nombres = os.path.join(AQUI, "nombres_web.json")
+    a_mano = {}
+    if os.path.exists(ruta_nombres):
+        a_mano = json.load(io.open(ruta_nombres, encoding="utf-8"))
+
+    salida, sin_rubro = [], []
+    for r in tabla.all(formula="AND({Estado} = 'Activo', {Disponibilidad} = 'Disponible')"):
+        f = r["fields"]
+        rubros = []
+        for opcion in f.get("Servicios que ofrece") or []:
+            clave = RUBRO_DE_OPCION.get(opcion)
+            if clave and clave not in rubros:
+                rubros.append(clave)
+        if not rubros:
+            sin_rubro.append(f.get("Nombre completo", r["id"]))
+            continue
+        foto = f"fotos/{r['id']}.jpg"
+        salida.append({
+            "id": r["id"],
+            "nombre": a_mano.get(r["id"]) or nombre_para_web(f.get("Nombre completo", "")),
+            "rubros": rubros,
+            "frase": frase_para_web(f),
+            "foto": foto if os.path.exists(os.path.join(WEB, foto)) else None,
+        })
+
+    salida.sort(key=lambda p: (p["foto"] is None, p["nombre"]))
+    hoy = datetime.date.today().isoformat()
+    js = (
+        f"// Generado por herramientas/actualizar_profesionales.py el {hoy}. No editar a mano.\n"
+        f"window.ZEUS_PROFESIONALES = {json.dumps(salida, ensure_ascii=False, indent=2)};\n"
+    )
+    io.open(os.path.join(WEB, "datos", "profesionales.js"), "w", encoding="utf-8").write(js)
+
+    con_foto = sum(1 for p in salida if p["foto"])
+    print(f"{len(salida)} profesionales activos ({con_foto} con foto).")
+    if sin_rubro:
+        print("Sin ningún rubro que ofrezca el bot (no aparecen):", ", ".join(sin_rubro))
+    sin_foto = [p["nombre"] for p in salida if not p["foto"]]
+    if sin_foto:
+        print("Sin foto en fotos/ (no aparecen en la página):", ", ".join(sin_foto))
+
+
+if __name__ == "__main__":
+    main()
