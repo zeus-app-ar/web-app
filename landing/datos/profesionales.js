@@ -1,4 +1,4 @@
-// Generado por herramientas/actualizar_profesionales.py el 2026-09-19. No editar a mano.
+// Generado por herramientas/actualizar_profesionales.py el 2026-09-23. No editar a mano.
 window.ZEUS_PROFESIONALES = [
   {
     "id": "recWreAgb2cc3uElF",
