@@ -1,0 +1,84 @@
+# Actualiza solo la lista de profesionales que muestra la pagina.
+#
+# Corre todos los dias y vuelve a leer de Airtable los prestadores Activos y
+# Disponibles. Si la lista cambio, commitea datos/profesionales.js y publica
+# la pagina. Si no cambio, no hace nada.
+#
+# Requiere (una sola vez): Settings -> Secrets and variables -> Actions
+#   AIRTABLE_API_KEY  (la misma del .env del bot)
+#   AIRTABLE_BASE_ID  (appTllNaHw0NcDBnK)
+#
+# Ojo: un push hecho por la Action NO dispara deploy.yml (GitHub lo evita a
+# proposito para no encadenar workflows), por eso la publicacion a Pages esta
+# repetida aca abajo en vez de depender de deploy.yml.
+
+name: Actualizar profesionales
+
+on:
+  schedule:
+    - cron: "0 23 * * *" # 23:00 UTC = 20:00 en Buenos Aires
+  workflow_dispatch: # para correrlo a mano desde la pestana Actions
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Descargar el codigo
+        uses: actions/checkout@v4
+
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Instalar dependencias
+        run: pip install pyairtable python-dotenv
+
+      - name: Leer Airtable y regenerar datos/profesionales.js
+        working-directory: landing
+        env:
+          AIRTABLE_API_KEY: ${{ secrets.AIRTABLE_API_KEY }}
+          AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
+        run: python herramientas/actualizar_profesionales.py
+
+      - name: Commitear si cambio la lista
+        id: commit
+        run: |
+          if git diff --quiet -- landing/datos/profesionales.js; then
+            echo "cambio=no" >> "$GITHUB_OUTPUT"
+            echo "La lista esta igual que ayer, no hay nada que publicar."
+          else
+            git config user.name "zeus-bot"
+            git config user.email "actions@github.com"
+            git add landing/datos/profesionales.js
+            git commit -m "Actualizar profesionales desde Airtable"
+            git push
+            echo "cambio=si" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Configurar Pages
+        if: steps.commit.outputs.cambio == 'si'
+        uses: actions/configure-pages@v5
+
+      - name: Empaquetar la carpeta landing/
+        if: steps.commit.outputs.cambio == 'si'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: landing
+
+      - name: Publicar
+        id: deployment
+        if: steps.commit.outputs.cambio == 'si'
+        uses: actions/deploy-pages@v4
