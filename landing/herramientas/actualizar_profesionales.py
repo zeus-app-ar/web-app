@@ -20,7 +20,13 @@
 #
 # Los nombres que se muestran salen de herramientas/nombres_web.json si la
 # persona está ahí (para corregir a mano casos raros); si no, se arman solos.
-# Las fotos se buscan en fotos/<record_id>.jpg.
+#
+# FOTOS: se bajan solas del campo "Foto" (adjunto) de Prestadores de Servicios,
+# se recortan a cuadrado 400x400 y se guardan en fotos/<record_id>.jpg. Se
+# vuelve a bajar solo si el adjunto cambió (fotos/.origen.json guarda qué
+# adjunto se usó). Un adjunto que no es imagen (ej: la pagina HTML de Drive que
+# quedo pegada en los registros viejos) se ignora y la persona queda sin foto.
+# Solo el retrato: nunca DNI, matricula ni seguro.
 
 import argparse
 import datetime
@@ -28,6 +34,9 @@ import io
 import json
 import os
 import sys
+
+import requests
+from PIL import Image, ImageOps
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
 WEB = os.path.dirname(AQUI)                 # landing/
@@ -98,6 +107,42 @@ def nombre_para_web(completo: str) -> str:
     return f"{nombre} {partes[-1][0].upper()}."
 
 
+TAM_FOTO = 400
+
+
+def bajar_foto(record_id: str, adjuntos: list, origen: dict) -> str | None:
+    """
+    Deja fotos/<record_id>.jpg con el retrato del adjunto "Foto" de Airtable
+    (recortado a cuadrado, 400x400). Devuelve la ruta relativa o None si no hay
+    una imagen usable. `origen` es el dict {record_id: attachment_id} que evita
+    volver a bajar lo que no cambio.
+    """
+    ruta_rel = f"fotos/{record_id}.jpg"
+    ruta = os.path.join(WEB, ruta_rel)
+    imagenes = [a for a in (adjuntos or []) if (a.get("type") or "").startswith("image/")]
+    if not imagenes:
+        # Sin imagen en Airtable: si hay una foto cargada a mano en fotos/, se respeta.
+        return ruta_rel if os.path.exists(ruta) else None
+    adj = imagenes[0]
+    if origen.get(record_id) == adj.get("id") and os.path.exists(ruta):
+        return ruta_rel
+    try:
+        r = requests.get(adj["url"], timeout=60)
+        r.raise_for_status()
+        im = ImageOps.exif_transpose(Image.open(io.BytesIO(r.content))).convert("RGB")
+        w, h = im.size
+        lado = min(w, h)
+        top = int((h - lado) * 0.35) if h > w else 0   # las caras suelen estar arriba
+        left = (w - lado) // 2 if w > h else 0
+        im = im.crop((left, top, left + lado, top + lado)).resize((TAM_FOTO, TAM_FOTO), Image.LANCZOS)
+        im.save(ruta, "JPEG", quality=85, optimize=True)
+        origen[record_id] = adj.get("id")
+        return ruta_rel
+    except Exception as e:
+        print(f"No se pudo bajar la foto de {record_id}: {e}")
+        return ruta_rel if os.path.exists(ruta) else None
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--bot", default=BOT_POR_DEFECTO,
@@ -117,6 +162,9 @@ def main():
     if os.path.exists(ruta_nombres):
         a_mano = json.load(io.open(ruta_nombres, encoding="utf-8"))
 
+    ruta_origen = os.path.join(WEB, "fotos", ".origen.json")
+    origen = json.load(io.open(ruta_origen, encoding="utf-8")) if os.path.exists(ruta_origen) else {}
+
     salida, sin_rubro = [], []
     for r in tabla.all(formula="AND({Estado} = 'Activo', {Disponibilidad} = 'Disponible')"):
         f = r["fields"]
@@ -128,14 +176,15 @@ def main():
         if not rubros:
             sin_rubro.append(f.get("Nombre completo", r["id"]))
             continue
-        foto = f"fotos/{r['id']}.jpg"
         salida.append({
             "id": r["id"],
             "nombre": a_mano.get(r["id"]) or nombre_para_web(f.get("Nombre completo", "")),
             "rubros": rubros,
             "frase": frase_para_web(f),
-            "foto": foto if os.path.exists(os.path.join(WEB, foto)) else None,
+            "foto": bajar_foto(r["id"], f.get("Foto"), origen),
         })
+
+    io.open(ruta_origen, "w", encoding="utf-8").write(json.dumps(origen, indent=2) + "\n")
 
     salida.sort(key=lambda p: (p["foto"] is None, p["nombre"]))
     hoy = datetime.date.today().isoformat()
