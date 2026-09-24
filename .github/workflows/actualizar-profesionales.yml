@@ -53,16 +53,21 @@ jobs:
           AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
         run: python herramientas/actualizar_profesionales.py
 
+      - name: Cambiar la version de los datos en index.html (evita cache del navegador)
+        working-directory: landing
+        run: sed -i -E "s/\?v=[0-9]+/?v=$(date -u +%Y%m%d%H%M)/g" index.html
+
       - name: Commitear si cambio la lista
         id: commit
         run: |
           if git add -A landing/fotos && git diff --quiet --cached -- landing/fotos && git diff --quiet -- landing/datos/profesionales.js; then
+            git checkout -- landing/index.html
             echo "cambio=no" >> "$GITHUB_OUTPUT"
             echo "La lista esta igual que ayer, no hay nada que publicar."
           else
             git config user.name "zeus-bot"
             git config user.email "actions@github.com"
-            git add landing/datos/profesionales.js landing/fotos
+            git add landing/datos/profesionales.js landing/fotos landing/index.html
             git commit -m "Actualizar profesionales desde Airtable"
             git push
             echo "cambio=si" >> "$GITHUB_OUTPUT"
