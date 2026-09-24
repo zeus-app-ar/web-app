@@ -22,8 +22,7 @@ window.ZEUS_CONFIG = {
   // en la configuración de cada formulario.
   formulariosPidenGoogle: true,
 
-  // Profesionales sin foto: lo acordado es false (solo aparecen quienes tienen foto).
-  // PROVISORIO en true mientras se bajan las fotos de Drive: sin esto todos los
-  // paneles quedarían vacíos. Volver a false apenas estén las fotos en fotos/.
-  mostrarSinFoto: true,
+  // Profesionales sin foto: false = solo aparecen quienes tienen foto en fotos/
+  // (lo acordado). Las fotos las baja sola la GitHub Action desde Airtable.
+  mostrarSinFoto: false,
 };

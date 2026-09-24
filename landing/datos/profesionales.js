@@ -7,7 +7,7 @@ window.ZEUS_PROFESIONALES = [
       "pintor"
     ],
     "frase": "10 años de experiencia. Zona Norte y Centro.",
-    "foto": null
+    "foto": "fotos/recWreAgb2cc3uElF.jpg"
   },
   {
     "id": "recGdB1c7WEl5AUbd",
@@ -16,7 +16,7 @@ window.ZEUS_PROFESIONALES = [
       "limpieza_particular"
     ],
     "frase": "Zona Norte.",
-    "foto": null
+    "foto": "fotos/recGdB1c7WEl5AUbd.jpg"
   },
   {
     "id": "recmUDKSA6Yp67Q3Q",
@@ -25,7 +25,7 @@ window.ZEUS_PROFESIONALES = [
       "limpieza_particular"
     ],
     "frase": "Toda CABA.",
-    "foto": null
+    "foto": "fotos/recmUDKSA6Yp67Q3Q.jpg"
   },
   {
     "id": "recc5KHJk4shnZw4t",
@@ -34,7 +34,7 @@ window.ZEUS_PROFESIONALES = [
       "limpieza_particular"
     ],
     "frase": "Zona Norte, Centro, Oeste y Microcentro.",
-    "foto": null
+    "foto": "fotos/recc5KHJk4shnZw4t.jpg"
   },
   {
     "id": "recHQSCrESlq3QgS3",
@@ -43,7 +43,7 @@ window.ZEUS_PROFESIONALES = [
       "limpieza_particular"
     ],
     "frase": "Zona Norte.",
-    "foto": null
+    "foto": "fotos/recHQSCrESlq3QgS3.jpg"
   },
   {
     "id": "recyaba5QZRoXrgac",
@@ -52,7 +52,7 @@ window.ZEUS_PROFESIONALES = [
       "limpieza_particular"
     ],
     "frase": "Toda CABA.",
-    "foto": null
+    "foto": "fotos/recyaba5QZRoXrgac.jpg"
   },
   {
     "id": "recBdOWWUaUAKIBKm",
@@ -61,7 +61,7 @@ window.ZEUS_PROFESIONALES = [
       "limpieza_particular"
     ],
     "frase": "Zona Norte.",
-    "foto": null
+    "foto": "fotos/recBdOWWUaUAKIBKm.jpg"
   },
   {
     "id": "rec6HLjKSjHF08A2D",
@@ -70,7 +70,7 @@ window.ZEUS_PROFESIONALES = [
       "limpieza_particular"
     ],
     "frase": "Zona Norte y Microcentro.",
-    "foto": null
+    "foto": "fotos/rec6HLjKSjHF08A2D.jpg"
   },
   {
     "id": "reczgjDfu11q6c7B4",
@@ -88,7 +88,7 @@ window.ZEUS_PROFESIONALES = [
       "limpieza_particular"
     ],
     "frase": "Toda CABA.",
-    "foto": null
+    "foto": "fotos/recUy8ZuciFvUqX9c.jpg"
   },
   {
     "id": "rec4I9c3GPi7ghlLZ",
@@ -100,7 +100,7 @@ window.ZEUS_PROFESIONALES = [
       "plomero"
     ],
     "frase": "15 años de experiencia. Zona Norte y Centro.",
-    "foto": null
+    "foto": "fotos/rec4I9c3GPi7ghlLZ.jpg"
   },
   {
     "id": "recbWUMKlJ7GGniJm",
@@ -109,7 +109,7 @@ window.ZEUS_PROFESIONALES = [
       "limpieza_particular"
     ],
     "frase": "Zona Norte.",
-    "foto": null
+    "foto": "fotos/recbWUMKlJ7GGniJm.jpg"
   },
   {
     "id": "receDwD2RQ8CadhHF",
@@ -121,7 +121,7 @@ window.ZEUS_PROFESIONALES = [
       "plomero"
     ],
     "frase": "1 año de experiencia. Toda CABA.",
-    "foto": null
+    "foto": "fotos/receDwD2RQ8CadhHF.jpg"
   },
   {
     "id": "recZZRs71aWM0twsp",
@@ -135,7 +135,7 @@ window.ZEUS_PROFESIONALES = [
       "plomero"
     ],
     "frase": "25 años de experiencia. Zona Norte.",
-    "foto": null
+    "foto": "fotos/recZZRs71aWM0twsp.jpg"
   },
   {
     "id": "recUXIdqtOMqCaUgr",
@@ -153,6 +153,6 @@ window.ZEUS_PROFESIONALES = [
       "limpieza_particular"
     ],
     "frase": "Zona Norte y Oeste.",
-    "foto": null
+    "foto": "fotos/recF0OLgzbUlh2muV.jpg"
   }
 ];
