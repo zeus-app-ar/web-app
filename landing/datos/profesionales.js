@@ -1,4 +1,4 @@
-// Generado por herramientas/actualizar_profesionales.py el 2026-09-24. No editar a mano.
+// Generado por herramientas/actualizar_profesionales.py el 2026-09-25. No editar a mano.
 window.ZEUS_PROFESIONALES = [
   {
     "id": "recWreAgb2cc3uElF",
@@ -73,15 +73,6 @@ window.ZEUS_PROFESIONALES = [
     "foto": "fotos/rec6HLjKSjHF08A2D.jpg"
   },
   {
-    "id": "reczgjDfu11q6c7B4",
-    "nombre": "Laura C.",
-    "rubros": [
-      "limpieza_particular"
-    ],
-    "frase": "Toda CABA.",
-    "foto": null
-  },
-  {
     "id": "recUy8ZuciFvUqX9c",
     "nombre": "Marcela C.",
     "rubros": [
@@ -138,15 +129,6 @@ window.ZEUS_PROFESIONALES = [
     "foto": "fotos/recZZRs71aWM0twsp.jpg"
   },
   {
-    "id": "recUXIdqtOMqCaUgr",
-    "nombre": "Sulmira M.",
-    "rubros": [
-      "limpieza_particular"
-    ],
-    "frase": "Zona Sur.",
-    "foto": null
-  },
-  {
     "id": "recF0OLgzbUlh2muV",
     "nombre": "Viviana H.",
     "rubros": [
@@ -154,5 +136,23 @@ window.ZEUS_PROFESIONALES = [
     ],
     "frase": "Zona Norte y Oeste.",
     "foto": "fotos/recF0OLgzbUlh2muV.jpg"
+  },
+  {
+    "id": "reczgjDfu11q6c7B4",
+    "nombre": "Laura C.",
+    "rubros": [
+      "limpieza_particular"
+    ],
+    "frase": "Toda CABA.",
+    "foto": null
+  },
+  {
+    "id": "recUXIdqtOMqCaUgr",
+    "nombre": "Sulmira M.",
+    "rubros": [
+      "limpieza_particular"
+    ],
+    "frase": "Zona Sur.",
+    "foto": null
   }
 ];
