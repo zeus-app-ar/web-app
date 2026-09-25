@@ -107,6 +107,28 @@ def nombre_para_web(completo: str) -> str:
     return f"{nombre} {partes[-1][0].upper()}."
 
 
+BANNER = """\
+// ============================================================================
+// ⚠️  ARCHIVO GENERADO AUTOMÁTICAMENTE — NO LO EDITES A MANO  ⚠️
+// ============================================================================
+//
+// Lo reescribe entero herramientas/actualizar_profesionales.py, que corre solo
+// todas las noches (20:00 de Buenos Aires) leyendo Airtable. Cualquier cambio
+// que hagas acá se pierde en la próxima corrida, sin aviso y sin error.
+//
+// ¿Querés cambiar quién aparece en la web, su nombre, su foto o su zona?
+//   → Se edita en AIRTABLE, tabla "Prestadores de Servicios".
+//     La web muestra solo a los que están Estado=Activo y Disponibilidad=Disponible.
+//   → Aparece al día siguiente. Para verlo ya: pestaña Actions del repo →
+//     "Actualizar profesionales" → Run workflow.
+//   → Guía paso a paso:
+//     https://chiaradigi2.atlassian.net/wiki/spaces/Zeus/pages/98312
+//
+// Generado el {hoy}.
+// ============================================================================
+"""
+
+
 TAM_FOTO = 400
 
 
@@ -189,8 +211,8 @@ def main():
     salida.sort(key=lambda p: (p["foto"] is None, p["nombre"]))
     hoy = datetime.date.today().isoformat()
     js = (
-        f"// Generado por herramientas/actualizar_profesionales.py el {hoy}. No editar a mano.\n"
-        f"window.ZEUS_PROFESIONALES = {json.dumps(salida, ensure_ascii=False, indent=2)};\n"
+        BANNER.format(hoy=hoy)
+        + f"window.ZEUS_PROFESIONALES = {json.dumps(salida, ensure_ascii=False, indent=2)};\n"
     )
     io.open(os.path.join(WEB, "datos", "profesionales.js"), "w", encoding="utf-8").write(js)
 

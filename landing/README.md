@@ -10,8 +10,8 @@ HTML, CSS y JavaScript sin servidor ni build. Se publica sola en GitHub Pages co
 | `app.js` | Arma la barra de servicios y los paneles, conecta WhatsApp y "Quiero ser proveedor" |
 | `datos/config.js` | **Lo que más se cambia**: número de WhatsApp y links de los formularios |
 | `datos/rubros.js` | La barra de servicios: rubros, íconos, títulos y frases. Mismas claves que el bot |
-| `datos/profesionales.js` | Generado desde Airtable. No se edita a mano |
-| `fotos/` | Fotos de los profesionales, `fotos/<record_id de Airtable>.jpg` |
+| `datos/profesionales.js` | **Generado.** Lo reescribe entero la Action diaria desde Airtable — editarlo a mano no sirve, se pisa a la noche. Para cambiar quién aparece se edita Airtable |
+| `fotos/` | **Generado.** Se bajan solas del campo "Foto" de Airtable. Una foto subida a mano solo sobrevive si esa persona no tiene foto en Airtable |
 | `herramientas/actualizar_profesionales.py` | Regenera `datos/profesionales.js` desde Airtable |
 | `herramientas/nombres_web.json` | Correcciones a mano de cómo figura alguien |
 | `herramientas/armar_vista_previa.py` | Junta todo en un solo `.html` para mandarlo y revisarlo antes de publicar |

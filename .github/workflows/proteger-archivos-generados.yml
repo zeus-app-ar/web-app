@@ -1,0 +1,67 @@
+# Avisa cuando un Pull Request toca archivos que se generan solos.
+#
+# El problema que resuelve: `landing/datos/profesionales.js` lo reescribe entero
+# la Action "Actualizar profesionales" todas las noches leyendo Airtable. Si
+# alguien lo edita a mano, el cambio se pierde en la próxima corrida sin ningún
+# aviso — parece que funcionó y al otro día volvió atrás solo.
+#
+# Este check no bloquea a la Action (esa pushea directo a main, no abre PRs):
+# solo mira los cambios hechos por personas.
+#
+# Si hay que tocarlo igual por alguna razón puntual, escribí
+# [generado-a-proposito] en el título o en la descripción del PR.
+
+name: Proteger archivos generados
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  revisar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el código
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Revisar qué archivos toca el PR
+        env:
+          BASE: ${{ github.base_ref }}
+          TITULO: ${{ github.event.pull_request.title }}
+          CUERPO: ${{ github.event.pull_request.body }}
+        run: |
+          set -eu
+
+          if printf '%s %s' "$TITULO" "$CUERPO" | grep -qF '[generado-a-proposito]'; then
+            echo "El PR declara [generado-a-proposito]: no se revisa nada."
+            exit 0
+          fi
+
+          git fetch --quiet origin "$BASE"
+          CAMBIADOS=$(git diff --name-only "origin/$BASE...HEAD")
+          echo "Archivos que toca el PR:"
+          echo "$CAMBIADOS"
+          echo "---"
+
+          FALLA=0
+
+          if echo "$CAMBIADOS" | grep -qx 'landing/datos/profesionales.js'; then
+            echo "::error file=landing/datos/profesionales.js::Este archivo lo reescribe entero la Action 'Actualizar profesionales' desde Airtable todas las noches, así que lo que edites acá se pierde mañana. Para cambiar quién aparece en la web, editá Airtable (tabla 'Prestadores de Servicios'). Guía: https://chiaradigi2.atlassian.net/wiki/spaces/Zeus/pages/98312"
+            FALLA=1
+          fi
+
+          if echo "$CAMBIADOS" | grep -q '^landing/fotos/'; then
+            echo "::warning::El PR toca landing/fotos/. Las fotos se bajan solas desde el campo 'Foto' de Airtable: si la persona tiene foto cargada ahí, la que subas a mano se pisa en la próxima corrida. Subirla a mano solo tiene sentido para alguien que NO tiene foto en Airtable."
+          fi
+
+          if [ "$FALLA" = "1" ]; then
+            echo "Revisá el error de arriba. Si aun así hay que hacerlo, poné [generado-a-proposito] en el título del PR."
+            exit 1
+          fi
+
+          echo "Sin cambios a mano en archivos generados."

@@ -1,0 +1,13 @@
+# Archivos que genera sola la Action "Actualizar profesionales" desde Airtable.
+# No los edita una persona: se reescriben enteros todas las noches.
+#
+# linguist-generated hace dos cosas en GitHub:
+#   - en los Pull Requests aparecen colapsados, así una review no se llena de
+#     ruido cuando cambia la lista de profesionales;
+#   - no cuentan como código escrito a mano en las estadísticas del repo.
+#
+# El aviso de "no editar" está arriba de cada archivo y además hay un check
+# que falla si un PR toca profesionales.js (.github/workflows/proteger-archivos-generados.yml).
+
+landing/datos/profesionales.js  linguist-generated=true
+landing/fotos/**                linguist-generated=true
