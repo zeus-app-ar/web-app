@@ -1,4 +1,21 @@
-// Generado por herramientas/actualizar_profesionales.py el 2026-09-25. No editar a mano.
+// ============================================================================
+// ⚠️  ARCHIVO GENERADO AUTOMÁTICAMENTE — NO LO EDITES A MANO  ⚠️
+// ============================================================================
+//
+// Lo reescribe entero herramientas/actualizar_profesionales.py, que corre solo
+// todas las noches (20:00 de Buenos Aires) leyendo Airtable. Cualquier cambio
+// que hagas acá se pierde en la próxima corrida, sin aviso y sin error.
+//
+// ¿Querés cambiar quién aparece en la web, su nombre, su foto o su zona?
+//   → Se edita en AIRTABLE, tabla "Prestadores de Servicios".
+//     La web muestra solo a los que están Estado=Activo y Disponibilidad=Disponible.
+//   → Aparece al día siguiente. Para verlo ya: pestaña Actions del repo →
+//     "Actualizar profesionales" → Run workflow.
+//   → Guía paso a paso:
+//     https://chiaradigi2.atlassian.net/wiki/spaces/Zeus/pages/98312
+//
+// Generado el 2026-09-26.
+// ============================================================================
 window.ZEUS_PROFESIONALES = [
   {
     "id": "recWreAgb2cc3uElF",
@@ -86,7 +103,6 @@ window.ZEUS_PROFESIONALES = [
     "nombre": "Mauricio M.",
     "rubros": [
       "arreglatodo",
-      "limpieza_particular",
       "pintor",
       "plomero"
     ],
@@ -108,7 +124,6 @@ window.ZEUS_PROFESIONALES = [
     "rubros": [
       "electricista",
       "gasista",
-      "limpieza_particular",
       "plomero"
     ],
     "frase": "1 año de experiencia. Toda CABA.",
@@ -121,7 +136,6 @@ window.ZEUS_PROFESIONALES = [
       "arreglatodo",
       "electricista",
       "gasista",
-      "limpieza_particular",
       "pintor",
       "plomero"
     ],
