@@ -18,6 +18,17 @@
 // ============================================================================
 window.ZEUS_PROFESIONALES = [
   {
+    "id": "recqX6Aihw8iKgEIr",
+    "nombre": "Alan G.",
+    "rubros": [
+      "arreglatodo",
+      "electricista",
+      "pintor"
+    ],
+    "frase": "Pintura, electricidad, durlock y mantenimiento de casas y edificios. 3 años de experiencia.",
+    "foto": "fotos/recqX6Aihw8iKgEIr.jpg"
+  },
+  {
     "id": "recWreAgb2cc3uElF",
     "nombre": "Alejandro M.",
     "rubros": [
@@ -36,6 +47,15 @@ window.ZEUS_PROFESIONALES = [
     "foto": "fotos/recGdB1c7WEl5AUbd.jpg"
   },
   {
+    "id": "reciVNjpxufSbXIFo",
+    "nombre": "Christian K.",
+    "rubros": [
+      "armado_muebles"
+    ],
+    "frase": "15 años de experiencia armando muebles. Trabaja en zona norte y se mueve con vehículo propio.",
+    "foto": "fotos/reciVNjpxufSbXIFo.jpg"
+  },
+  {
     "id": "recmUDKSA6Yp67Q3Q",
     "nombre": "Dana P.",
     "rubros": [
@@ -52,6 +72,17 @@ window.ZEUS_PROFESIONALES = [
     ],
     "frase": "Limpieza de casas, oficinas, vidrios y post-obra. Trabaja por horas.",
     "foto": "fotos/recc5KHJk4shnZw4t.jpg"
+  },
+  {
+    "id": "recVANJArNPDh5CRl",
+    "nombre": "Diego S.",
+    "rubros": [
+      "armado_muebles",
+      "electricista",
+      "plomero"
+    ],
+    "frase": "Electricista con 5 años de experiencia en casas y comercios. También hace instalaciones sanitarias y mantenimiento. Se mueve en auto.",
+    "foto": "fotos/recVANJArNPDh5CRl.jpg"
   },
   {
     "id": "recHQSCrESlq3QgS3",
@@ -108,15 +139,14 @@ window.ZEUS_PROFESIONALES = [
     "foto": "fotos/recUy8ZuciFvUqX9c.jpg"
   },
   {
-    "id": "rec4I9c3GPi7ghlLZ",
-    "nombre": "Mauricio M.",
+    "id": "recdm5DSnyDCngZf9",
+    "nombre": "Mario L.",
     "rubros": [
-      "arreglatodo",
-      "pintor",
-      "plomero"
+      "armado_muebles",
+      "electricista"
     ],
-    "frase": "15 años de experiencia en mantenimiento, albañilería, pintura, plomería y herrería. Puntual y con amplia disponibilidad horaria.",
-    "foto": "fotos/rec4I9c3GPi7ghlLZ.jpg"
+    "frase": "Armado de muebles, con 10 años de experiencia. También hace trabajos de electricidad. Trabaja en toda CABA.",
+    "foto": "fotos/recdm5DSnyDCngZf9.jpg"
   },
   {
     "id": "recbWUMKlJ7GGniJm",
@@ -167,6 +197,24 @@ window.ZEUS_PROFESIONALES = [
       "limpieza_particular"
     ],
     "frase": "Limpieza de casas, oficinas, vidrios y post-obra. Trabaja en toda CABA.",
+    "foto": null
+  },
+  {
+    "id": "recCpGFZqSI4XRnkI",
+    "nombre": "Mauro P.",
+    "rubros": [
+      "control_plagas"
+    ],
+    "frase": "Más de 30 años en control de plagas. Trabaja en toda CABA y se mueve en auto.",
+    "foto": null
+  },
+  {
+    "id": "recaPRFYJXEm6zxJD",
+    "nombre": "Nicolas V.",
+    "rubros": [
+      "electricista"
+    ],
+    "frase": "8 años de experiencia. Trabaja en el centro y Microcentro y Recoleta.",
     "foto": null
   },
   {
