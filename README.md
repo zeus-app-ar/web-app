@@ -21,7 +21,9 @@ web-app/
 
 ## La página está publicada en
 
-**https://zeus-app-ar.github.io/web-app/**
+**https://somoszeus.com**
+
+(`zeus-app-ar.github.io/web-app` sigue funcionando: redirige sola al dominio.)
 
 Cada push a `main` la actualiza sola (tarda ~1 minuto, se puede seguir en la pestaña *Actions*).
 
