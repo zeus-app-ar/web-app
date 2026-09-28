@@ -23,7 +23,7 @@ window.ZEUS_PROFESIONALES = [
     "rubros": [
       "pintor"
     ],
-    "frase": "10 años de experiencia. Zona Norte y Centro.",
+    "frase": "Pintor con 10 años de experiencia. Trabaja en zona norte y el centro de CABA.",
     "foto": "fotos/recWreAgb2cc3uElF.jpg"
   },
   {
@@ -32,7 +32,7 @@ window.ZEUS_PROFESIONALES = [
     "rubros": [
       "limpieza_particular"
     ],
-    "frase": "Zona Norte.",
+    "frase": "Limpieza de casas y oficinas, vidrios, post-obra, alfombras y tapizados. Trabaja por horas en zona norte.",
     "foto": "fotos/recGdB1c7WEl5AUbd.jpg"
   },
   {
@@ -41,7 +41,7 @@ window.ZEUS_PROFESIONALES = [
     "rubros": [
       "limpieza_particular"
     ],
-    "frase": "Toda CABA.",
+    "frase": "Limpieza de casas, oficinas y post-obra. Trabaja por horas en toda CABA.",
     "foto": "fotos/recmUDKSA6Yp67Q3Q.jpg"
   },
   {
@@ -50,7 +50,7 @@ window.ZEUS_PROFESIONALES = [
     "rubros": [
       "limpieza_particular"
     ],
-    "frase": "Zona Norte, Centro, Oeste y Microcentro.",
+    "frase": "Limpieza de casas, oficinas, vidrios y post-obra. Trabaja por horas.",
     "foto": "fotos/recc5KHJk4shnZw4t.jpg"
   },
   {
@@ -59,7 +59,7 @@ window.ZEUS_PROFESIONALES = [
     "rubros": [
       "limpieza_particular"
     ],
-    "frase": "Zona Norte.",
+    "frase": "Limpieza de casas, oficinas y vidrios. Trabaja por horas en zona norte.",
     "foto": "fotos/recHQSCrESlq3QgS3.jpg"
   },
   {
@@ -68,7 +68,7 @@ window.ZEUS_PROFESIONALES = [
     "rubros": [
       "limpieza_particular"
     ],
-    "frase": "Toda CABA.",
+    "frase": "Limpieza de casas, oficinas, vidrios y post-obra. Trabaja por horas en toda CABA.",
     "foto": "fotos/recyaba5QZRoXrgac.jpg"
   },
   {
@@ -77,7 +77,7 @@ window.ZEUS_PROFESIONALES = [
     "rubros": [
       "limpieza_particular"
     ],
-    "frase": "Zona Norte.",
+    "frase": "Limpieza de casas y oficinas, vidrios, alfombras y tapizados. Trabaja por horas en zona norte.",
     "foto": "fotos/recBdOWWUaUAKIBKm.jpg"
   },
   {
@@ -86,8 +86,17 @@ window.ZEUS_PROFESIONALES = [
     "rubros": [
       "limpieza_particular"
     ],
-    "frase": "Zona Norte y Microcentro.",
+    "frase": "Limpieza de casas, oficinas y post-obra. Trabaja por horas en zona norte, Microcentro y Recoleta.",
     "foto": "fotos/rec6HLjKSjHF08A2D.jpg"
+  },
+  {
+    "id": "reczkMwivWNRsZuaQ",
+    "nombre": "Lucas M.",
+    "rubros": [
+      "instalacion_aire"
+    ],
+    "frase": "Técnico en aire acondicionado, comprometido y responsable. Tiene movilidad propia.",
+    "foto": "fotos/reczkMwivWNRsZuaQ.jpg"
   },
   {
     "id": "recUy8ZuciFvUqX9c",
@@ -95,7 +104,7 @@ window.ZEUS_PROFESIONALES = [
     "rubros": [
       "limpieza_particular"
     ],
-    "frase": "Toda CABA.",
+    "frase": "Limpieza de casas y oficinas, vidrios, post-obra, alfombras y tapizados. Trabaja por horas en toda CABA.",
     "foto": "fotos/recUy8ZuciFvUqX9c.jpg"
   },
   {
@@ -106,7 +115,7 @@ window.ZEUS_PROFESIONALES = [
       "pintor",
       "plomero"
     ],
-    "frase": "15 años de experiencia. Zona Norte y Centro.",
+    "frase": "15 años de experiencia en mantenimiento, albañilería, pintura, plomería y herrería. Puntual y con amplia disponibilidad horaria.",
     "foto": "fotos/rec4I9c3GPi7ghlLZ.jpg"
   },
   {
@@ -115,7 +124,7 @@ window.ZEUS_PROFESIONALES = [
     "rubros": [
       "limpieza_particular"
     ],
-    "frase": "Zona Norte.",
+    "frase": "Limpieza de casas, oficinas, vidrios y post-obra. Trabaja por horas en zona norte.",
     "foto": "fotos/recbWUMKlJ7GGniJm.jpg"
   },
   {
@@ -126,7 +135,7 @@ window.ZEUS_PROFESIONALES = [
       "gasista",
       "plomero"
     ],
-    "frase": "1 año de experiencia. Toda CABA.",
+    "frase": "Electricista y gasista; también hace plomería básica. Trabaja por la tarde, en toda CABA.",
     "foto": "fotos/receDwD2RQ8CadhHF.jpg"
   },
   {
@@ -139,7 +148,7 @@ window.ZEUS_PROFESIONALES = [
       "pintor",
       "plomero"
     ],
-    "frase": "25 años de experiencia. Zona Norte.",
+    "frase": "Encargado de edificio con 25 años de oficio. Resuelve arreglos de electricidad, gas, plomería y mantenimiento general. Se mueve en auto.",
     "foto": "fotos/recZZRs71aWM0twsp.jpg"
   },
   {
@@ -148,7 +157,7 @@ window.ZEUS_PROFESIONALES = [
     "rubros": [
       "limpieza_particular"
     ],
-    "frase": "Zona Norte y Oeste.",
+    "frase": "Limpieza de oficinas. Trabaja en zona norte y zona oeste de CABA.",
     "foto": "fotos/recF0OLgzbUlh2muV.jpg"
   },
   {
@@ -157,7 +166,7 @@ window.ZEUS_PROFESIONALES = [
     "rubros": [
       "limpieza_particular"
     ],
-    "frase": "Toda CABA.",
+    "frase": "Limpieza de casas, oficinas, vidrios y post-obra. Trabaja en toda CABA.",
     "foto": null
   },
   {
@@ -166,7 +175,7 @@ window.ZEUS_PROFESIONALES = [
     "rubros": [
       "limpieza_particular"
     ],
-    "frase": "Zona Sur.",
+    "frase": "Limpieza de casas, por día. Trabaja en zona sur.",
     "foto": null
   }
 ];
