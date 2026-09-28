@@ -21,6 +21,14 @@
 # Los nombres que se muestran salen de herramientas/nombres_web.json si la
 # persona está ahí (para corregir a mano casos raros); si no, se arman solos.
 #
+# DESCRIPCIONES: la frase debajo del nombre sale de herramientas/frases_web.json,
+# escrita a mano a partir de lo que la persona contó en el formulario (corta,
+# sin teléfonos, redes, nombres de empresa ni promesas). Se busca por el
+# record_id de su alta en "Onboarding Submissions" (así se puede escribir antes
+# de que la promoción de las 20:00 le cree la ficha) o por el de "Prestadores
+# de Servicios". Si la persona no está en el archivo, se arma una frase sola
+# con los años de experiencia y dónde trabaja.
+#
 # FOTOS: se bajan solas del campo "Foto" (adjunto) de Prestadores de Servicios,
 # se recortan a cuadrado 400x400 y se guardan en fotos/<record_id>.jpg. Se
 # vuelve a bajar solo si el adjunto cambió (fotos/.origen.json guarda qué
@@ -53,6 +61,7 @@ RUBRO_DE_OPCION = {
     "Técnico Electrodomésticos": "tecnico_electrodomesticos",
     "Técnico de Electrodomésticos": "tecnico_electrodomesticos",
     "Instalación de Aire Acondicionado": "instalacion_aire",
+    "Técnico en Aire Acondicionado": "instalacion_aire",   # así lo escribe el formulario
     "Limpieza Profesional": "limpieza_profesional",
     "Limpieza Particular": "limpieza_particular",
     "Arreglatodo / Handyman": "arreglatodo",
@@ -62,6 +71,7 @@ RUBRO_DE_OPCION = {
     "Fletes y Mudanzas": "mudanza",
     "Pintor": "pintor",
     "Control de Plagas": "control_plagas",
+    "Control de plagas": "control_plagas",                 # así lo escribe el formulario
     # "Paisajismo" no es un rubro del bot: si alguien solo ofrece eso, no aparece.
 }
 
@@ -84,16 +94,44 @@ def zonas_para_web(zonas: list) -> str:
     return ("Zona " + lista) if cortas[0] != "Microcentro" else lista
 
 
+ZONA_EN_FRASE = {
+    "Norte": "zona norte",
+    "Centro": "el centro",
+    "Sur": "zona sur",
+    "Oeste": "zona oeste",
+    "Microcentro": "Microcentro y Recoleta",
+}
+
+
+def donde_trabaja(zonas: list) -> str:
+    """Zonas de cobertura -> 'Trabaja en toda CABA.' / 'Trabaja en zona norte y el centro de CABA.'"""
+    cortas = []
+    for z in zonas or []:
+        base = z.split(" (")[0].strip()
+        if base == "Toda CABA":
+            return "Trabaja en toda CABA."
+        base = base.replace("Microcentro / Zona Este", "Microcentro").replace("Zona ", "")
+        texto = ZONA_EN_FRASE.get(base)
+        if texto and texto not in cortas:
+            cortas.append(texto)
+    if len(cortas) >= 4:
+        return "Trabaja en toda CABA."
+    if not cortas:
+        return ""
+    lista = cortas[0] if len(cortas) == 1 else ", ".join(cortas[:-1]) + " y " + cortas[-1]
+    return f"Trabaja en {lista}." if "Microcentro" in lista else f"Trabaja en {lista} de CABA."
+
+
 def frase_para_web(f: dict) -> str:
-    """Una línea verdadera sobre la persona: años de experiencia (si los cargó) y zonas."""
+    """Frase armada sola cuando la persona no está en frases_web.json: experiencia y dónde trabaja."""
     partes = []
     anios = f.get("Años de experiencia")
     if isinstance(anios, (int, float)) and anios > 0:
         anios = int(anios)
         partes.append(f"{anios} año{'s' if anios != 1 else ''} de experiencia.")
-    zonas = zonas_para_web(f.get("Zonas de cobertura"))
-    if zonas:
-        partes.append(zonas + ".")
+    donde = donde_trabaja(f.get("Zonas de cobertura"))
+    if donde:
+        partes.append(donde)
     return " ".join(partes)
 
 
@@ -165,6 +203,15 @@ def bajar_foto(record_id: str, adjuntos: list, origen: dict) -> str | None:
         return ruta_rel if os.path.exists(ruta) else None
 
 
+def frase_elegida(record_id: str, f: dict, frases: dict) -> str:
+    """La frase escrita a mano (por id de Prestadores o de su alta en Onboarding) o, si no hay, la automática."""
+    for clave in [record_id] + list(f.get("Onboarding Submissions") or []):
+        texto = frases.get(clave)
+        if isinstance(texto, str) and texto.strip():
+            return texto.strip()
+    return frase_para_web(f)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--bot", default=BOT_POR_DEFECTO,
@@ -184,6 +231,11 @@ def main():
     if os.path.exists(ruta_nombres):
         a_mano = json.load(io.open(ruta_nombres, encoding="utf-8"))
 
+    ruta_frases = os.path.join(AQUI, "frases_web.json")
+    frases = {}
+    if os.path.exists(ruta_frases):
+        frases = json.load(io.open(ruta_frases, encoding="utf-8"))
+
     ruta_origen = os.path.join(WEB, "fotos", ".origen.json")
     origen = json.load(io.open(ruta_origen, encoding="utf-8")) if os.path.exists(ruta_origen) else {}
 
@@ -202,7 +254,7 @@ def main():
             "id": r["id"],
             "nombre": a_mano.get(r["id"]) or nombre_para_web(f.get("Nombre completo", "")),
             "rubros": rubros,
-            "frase": frase_para_web(f),
+            "frase": frase_elegida(r["id"], f, frases),
             "foto": bajar_foto(r["id"], f.get("Foto"), origen),
         })
 
