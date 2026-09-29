@@ -121,15 +121,6 @@ window.ZEUS_PROFESIONALES = [
     "foto": "fotos/rec6HLjKSjHF08A2D.jpg"
   },
   {
-    "id": "reczkMwivWNRsZuaQ",
-    "nombre": "Lucas M.",
-    "rubros": [
-      "instalacion_aire"
-    ],
-    "frase": "Técnico en aire acondicionado, comprometido y responsable. Trabaja en zona norte, el centro y zona oeste de CABA.",
-    "foto": "fotos/reczkMwivWNRsZuaQ.jpg"
-  },
-  {
     "id": "recUy8ZuciFvUqX9c",
     "nombre": "Marcela C.",
     "rubros": [
