@@ -1,17 +1,17 @@
 {
-  "_como_usar": "Frase que se muestra debajo del nombre en la página. La clave es el record_id del alta en 'Onboarding Submissions' (o el de 'Prestadores de Servicios'). Se escribe a mano a partir de lo que la persona contó en el formulario: corta (1 o 2 líneas), en tercera persona, sin teléfonos, redes sociales, nombres de empresa, direcciones ni promesas (garantías, tiempos, precios). Quien no esté acá tiene una frase automática con años de experiencia y dónde trabaja.",
+  "_como_usar": "Frase que se muestra debajo del nombre en la página. La clave es el record_id del alta en 'Onboarding Submissions' (o el de 'Prestadores de Servicios'). Se escribe a mano a partir de lo que la persona contó en el formulario: corta (1 o 2 líneas), en tercera persona, sin teléfonos, redes sociales, nombres de empresa, direcciones, movilidad (auto, vehículo) ni promesas (garantías, tiempos, precios). Quien no esté acá tiene una frase automática con años de experiencia y dónde trabaja.",
   "_actualizado": "2026-09-28, a pedido de Pancho",
 
   "recGfvD4W45JReqkf": "15 años de experiencia en mantenimiento, albañilería, pintura, plomería y herrería. Puntual y con amplia disponibilidad horaria.",
-  "rec625pyRdTtzFQpH": "Encargado de edificio con 25 años de oficio. Resuelve arreglos de electricidad, gas, plomería y mantenimiento general. Se mueve en auto.",
+  "rec625pyRdTtzFQpH": "Encargado de edificio con 25 años de oficio. Resuelve arreglos de electricidad, gas, plomería y mantenimiento general.",
   "recWVlpue6LXaIGhB": "Electricista y gasista; también hace plomería básica. Trabaja por la tarde, en toda CABA.",
   "reclNXd7xPxu5IHuz": "Pintor con 10 años de experiencia. Trabaja en zona norte y el centro de CABA.",
-  "recBZhYXqAv9tDgf1": "Técnico en aire acondicionado, comprometido y responsable. Tiene movilidad propia.",
+  "recBZhYXqAv9tDgf1": "Técnico en aire acondicionado, comprometido y responsable. Trabaja en zona norte, el centro y zona oeste de CABA.",
 
   "rec4CCkJ1t1hMaMhS": "Pintura, electricidad, durlock y mantenimiento de casas y edificios. 3 años de experiencia.",
-  "rec7yaUyQsuQSuILC": "15 años de experiencia armando muebles. Trabaja en zona norte y se mueve con vehículo propio.",
-  "recm36G9o6v4UP25F": "Electricista con 5 años de experiencia en casas y comercios. También hace instalaciones sanitarias y mantenimiento. Se mueve en auto.",
-  "rec4So5LULbwEzhPA": "Más de 30 años en control de plagas. Trabaja en toda CABA y se mueve en auto.",
+  "rec7yaUyQsuQSuILC": "15 años de experiencia armando muebles. Trabaja en zona norte.",
+  "recm36G9o6v4UP25F": "Electricista con 5 años de experiencia en casas y comercios. También hace instalaciones sanitarias y mantenimiento.",
+  "rec4So5LULbwEzhPA": "Más de 30 años en control de plagas. Trabaja en toda CABA.",
   "recPEUyXjkU2Q6A8e": "Armado de muebles, con 10 años de experiencia. También hace trabajos de electricidad. Trabaja en toda CABA.",
   "rec2KXEru9K1hvQaf": "Electricista con 8 años de experiencia. Trabaja en el centro de CABA, Microcentro y Recoleta.",
 
