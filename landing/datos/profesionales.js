@@ -52,7 +52,7 @@ window.ZEUS_PROFESIONALES = [
     "rubros": [
       "armado_muebles"
     ],
-    "frase": "15 años de experiencia armando muebles. Trabaja en zona norte y se mueve con vehículo propio.",
+    "frase": "15 años de experiencia armando muebles. Trabaja en zona norte.",
     "foto": "fotos/reciVNjpxufSbXIFo.jpg"
   },
   {
@@ -81,7 +81,7 @@ window.ZEUS_PROFESIONALES = [
       "electricista",
       "plomero"
     ],
-    "frase": "Electricista con 5 años de experiencia en casas y comercios. También hace instalaciones sanitarias y mantenimiento. Se mueve en auto.",
+    "frase": "Electricista con 5 años de experiencia en casas y comercios. También hace instalaciones sanitarias y mantenimiento.",
     "foto": "fotos/recVANJArNPDh5CRl.jpg"
   },
   {
@@ -126,7 +126,7 @@ window.ZEUS_PROFESIONALES = [
     "rubros": [
       "instalacion_aire"
     ],
-    "frase": "Técnico en aire acondicionado, comprometido y responsable. Tiene movilidad propia.",
+    "frase": "Técnico en aire acondicionado, comprometido y responsable. Trabaja en zona norte, el centro y zona oeste de CABA.",
     "foto": "fotos/reczkMwivWNRsZuaQ.jpg"
   },
   {
@@ -154,7 +154,7 @@ window.ZEUS_PROFESIONALES = [
     "rubros": [
       "control_plagas"
     ],
-    "frase": "Más de 30 años en control de plagas. Trabaja en toda CABA y se mueve en auto.",
+    "frase": "Más de 30 años en control de plagas. Trabaja en toda CABA.",
     "foto": "fotos/recCpGFZqSI4XRnkI.jpg"
   },
   {
@@ -196,7 +196,7 @@ window.ZEUS_PROFESIONALES = [
       "pintor",
       "plomero"
     ],
-    "frase": "Encargado de edificio con 25 años de oficio. Resuelve arreglos de electricidad, gas, plomería y mantenimiento general. Se mueve en auto.",
+    "frase": "Encargado de edificio con 25 años de oficio. Resuelve arreglos de electricidad, gas, plomería y mantenimiento general.",
     "foto": "fotos/recZZRs71aWM0twsp.jpg"
   },
   {
