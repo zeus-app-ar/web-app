@@ -167,6 +167,15 @@ window.ZEUS_PROFESIONALES = [
     "foto": "fotos/recbWUMKlJ7GGniJm.jpg"
   },
   {
+    "id": "recaPRFYJXEm6zxJD",
+    "nombre": "Nicolas V.",
+    "rubros": [
+      "electricista"
+    ],
+    "frase": "Electricista con 8 años de experiencia. Trabaja en el centro de CABA, Microcentro y Recoleta.",
+    "foto": "fotos/recaPRFYJXEm6zxJD.jpg"
+  },
+  {
     "id": "receDwD2RQ8CadhHF",
     "nombre": "Roberto Q.",
     "rubros": [
@@ -206,15 +215,6 @@ window.ZEUS_PROFESIONALES = [
       "limpieza_particular"
     ],
     "frase": "Limpieza de casas, oficinas, vidrios y post-obra. Trabaja en toda CABA.",
-    "foto": null
-  },
-  {
-    "id": "recaPRFYJXEm6zxJD",
-    "nombre": "Nicolas V.",
-    "rubros": [
-      "electricista"
-    ],
-    "frase": "Electricista con 8 años de experiencia. Trabaja en el centro de CABA, Microcentro y Recoleta.",
     "foto": null
   },
   {
