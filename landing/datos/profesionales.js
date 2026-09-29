@@ -14,7 +14,7 @@
 //   → Guía paso a paso:
 //     https://chiaradigi2.atlassian.net/wiki/spaces/Zeus/pages/98312
 //
-// Generado el 2026-09-28.
+// Generado el 2026-09-29.
 // ============================================================================
 window.ZEUS_PROFESIONALES = [
   {
@@ -149,6 +149,15 @@ window.ZEUS_PROFESIONALES = [
     "foto": "fotos/recdm5DSnyDCngZf9.jpg"
   },
   {
+    "id": "recCpGFZqSI4XRnkI",
+    "nombre": "Mauro P.",
+    "rubros": [
+      "control_plagas"
+    ],
+    "frase": "Más de 30 años en control de plagas. Trabaja en toda CABA y se mueve en auto.",
+    "foto": "fotos/recCpGFZqSI4XRnkI.jpg"
+  },
+  {
     "id": "recbWUMKlJ7GGniJm",
     "nombre": "Melina E.",
     "rubros": [
@@ -200,21 +209,12 @@ window.ZEUS_PROFESIONALES = [
     "foto": null
   },
   {
-    "id": "recCpGFZqSI4XRnkI",
-    "nombre": "Mauro P.",
-    "rubros": [
-      "control_plagas"
-    ],
-    "frase": "Más de 30 años en control de plagas. Trabaja en toda CABA y se mueve en auto.",
-    "foto": null
-  },
-  {
     "id": "recaPRFYJXEm6zxJD",
     "nombre": "Nicolas V.",
     "rubros": [
       "electricista"
     ],
-    "frase": "8 años de experiencia. Trabaja en el centro y Microcentro y Recoleta.",
+    "frase": "Electricista con 8 años de experiencia. Trabaja en el centro de CABA, Microcentro y Recoleta.",
     "foto": null
   },
   {
