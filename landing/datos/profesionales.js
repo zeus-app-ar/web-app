@@ -81,7 +81,7 @@ window.ZEUS_PROFESIONALES = [
       "electricista",
       "plomero"
     ],
-    "frase": "Electricista con 5 años de experiencia en casas y comercios. También hace instalaciones sanitarias y mantenimiento.",
+    "frase": "5 años de experiencia en electricidad, instalaciones sanitarias y mantenimiento, en casas y comercios.",
     "foto": "fotos/recVANJArNPDh5CRl.jpg"
   },
   {
@@ -119,6 +119,15 @@ window.ZEUS_PROFESIONALES = [
     ],
     "frase": "Limpieza de casas, oficinas y post-obra. Trabaja por horas en zona norte, Microcentro y Recoleta.",
     "foto": "fotos/rec6HLjKSjHF08A2D.jpg"
+  },
+  {
+    "id": "reczkMwivWNRsZuaQ",
+    "nombre": "Lucas M.",
+    "rubros": [
+      "instalacion_aire"
+    ],
+    "frase": "Técnico en aire acondicionado, comprometido y responsable. Trabaja en zona norte, el centro y zona oeste de CABA.",
+    "foto": "fotos/reczkMwivWNRsZuaQ.jpg"
   },
   {
     "id": "recUy8ZuciFvUqX9c",
@@ -174,7 +183,7 @@ window.ZEUS_PROFESIONALES = [
       "gasista",
       "plomero"
     ],
-    "frase": "Electricista y gasista; también hace plomería básica. Trabaja por la tarde, en toda CABA.",
+    "frase": "Electricidad, gas y plomería básica. Trabaja por la tarde, en toda CABA.",
     "foto": "fotos/receDwD2RQ8CadhHF.jpg"
   },
   {
