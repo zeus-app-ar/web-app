@@ -7,9 +7,9 @@ HTML, CSS y JavaScript sin servidor ni build. Se publica sola en GitHub Pages co
 | Archivo | Qué es |
 |---|---|
 | `index.html` | La página, con sus estilos adentro |
-| `app.js` | Arma la barra de servicios y los paneles, conecta WhatsApp y "Quiero ser proveedor" |
+| `app.js` | Arma los rubros de la portada y los paneles, conecta WhatsApp y "Quiero ser proveedor" |
 | `datos/config.js` | **Lo que más se cambia**: número de WhatsApp y links de los formularios |
-| `datos/rubros.js` | La barra de servicios: rubros, íconos, títulos y frases. Mismas claves que el bot |
+| `datos/rubros.js` | Los rubros de la portada: íconos, títulos y frases. Mismas claves que el bot |
 | `datos/profesionales.js` | **Generado.** Lo reescribe entero la Action diaria desde Airtable — editarlo a mano no sirve, se pisa a la noche. Para cambiar quién aparece se edita Airtable |
 | `fotos/` | **Generado.** Se bajan solas del campo "Foto" de Airtable. Una foto subida a mano solo sobrevive si esa persona no tiene foto en Airtable |
 | `herramientas/actualizar_profesionales.py` | Regenera `datos/profesionales.js` desde Airtable |
@@ -35,7 +35,7 @@ python herramientas/actualizar_profesionales.py
 
 Lee la clave de Airtable del `.env` del bot (`../../Zeus-app/zeus-bot/.env`, o la ruta que se pase con `--bot`). **La clave nunca entra a este repo** y la página nunca se conecta a Airtable: si lo hiciera, cualquiera podría ver la clave y leer o borrar toda la base.
 
-Aparecen los prestadores `Activo` + `Disponible`. Lo acordado es mostrar solo a quienes tienen foto en `fotos/`; mientras se bajan las fotos, `mostrarSinFoto` en `datos/config.js` está en `true` y se muestra la inicial.
+Aparecen los prestadores `Activo` + `Disponible`. Se muestra solo a quienes tienen foto en `fotos/` (`mostrarSinFoto: false` en `datos/config.js`).
 
 ## Revisar el diseño completo
 
@@ -52,8 +52,6 @@ y abrir `http://localhost:8080`. Para probar en el celular (misma red Wi-Fi): `i
 
 ## Pendientes
 
-- **Fotos de los profesionales**: bajarlas de Drive a `fotos/` y volver `mostrarSinFoto` a `false`.
 - **Mudanza**: fuera de la página hasta que Fletes y Ayudante de mudanza existan por separado en el formulario de alta y en Airtable. Las frases ya están escritas y comentadas en `datos/rubros.js`.
 - **Formularios**: hoy exigen iniciar sesión con Google.
-- **Dominio propio**.
-- **Imagen para compartir** (`og:image`): hoy no hay, así que WhatsApp e Instagram muestran solo el título.
+- **Frases de quienes están en más de un rubro** (`herramientas/frases_web.json`): no arrancar con un oficio, porque la misma frase se ve en todos sus rubros.
