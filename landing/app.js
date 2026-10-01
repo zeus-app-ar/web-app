@@ -1,9 +1,9 @@
 // ============================================
 // Zeus ⚡ web — Comportamiento de la página
 // ============================================
-// Arma la barra de servicios y los paneles de profesionales a partir de
+// Arma los rubros de la portada y los paneles de profesionales a partir de
 // datos/, conecta los botones de WhatsApp y la ventana "Quiero ser proveedor".
-// Tocar un servicio abre su panel; tocarlo de nuevo lo cierra.
+// Tocar un rubro abre su panel debajo de la portada; tocarlo de nuevo lo cierra.
 
 (function () {
   "use strict";
@@ -56,11 +56,11 @@
     return { b: b, secciones: secciones };
   }).filter(function (x) { return x.secciones.length; });
 
-  // ---------- Barra de servicios ----------
-  var barra = document.getElementById("service-bar");
+  // ---------- Rubros de la portada ----------
+  var barra = document.getElementById("rubros");
   barra.innerHTML = botones.map(function (x) {
     return (
-      '<button class="service-btn" type="button" data-panel="' + x.b.id + '" aria-expanded="false" aria-controls="panel-' + x.b.id + '">' +
+      '<button class="rubro" type="button" data-panel="' + x.b.id + '" aria-expanded="false" aria-controls="panel-' + x.b.id + '">' +
         '<span class="icon">' + icono(x.b.icono) + "</span>" +
         '<span class="label">' + texto(x.b.etiqueta) + "</span>" +
       "</button>"
@@ -70,15 +70,17 @@
   // ---------- Paneles ----------
   function tarjeta(p, seccion) {
     var cara = p.foto
-      ? '<img src="' + p.foto + '" alt="' + texto(p.nombre) + '" loading="lazy">'
+      ? '<img src="' + p.foto + '" alt="' + texto(p.nombre) + '" width="84" height="84" decoding="async">'
       : '<div class="sin-foto" aria-hidden="true">' + texto(p.nombre.charAt(0)) + "</div>";
-    var mensaje = "Hola Zeus! Quiero contratar a " + p.nombre + " (" + seccion.nombre + ").";
+    // El botón abre el chat con Zeus (no con la persona): por eso dice "Pedir a …" y no "Contratar".
+    var mensaje = "Hola Zeus! Quiero pedir a " + p.nombre + " (" + seccion.nombre + ").";
+    var pila = String(p.nombre).split(" ")[0];
     return (
       '<div class="provider-card">' +
         cara +
         '<div class="prov-name">' + texto(p.nombre) + "</div>" +
         (p.frase ? '<div class="prov-desc">' + texto(p.frase) + "</div>" : "") +
-        '<a class="prov-wa" href="' + linkWhatsApp(mensaje) + '" target="_blank" rel="noopener">Contratar</a>' +
+        '<a class="prov-wa" href="' + linkWhatsApp(mensaje) + '" target="_blank" rel="noopener">Pedir a ' + texto(pila) + "</a>" +
       "</div>"
     );
   }
@@ -99,28 +101,61 @@
           : '<p class="vacio">Todavía no hay profesionales cargados en este rubro.</p>')
       );
     }).join("");
-    return '<div id="panel-' + x.b.id + '" class="providers-panel">' + cuerpo + "</div>";
+    return '<div id="panel-' + x.b.id + '" class="providers-panel"><div class="adentro">' + cuerpo + "</div></div>";
   }).join("");
 
   // ---------- Abrir / cerrar paneles ----------
   var actual = null;
   function togglePanel(id) {
     var panel = document.getElementById("panel-" + id);
-    var btns = barra.querySelectorAll(".service-btn");
+    var btns = barra.querySelectorAll(".rubro");
     document.querySelectorAll(".providers-panel").forEach(function (p) { p.classList.remove("open"); });
     btns.forEach(function (b) { b.classList.remove("active"); b.setAttribute("aria-expanded", "false"); });
-    if (actual === id) { actual = null; return; }
+    var portada = document.querySelector(".hero");
+    if (actual === id) { actual = null; portada.classList.remove("con-panel"); return; }
+    portada.classList.add("con-panel");
     panel.classList.add("open");
     actual = id;
     var btn = barra.querySelector('[data-panel="' + id + '"]');
     btn.classList.add("active");
     btn.setAttribute("aria-expanded", "true");
-    setTimeout(function () { panel.scrollIntoView({ behavior: "smooth", block: "nearest" }); }, 50);
+    // Sube la página hasta dejar los rubros arriba y el panel a la vista: se ve a
+    // quién hay y se puede cambiar de rubro sin volver a buscar los botones.
+    setTimeout(function () { barra.scrollIntoView({ block: "start" }); }, 50);
   }
   barra.addEventListener("click", function (e) {
-    var btn = e.target.closest(".service-btn");
+    var btn = e.target.closest(".rubro");
     if (btn) togglePanel(btn.getAttribute("data-panel"));
   });
+
+  // ---------- Fotos listas antes de abrir un panel ----------
+  // Los paneles arrancan cerrados, así que el navegador no baja sus fotos hasta
+  // que se abren y se veían círculos vacíos un par de segundos. Se bajan de
+  // fondo cuando la página ya cargó (o al tocar un rubro, si el teléfono está
+  // en modo "ahorro de datos").
+  var pedidas = {};
+  function bajarFotos(lista) {
+    lista.forEach(function (p) {
+      if (p.foto && !pedidas[p.foto]) { pedidas[p.foto] = true; new Image().src = p.foto; }
+    });
+  }
+  function fotosDe(id) {
+    var x = botones.filter(function (y) { return y.b.id === id; })[0];
+    if (!x) return;
+    x.secciones.forEach(function (s) { bajarFotos(gentePara(s.rubro)); });
+  }
+  ["pointerenter", "pointerdown", "focusin"].forEach(function (ev) {
+    barra.addEventListener(ev, function (e) {
+      var btn = e.target.closest && e.target.closest(".rubro");
+      if (btn) fotosDe(btn.getAttribute("data-panel"));
+    }, true);
+  });
+  var ahorro = navigator.connection && navigator.connection.saveData;
+  if (!ahorro) {
+    window.addEventListener("load", function () {
+      setTimeout(function () { botones.forEach(function (x) { fotosDe(x.b.id); }); }, 800);
+    });
+  }
 
   // ---------- "Quiero ser proveedor" ----------
   var ventana = document.getElementById("ventana-proveedor");

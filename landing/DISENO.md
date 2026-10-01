@@ -6,13 +6,12 @@ La web y la futura app tienen que sentirse el mismo producto. Si la app usa otro
 
 | Nombre | Valor | Para qué |
 |---|---|---|
-| Rojo Zeus | `#D62828` | Botones principales, números de los pasos, banda final |
+| Rojo Zeus | `#D62828` | Botones principales, el rayo del logo, rubro elegido, números de los pasos, banda final |
 | Negro | `#111111` | Barra de arriba, portada, pie |
 | Gris | `#F5F5F5` | Fondo de paneles y de "Por qué Zeus" |
 | Gris medio | `#E0E0E0` | Bordes |
 | Texto | `#222222` | Texto principal |
 | Texto suave | `#666666` | Texto secundario |
-| Verde WhatsApp | `#25D366` | Solo el botón "Contratar" de cada profesional |
 
 ## Letra
 
@@ -23,16 +22,21 @@ La web y la futura app tienen que sentirse el mismo producto. Si la app usa otro
 
 - **Emojis**: cada teléfono los muestra a su estilo y se ven "a mano".
 - Dibujos propios **solo** donde no existe un emoji adecuado, con colores planos como un emoji: rodillo de pintar paredes (pintor) y armario (armado de muebles).
-- Electricista usa 🔌: el ⚡ es el logo de Zeus y no se repite.
+- Electricista usa 🔌: el rayo es el logo de Zeus y no se repite.
+- **El rayo de Zeus es siempre el mismo dibujo y siempre rojo** (`#d-rayo` en `index.html`, igual al ícono de la pestaña). No se usa el emoji ⚡, que cada teléfono muestra amarillo y distinto.
+- El ícono de WhatsApp acompaña a los botones que abren el chat ("Escribinos por WhatsApp"), para que se sepa qué pasa al tocarlos.
 
 ## Piezas
 
 | Pieza | Regla |
 |---|---|
-| Barra de servicios | Fija arriba. Tocar un rubro abre su panel; tocarlo de nuevo lo cierra |
+| Barra de arriba | Lo único fijo: logo y "Pedir servicio". Nada más queda pegado a la pantalla |
+| Portada | Título con qué es y dónde ("… en Buenos Aires"), los rubros y el botón de WhatsApp. La acción principal es pedir un servicio; "Quiero ser proveedor" va aparte, al final |
+| Rubros | En la portada, bajo "¿Qué necesitás?": 4 por fila en celular, una fila en pantalla grande. Tocar un rubro abre su panel justo debajo; tocarlo de nuevo lo cierra |
 | Panel de rubro | Título "… disponibles"; en los rubros menos conocidos, una línea que lo explica |
-| Tarjeta de profesional | Foto redonda, nombre de pila + inicial, una línea verdadera (años de experiencia, zonas) y "Contratar" por WhatsApp. **Nunca** teléfono, apellido completo, barrio ni dirección |
-| "Quiero ser proveedor" | Pregunta si es limpieza u otro oficio y lleva al formulario que corresponde |
+| Tarjeta de profesional | Foto redonda, nombre de pila + inicial, una línea verdadera (años de experiencia, zonas) y el botón negro "Pedir a <nombre>", que abre el WhatsApp **de Zeus**. No dice "Contratar": Zeus conecta, no contrata. **Nunca** teléfono, apellido completo, barrio ni dirección |
+| Botones | Todo lo que se toca mide al menos 44px de alto |
+| "Quiero ser proveedor" | Sección propia al final ("¿Tenés un oficio?"). Pregunta si es limpieza u otro oficio y lleva al formulario que corresponde |
 
 ## Rubros: una sola lista
 
