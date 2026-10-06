@@ -38,8 +38,10 @@ window.ZEUS_BARRA = [
         icono: "🏠", nombre: "Limpieza Particular" },
     ] },
 
-  { id: "arreglatodo", etiqueta: "Arreglatodo", icono: "🛠️",
-    secciones: [{ rubro: "arreglatodo", titulo: "Arreglatodos disponibles", nombre: "Arreglatodo",
+  // Se muestra como "Handyman" (06/10/2026, igual que en Instagram). La clave
+  // sigue siendo "arreglatodo": es la del bot y la de Airtable, no se cambia.
+  { id: "arreglatodo", etiqueta: "Handyman", icono: "🛠️",
+    secciones: [{ rubro: "arreglatodo", titulo: "Handyman disponibles", nombre: "Handyman",
                   descripcion: "Para los arreglos chicos de la casa: colgar cuadros o estantes, ajustar una puerta, cambiar una cortina." }] },
 
   { id: "pintor", etiqueta: "Pintor", icono: "svg:rodillo",
