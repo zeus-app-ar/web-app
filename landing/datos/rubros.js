@@ -30,12 +30,19 @@ window.ZEUS_BARRA = [
     secciones: [{ rubro: "tecnico_electrodomesticos", titulo: "Técnicos en electrodomésticos disponibles",
                   subtitulo: "— heladeras, lavarropas, microondas, TV (no aire acondicionado)", nombre: "Técnico electrodom." }] },
 
+  // Limpieza (07/10/2026, Pancho): primero las de casas particulares; aparte,
+  // "Limpieza de tapizados" para gente que se dedica solo a eso, con máquinas.
+  // Entra en tapizados quien tenga cargado "Tipos de tapizado" en Airtable
+  // (lo arma herramientas/actualizar_profesionales.py). Una sección sin gente
+  // no se muestra, así que tapizados aparece con el primer profesional.
   { id: "limpieza", etiqueta: "Limpieza", icono: "🧹",
     secciones: [
-      { rubro: "limpieza_profesional", titulo: "Limpieza Profesional", subtitulo: "— equipos, post-obra, oficinas, sillones, alfombras y tapizados",
-        icono: "🧹", nombre: "Limpieza Profesional" },
-      { rubro: "limpieza_particular", titulo: "Limpieza Particular", subtitulo: "— por horas o jornada, una persona",
+      { rubro: "limpieza_particular", titulo: "Limpieza de casas particulares", subtitulo: "— por horas o jornada",
         icono: "🏠", nombre: "Limpieza Particular" },
+      { rubro: "limpieza_tapizados", titulo: "Limpieza de tapizados", subtitulo: "— sillones, sillas, colchones y alfombras",
+        icono: "🛋️", nombre: "Limpieza de tapizados" },
+      { rubro: "limpieza_profesional", titulo: "Limpieza Profesional", subtitulo: "— equipos, post-obra, oficinas, eventos",
+        icono: "🧹", nombre: "Limpieza Profesional" },
     ] },
 
   // Se muestra como "Handyman" (06/10/2026, igual que en Instagram). La clave
