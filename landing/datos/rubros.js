@@ -32,7 +32,7 @@ window.ZEUS_BARRA = [
 
   { id: "limpieza", etiqueta: "Limpieza", icono: "🧹",
     secciones: [
-      { rubro: "limpieza_profesional", titulo: "Limpieza Profesional", subtitulo: "— equipos, post-obra, oficinas, eventos",
+      { rubro: "limpieza_profesional", titulo: "Limpieza Profesional", subtitulo: "— equipos, post-obra, oficinas, sillones, alfombras y tapizados",
         icono: "🧹", nombre: "Limpieza Profesional" },
       { rubro: "limpieza_particular", titulo: "Limpieza Particular", subtitulo: "— por horas o jornada, una persona",
         icono: "🏠", nombre: "Limpieza Particular" },

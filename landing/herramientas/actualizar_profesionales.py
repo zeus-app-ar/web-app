@@ -129,6 +129,10 @@ def frase_para_web(f: dict) -> str:
     if isinstance(anios, (int, float)) and anios > 0:
         anios = int(anios)
         partes.append(f"{anios} año{'s' if anios != 1 else ''} de experiencia.")
+    tapizados = [t.lower() for t in (f.get("Tipos de tapizado") or [])]
+    if tapizados:
+        lista = tapizados[0] if len(tapizados) == 1 else ", ".join(tapizados[:-1]) + " y " + tapizados[-1]
+        partes.append(f"Limpia {lista}.")
     donde = donde_trabaja(f.get("Zonas de cobertura"))
     if donde:
         partes.append(donde)
