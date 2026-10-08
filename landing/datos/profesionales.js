@@ -14,7 +14,7 @@
 //   → Guía paso a paso:
 //     https://chiaradigi2.atlassian.net/wiki/spaces/Zeus/pages/98312
 //
-// Generado el 2026-10-07.
+// Generado el 2026-10-08.
 // ============================================================================
 window.ZEUS_PROFESIONALES = [
   {
@@ -43,7 +43,7 @@ window.ZEUS_PROFESIONALES = [
     "rubros": [
       "limpieza_particular"
     ],
-    "frase": "Limpieza de casas y oficinas, vidrios, post-obra, alfombras y tapizados. Trabaja por horas en zona norte.",
+    "frase": "Limpieza de casas y oficinas, vidrios, post-obra, alfombras, tapizados y sillones. Trabaja por horas en zona norte.",
     "foto": "fotos/recGdB1c7WEl5AUbd.jpg"
   },
   {
@@ -108,7 +108,7 @@ window.ZEUS_PROFESIONALES = [
     "rubros": [
       "limpieza_particular"
     ],
-    "frase": "Limpieza de casas y oficinas, vidrios, alfombras y tapizados. Trabaja por horas en zona norte.",
+    "frase": "Limpieza de casas y oficinas, vidrios, alfombras, tapizados y sillones. Trabaja por horas en zona norte.",
     "foto": "fotos/recBdOWWUaUAKIBKm.jpg"
   },
   {
@@ -135,7 +135,7 @@ window.ZEUS_PROFESIONALES = [
     "rubros": [
       "limpieza_particular"
     ],
-    "frase": "Limpieza de casas y oficinas, vidrios, post-obra, alfombras y tapizados. Trabaja por horas en toda CABA.",
+    "frase": "Limpieza de casas y oficinas, vidrios, post-obra, alfombras, tapizados y sillones. Trabaja por horas en toda CABA.",
     "foto": "fotos/recUy8ZuciFvUqX9c.jpg"
   },
   {
