@@ -27,7 +27,7 @@ cuerpo = re.sub(r'\s*<script src="[^"]+"></script>', "", cuerpo)
 
 scripts = "\n".join([
     "window.ZEUS_REVISAR = true;",
-    leer("datos/config.js"), leer("datos/rubros.js"), leer("datos/profesionales.js"), leer("app.js"),
+    leer("datos/config.js"), leer("datos/rubros.js"), leer("datos/profesionales.js"), leer("buscador.js"), leer("app.js"),
 ])
 
 aviso = (
