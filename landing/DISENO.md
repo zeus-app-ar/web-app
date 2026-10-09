@@ -32,9 +32,10 @@ La web y la futura app tienen que sentirse el mismo producto. Si la app usa otro
 |---|---|
 | Barra de arriba | Lo único fijo: logo y "Pedir servicio". Nada más queda pegado a la pantalla |
 | Portada | Título con qué es y dónde ("… en Buenos Aires"), los rubros y el botón de WhatsApp. La acción principal es pedir un servicio; "Quiero ser proveedor" va aparte, al final |
+| Buscador | En la portada, entre "¿Qué necesitás?" y los rubros. Mientras hay algo escrito, los resultados ocupan el lugar de los rubros (así se ven sobre el teclado del celular); al borrar, vuelven los rubros. Si no encuentra a nadie, ofrece escribir por WhatsApp con lo buscado ya en el mensaje |
 | Rubros | En la portada, bajo "¿Qué necesitás?": 4 por fila en celular, una fila en pantalla grande. Tocar un rubro abre su panel justo debajo; tocarlo de nuevo lo cierra |
 | Panel de rubro | Título "… disponibles"; en los rubros menos conocidos, una línea que lo explica |
-| Tarjeta de profesional | Foto redonda, nombre de pila + inicial, una línea verdadera (años de experiencia, zonas) y el botón negro "Pedir a <nombre>", que abre el WhatsApp **de Zeus**. No dice "Contratar": Zeus conecta, no contrata. **Nunca** teléfono, apellido completo, barrio ni dirección |
+| Tarjeta de profesional | Foto redonda, nombre de pila + inicial, una línea verdadera (años de experiencia, zonas) y el botón negro "Pedir a <nombre>", que abre el WhatsApp **de Zeus**. No dice "Contratar": Zeus conecta, no contrata. **Nunca** teléfono, apellido completo, barrio ni dirección. En los resultados del buscador suma una etiqueta gris con el motivo por el que apareció ("Limpieza de vidrios y ventanas", "Plomero") |
 | Botones | Todo lo que se toca mide al menos 44px de alto |
 | "Quiero ser proveedor" | Sección propia al final ("¿Tenés un oficio?"). Pregunta si es limpieza u otro oficio y lleva al formulario que corresponde |
 
