@@ -11,12 +11,16 @@ web-app/
 ├── landing/                  → página pública (HTML/CSS/JS, sin build). Ver landing/README.md
 │   ├── index.html
 │   ├── app.js
+│   ├── buscador.js           → el buscador de la portada
 │   ├── datos/                → WhatsApp, formularios, rubros y profesionales
 │   ├── fotos/                → fotos de los profesionales
-│   ├── herramientas/         → actualizar profesionales desde Airtable, armar vista previa
+│   ├── herramientas/         → actualizar profesionales desde Airtable, armar vista previa, probar el buscador
 │   └── DISENO.md             → colores, letras y reglas de escritura
 └── .github/workflows/
-    └── deploy.yml            → publica landing/ en GitHub Pages en cada push a main
+    ├── deploy.yml                        → publica landing/ en GitHub Pages en cada push a main
+    ├── actualizar-profesionales.yml      → todas las noches trae de Airtable quién aparece y qué hace
+    ├── proteger-archivos-generados.yml   → avisa si un Pull Request toca archivos que se generan solos
+    └── probar-buscador.yml               → corre las pruebas del buscador en cada Pull Request
 ```
 
 ## La página está publicada en

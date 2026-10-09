@@ -4,7 +4,8 @@
 # Lee de Airtable los prestadores ACTIVOS y DISPONIBLES y escribe
 # datos/profesionales.js con lo mínimo que la página necesita:
 #   nombre de pila + inicial del apellido, rubros, años de experiencia, zonas
-#   generales (Norte, Centro...) y la foto (si está en fotos/).
+#   generales (Norte, Centro...), lo puntual que hace (para el buscador) y la
+#   foto (si está en fotos/).
 #
 # NUNCA saca teléfono, DNI, email, barrios ni direcciones. La página es pública.
 # La clave de Airtable se lee del .env del bot y NO se copia a este repo:
@@ -35,6 +36,15 @@
 # adjunto se usó). Un adjunto que no es imagen (ej: la pagina HTML de Drive que
 # quedo pegada en los registros viejos) se ignora y la persona queda sin foto.
 # Solo el retrato: nunca DNI, matricula ni seguro.
+#
+# DETALLES (para el buscador de la página): además de la frase, cada persona
+# lleva una lista "detalles" con lo puntual que hace ("Limpieza de vidrios y
+# ventanas", "Destapaciones", "Reparación de heladera"). Sale de las casillas y
+# opciones que la persona marcó en el formulario de alta; la lista de qué
+# campos se usan está más abajo, en DETALLES. Así, quien busca "sillón" o
+# "heladera" encuentra a quien lo hace aunque su frase no lo diga.
+# Nunca se usa texto libre ("Descripción personal", "Contanos sobre vos"): ahí
+# la gente escribe teléfonos, redes, barrios y nombres de empresa.
 
 import argparse
 import datetime
@@ -137,6 +147,133 @@ def frase_para_web(f: dict) -> str:
     if donde:
         partes.append(donde)
     return " ".join(partes)
+
+
+# ---------- Detalles: lo puntual que hace cada persona (para el buscador) ----------
+#
+# Cada renglón dice de qué campo de "Prestadores de Servicios" sale un detalle,
+# para qué rubros vale y cómo se escribe en la página. Un detalle solo se
+# publica si la persona ofrece alguno de esos rubros (un plomero que dejó
+# marcado "planchado" no aparece planchando).
+#
+# Tres formas:
+#   "casilla": el campo es una casilla; si está tildada se publica "texto".
+#   "lista":   el campo tiene opciones; cada opción elegida se publica con
+#              "plantilla": "{}" es la opción tal cual ("IKEA") y "{m}" la
+#              opción con la primera letra en minúscula ("sillones y sofás").
+#              Una opción NUEVA en Airtable aparece sola en la página, sin
+#              tocar este archivo.
+#   "opcion":  el campo tiene opciones que solas no dicen nada ("Ambos",
+#              "Todo"); "valores" dice qué se publica para cada una. Una opción
+#              que no esté en "valores" no se publica.
+#
+# Para sumar un campo: agregar un renglón acá. Antes, preguntarse si es algo que
+# puede ver cualquiera (la página es pública) y si es un servicio que Zeus
+# ofrece. Por eso NO están "Cuida niños", "Hace mandados o compras" ni
+# "Experiencia con mascotas": hoy Zeus no ofrece esos servicios.
+
+_AIRE = ["Instalación de aire acondicionado", "Service y reparación de aire acondicionado"]
+_PLOMERIA = ["Instalaciones de plomería nuevas", "Reparaciones de plomería"]
+_GAS = ["Instalaciones de gas nuevas", "Service y reparaciones de gas"]
+_TIPO_GAS = ["Gas natural", "Gas envasado"]
+_ELECTRICIDAD = ["Electricidad en casas", "Electricidad en comercios"]
+_PINTURA = ["Pintura de interiores", "Pintura de exteriores"]
+
+DETALLES = [
+    # --- Limpieza ---
+    {"campo": "Tipo de limpieza", "rubros": ["limpieza_particular", "limpieza_profesional"], "forma": "lista", "plantilla": "{}"},
+    {"campo": "Tipos de tapizado", "rubros": ["limpieza_particular", "limpieza_profesional"], "forma": "lista", "plantilla": "Limpieza de {m}"},
+    {"campo": "Hace planchado", "rubros": ["limpieza_particular"], "forma": "casilla", "texto": "Planchado"},
+    # --- Plomero ---
+    {"campo": "Tipo de trabajo plomero", "rubros": ["plomero"], "forma": "opcion",
+     "valores": {"Instalaciones nuevas": _PLOMERIA[:1], "Reparaciones": _PLOMERIA[1:], "Ambas": _PLOMERIA}},
+    {"campo": "Hace destapaciones", "rubros": ["plomero"], "forma": "casilla", "texto": "Destapaciones"},
+    {"campo": "Hace calefones y termotanques", "rubros": ["plomero"], "forma": "casilla", "texto": "Calefones y termotanques"},
+    {"campo": "Hace instalación de piletas", "rubros": ["plomero"], "forma": "casilla", "texto": "Instalación de piletas"},
+    # --- Gasista ---
+    {"campo": "Tipo de trabajo gasista", "rubros": ["gasista"], "forma": "opcion",
+     "valores": {"Instalaciones nuevas": _GAS[:1], "Service y reparaciones": _GAS[1:],
+                 "Mantenimiento y reparaciones": ["Mantenimiento y reparaciones de gas"], "Ambos": _GAS}},
+    {"campo": "Gas que trabaja", "rubros": ["gasista"], "forma": "opcion",
+     "valores": {"Gas natural": _TIPO_GAS[:1], "GLP (gas envasado)": _TIPO_GAS[1:], "Ambos": _TIPO_GAS}},
+    # --- Electricista ---
+    {"campo": "Tipo de trabajo electricista", "rubros": ["electricista"], "forma": "opcion",
+     "valores": {"Domiciliario": _ELECTRICIDAD[:1], "Comercial": _ELECTRICIDAD[1:], "Ambos": _ELECTRICIDAD, "Todo": _ELECTRICIDAD}},
+    {"campo": "Hace tableros eléctricos", "rubros": ["electricista"], "forma": "casilla", "texto": "Tableros eléctricos"},
+    # --- Aire acondicionado ---
+    {"campo": "Tipo de trabajo AC", "rubros": ["instalacion_aire"], "forma": "opcion",
+     "valores": {"Instalación": _AIRE[:1], "Service y reparación": _AIRE[1:], "Ambos": _AIRE, "Todo": _AIRE}},
+    {"campo": "Tipos de equipo AC", "rubros": ["instalacion_aire"], "forma": "lista", "plantilla": "Aire acondicionado: {m}"},
+    {"campo": "Diagnóstico placas inverter", "rubros": ["instalacion_aire"], "forma": "casilla", "texto": "Diagnóstico de equipos inverter"},
+    # --- Pintor ---
+    {"campo": "Tipo de trabajo pintor", "rubros": ["pintor"], "forma": "opcion",
+     "valores": {"Interiores": _PINTURA[:1], "Exteriores": _PINTURA[1:], "Ambos": _PINTURA, "Interior y exterior": _PINTURA}},
+    {"campo": "Hace yeso y enduío", "rubros": ["pintor"], "forma": "casilla", "texto": "Yeso y enduido"},
+    # --- Armado de muebles ---
+    {"campo": "Marcas de muebles", "rubros": ["armado_muebles"], "forma": "lista", "plantilla": "Muebles de {}"},
+    {"campo": "Hace anclaje a pared", "rubros": ["armado_muebles"], "forma": "casilla", "texto": "Anclaje de muebles a la pared"},
+    # --- Cerrajero y electrodomésticos ---
+    {"campo": "Servicios de cerrajería", "rubros": ["cerrajero"], "forma": "lista", "plantilla": "{}"},
+    {"campo": "Electrodomésticos que repara", "rubros": ["tecnico_electrodomesticos"], "forma": "lista", "plantilla": "Reparación de {m}"},
+]
+
+# Opciones de las listas que no dicen nada puntual: no se publican.
+OPCIONES_SIN_DETALLE = {"todo", "todas", "todos", "ambos", "ambas", "otro", "otros", "sin marca", "sin marca específica"}
+
+# Opciones que en Airtable están escritas cortas o repetidas con dos nombres
+# (las viejas y las del formulario): así se escriben en la página.
+OPCION_PARA_WEB = {
+    "Particular (casas y deptos)": "Limpieza de casas y departamentos",
+    "Limpieza del hogar": "Limpieza de casas y departamentos",
+    "Comercial (oficinas)": "Limpieza de oficinas",
+    "Post-obra": "Limpieza post-obra",
+    "Vidrios y ventanas": "Limpieza de vidrios y ventanas",
+    "Limpieza de vidrios": "Limpieza de vidrios y ventanas",
+    "Alfombras y tapizados": "Limpieza de alfombras y tapizados",
+    "VRV / VRF (comercial)": "VRV / VRF",
+}
+
+
+def _en_minuscula(texto: str) -> str:
+    """'Sillones y sofás' -> 'sillones y sofás'. Deja como están las siglas y marcas ('TV y electrónica', 'IKEA')."""
+    primera = texto.split(" ")[0]
+    if len(primera) > 1 and primera.isupper():
+        return texto
+    return texto[:1].lower() + texto[1:]
+
+
+def detalles_para_web(f: dict, rubros: list) -> list:
+    """
+    Lo puntual que hace la persona, en frases cortas, a partir de las casillas y
+    opciones de su ficha (ver DETALLES). Solo lo de los rubros que ofrece. Sin
+    repetidos y en el orden de DETALLES.
+    """
+    salida = []
+
+    def sumar(texto):
+        texto = (texto or "").strip()
+        if texto and texto.lower() not in [s.lower() for s in salida]:
+            salida.append(texto)
+
+    for d in DETALLES:
+        if not any(r in rubros for r in d["rubros"]):
+            continue
+        valor = f.get(d["campo"])
+        if not valor:
+            continue
+        if d["forma"] == "casilla":
+            if valor is True:
+                sumar(d["texto"])
+        elif d["forma"] == "opcion":
+            for texto in d["valores"].get(valor if isinstance(valor, str) else "", []):
+                sumar(texto)
+        elif d["forma"] == "lista":
+            for opcion in (valor if isinstance(valor, list) else [valor]):
+                if not isinstance(opcion, str) or opcion.strip().lower() in OPCIONES_SIN_DETALLE:
+                    continue
+                opcion = OPCION_PARA_WEB.get(opcion, opcion)
+                sumar(d["plantilla"].format(opcion, m=_en_minuscula(opcion)))
+    return salida
 
 
 def nombre_para_web(completo: str) -> str:
@@ -259,6 +396,7 @@ def main():
             "nombre": a_mano.get(r["id"]) or nombre_para_web(f.get("Nombre completo", "")),
             "rubros": rubros,
             "frase": frase_elegida(r["id"], f, frases),
+            "detalles": detalles_para_web(f, rubros),
             "foto": bajar_foto(r["id"], f.get("Foto"), origen),
         })
 
