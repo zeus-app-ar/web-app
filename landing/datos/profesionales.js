@@ -14,7 +14,7 @@
 //   → Guía paso a paso:
 //     https://chiaradigi2.atlassian.net/wiki/spaces/Zeus/pages/98312
 //
-// Generado el 2026-10-09.
+// Generado el 2026-10-10.
 // ============================================================================
 window.ZEUS_PROFESIONALES = [
   {
@@ -23,7 +23,8 @@ window.ZEUS_PROFESIONALES = [
     "rubros": [
       "arreglatodo",
       "electricista",
-      "pintor"
+      "pintor",
+      "plomero"
     ],
     "frase": "Pintura, electricidad, durlock y mantenimiento de casas y edificios. 3 años de experiencia.",
     "detalles": [
