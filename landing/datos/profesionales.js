@@ -14,7 +14,7 @@
 //   → Guía paso a paso:
 //     https://chiaradigi2.atlassian.net/wiki/spaces/Zeus/pages/98312
 //
-// Generado el 2026-10-10.
+// Generado el 2026-10-11.
 // ============================================================================
 window.ZEUS_PROFESIONALES = [
   {
@@ -268,21 +268,6 @@ window.ZEUS_PROFESIONALES = [
     "foto": "fotos/recaPRFYJXEm6zxJD.jpg"
   },
   {
-    "id": "receDwD2RQ8CadhHF",
-    "nombre": "Roberto Q.",
-    "rubros": [
-      "electricista",
-      "gasista",
-      "plomero"
-    ],
-    "frase": "Electricidad, gas y plomería básica. Trabaja por la tarde, en toda CABA.",
-    "detalles": [
-      "Mantenimiento y reparaciones de gas",
-      "Gas natural"
-    ],
-    "foto": "fotos/receDwD2RQ8CadhHF.jpg"
-  },
-  {
     "id": "recZZRs71aWM0twsp",
     "nombre": "Sergio B.",
     "rubros": [
@@ -321,6 +306,19 @@ window.ZEUS_PROFESIONALES = [
       "Limpieza post-obra",
       "Limpieza de vidrios y ventanas",
       "Planchado"
+    ],
+    "foto": null
+  },
+  {
+    "id": "reclsGOoROBu1OJfw",
+    "nombre": "Marcelo M.",
+    "rubros": [
+      "instalacion_aire"
+    ],
+    "frase": "1 año de experiencia. Trabaja en toda CABA.",
+    "detalles": [
+      "Instalación de aire acondicionado",
+      "Aire acondicionado: mini split"
     ],
     "foto": null
   },
