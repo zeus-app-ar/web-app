@@ -14,7 +14,7 @@
 //   → Guía paso a paso:
 //     https://chiaradigi2.atlassian.net/wiki/spaces/Zeus/pages/98312
 //
-// Generado el 2026-10-11.
+// Generado el 2026-10-12.
 // ============================================================================
 window.ZEUS_PROFESIONALES = [
   {
@@ -213,6 +213,19 @@ window.ZEUS_PROFESIONALES = [
     "foto": "fotos/recUy8ZuciFvUqX9c.jpg"
   },
   {
+    "id": "reclsGOoROBu1OJfw",
+    "nombre": "Marcelo M.",
+    "rubros": [
+      "instalacion_aire"
+    ],
+    "frase": "1 año de experiencia. Trabaja en toda CABA.",
+    "detalles": [
+      "Instalación de aire acondicionado",
+      "Aire acondicionado: mini split"
+    ],
+    "foto": "fotos/reclsGOoROBu1OJfw.jpg"
+  },
+  {
     "id": "recdm5DSnyDCngZf9",
     "nombre": "Mario L.",
     "rubros": [
@@ -268,20 +281,6 @@ window.ZEUS_PROFESIONALES = [
     "foto": "fotos/recaPRFYJXEm6zxJD.jpg"
   },
   {
-    "id": "recZZRs71aWM0twsp",
-    "nombre": "Sergio B.",
-    "rubros": [
-      "arreglatodo",
-      "electricista",
-      "gasista",
-      "pintor",
-      "plomero"
-    ],
-    "frase": "Encargado de edificio con 25 años de oficio. Resuelve arreglos de electricidad, gas, plomería y mantenimiento general.",
-    "detalles": [],
-    "foto": "fotos/recZZRs71aWM0twsp.jpg"
-  },
-  {
     "id": "recF0OLgzbUlh2muV",
     "nombre": "Viviana H.",
     "rubros": [
@@ -306,19 +305,6 @@ window.ZEUS_PROFESIONALES = [
       "Limpieza post-obra",
       "Limpieza de vidrios y ventanas",
       "Planchado"
-    ],
-    "foto": null
-  },
-  {
-    "id": "reclsGOoROBu1OJfw",
-    "nombre": "Marcelo M.",
-    "rubros": [
-      "instalacion_aire"
-    ],
-    "frase": "1 año de experiencia. Trabaja en toda CABA.",
-    "detalles": [
-      "Instalación de aire acondicionado",
-      "Aire acondicionado: mini split"
     ],
     "foto": null
   },
