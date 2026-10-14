@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Zeus ⚡ — Servicios para el hogar en Buenos Aires</title>
 <meta name="description" content="Plomeros, electricistas, gasistas, limpieza y más en Buenos Aires. Nos escribís por WhatsApp y te conseguimos a alguien.">
-<meta name="theme-color" content="#FBF9F8">
+<meta name="theme-color" content="#FBFAF7">
 <meta property="og:title" content="Zeus ⚡ — Servicios para el hogar en Buenos Aires">
 <meta property="og:description" content="Plomeros, electricistas, gasistas, limpieza y más. Nos escribís por WhatsApp y te conseguimos a alguien.">
 <meta property="og:type" content="website">
@@ -22,25 +22,24 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23111'/%3E%3Cpath d='M37 6 18 36h12l-4 22 20-32H34z' fill='%23D62828'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Ubuntu:wght@700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   /* Los colores y medidas de la página, en un solo lugar (ver DISENO.md). */
   :root {
     --rojo: #D62828;
-    --rojo-oscuro: #B91F1F;         /* botones rojos al pasar el mouse */
-    --rojo-suave: #FCEBEB;          /* fondo de etiquetas y del rubro elegido */
-    --negro: #111111;
-    --texto: #1B1B1F;
-    --texto-suave: #5F5E66;
-    --fondo: #FBF9F8;               /* fondo de toda la página: blanco con un toque cálido */
+    --rojo-oscuro: #B51F1F;         /* botones rojos al pasar el mouse */
+    --rojo-suave: #FBE9E8;          /* fondo del rubro elegido y de las etiquetas */
+    --tinta: #17161A;               /* texto, títulos, "Pedir servicio" */
+    --tormenta: #1C1B21;            /* la banda oscura del cierre */
+    --texto-suave: #6B6770;
+    --papel: #FBFAF7;               /* fondo de toda la página */
+    --arena: #F1ECE4;               /* superficies: chips, círculos de los rubros, paneles */
     --blanco: #FFFFFF;
-    --gris: #F4F1F0;                /* fondo de los paneles de profesionales */
-    --borde: rgba(17, 17, 17, 0.08);
-    --sombra: 0 1px 2px rgba(17, 17, 17, 0.04), 0 10px 30px rgba(17, 17, 17, 0.06);
-    --titulos: 'Ubuntu', 'Segoe UI', Roboto, sans-serif;
-    --letra: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-    --radio: 20px;                  /* esquinas de las tarjetas */
+    --borde: rgba(23, 22, 26, 0.10);
+    --titulos: 'Bricolage Grotesque', 'Segoe UI', Roboto, sans-serif;
+    --letra: 'Figtree', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    --radio: 16px;                  /* esquinas de las tarjetas */
     --pildora: 999px;               /* botones y chips */
     --ancho: 1120px;
     --nav-h: 64px;
@@ -48,36 +47,26 @@
   html { scroll-behavior: smooth; }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    *, *::before, *::after { transition: none !important; }
+    *, *::before, *::after { transition: none !important; animation: none !important; }
   }
   body {
     font-family: var(--letra);
-    font-weight: 500;
-    color: var(--texto);
-    background: var(--fondo);
+    font-weight: 400;
+    color: var(--tinta);
+    background: var(--papel);
     padding-top: var(--nav-h);
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
   }
   button, input { font-family: inherit; }
-  /* Ubuntu negrita en todos los títulos; Montserrat para el resto. */
-  h1, h2, h3 { font-family: var(--titulos); font-weight: 700; letter-spacing: -0.02em; color: var(--texto); }
-  h1, h2 { text-wrap: balance; }     /* reparte las palabras entre renglones para que no quede uno corto */
+  h1, h2, h3 { font-family: var(--titulos); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; color: var(--tinta); text-wrap: balance; }
+  h2 { font-size: clamp(28px, 3.6vw, 42px); font-weight: 800; }
   /* El rayo de Zeus: siempre el mismo dibujo y siempre rojo (igual que el ícono de la pestaña). */
   .rayo { fill: var(--rojo); display: block; }
   .ico-wa { width: 20px; height: 20px; fill: currentColor; flex: none; }
   .ico { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
-
-  /* Etiqueta chiquita arriba de cada sección ("CÓMO FUNCIONA") */
-  .etiqueta {
-    display: block;
-    font-size: 12.5px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--rojo);
-    margin-bottom: 14px;
-  }
+  .adentro { max-width: var(--ancho); margin: 0 auto; padding: 0 24px; }
+  @media (max-width: 600px) { .adentro { padding: 0 20px; } }
 
   /* BOTONES: píldoras. Todo lo que se toca mide al menos 44px de alto. */
   .btn-primary, .btn-white, .btn-secondary, .nav-cta {
@@ -93,21 +82,21 @@
     text-decoration: none;
     cursor: pointer;
     border: none;
-    transition: background .15s, color .15s, transform .15s, box-shadow .15s, border-color .15s;
+    transition: background .15s, color .15s, border-color .15s;
   }
   .btn-primary { background: var(--rojo); color: var(--blanco); }
-  .btn-primary:hover { background: var(--rojo-oscuro); transform: translateY(-1px); box-shadow: 0 8px 20px rgba(214, 40, 40, 0.25); }
-  .btn-white { background: var(--blanco); color: var(--rojo); }
-  .btn-white:hover { background: #FFF5F5; transform: translateY(-1px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12); }
-  .btn-secondary { background: transparent; color: var(--negro); border: 2px solid var(--negro); min-height: 50px; }
-  .btn-secondary:hover { background: var(--negro); color: var(--blanco); }
+  .btn-primary:hover { background: var(--rojo-oscuro); }
+  .btn-white { background: var(--blanco); color: var(--tinta); }
+  .btn-white:hover { background: var(--arena); }
+  .btn-secondary { background: transparent; color: var(--tinta); border: 2px solid var(--tinta); min-height: 50px; }
+  .btn-secondary:hover { background: var(--tinta); color: var(--blanco); }
 
   /* BARRA DE ARRIBA: lo único fijo */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
     height: var(--nav-h);
-    background: rgba(251, 249, 248, 0.86);
+    background: rgba(251, 250, 247, 0.88);
     -webkit-backdrop-filter: blur(14px);
     backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--borde);
@@ -122,69 +111,72 @@
     align-items: center;
     gap: 7px;
     font-family: var(--titulos);
-    font-weight: 700;
-    font-size: 24px;
-    letter-spacing: -0.02em;
-    color: var(--negro);
+    font-weight: 800;
+    font-size: 25px;
+    letter-spacing: -0.03em;
+    color: var(--tinta);
     text-decoration: none;
   }
   .logo .rayo { width: 15px; height: 26px; }
-  .nav-cta { background: var(--negro); color: var(--blanco); min-height: 40px; padding: 0 18px; font-size: 14px; }
+  .nav-cta { background: var(--tinta); color: var(--blanco); min-height: 40px; padding: 0 18px; font-size: 14px; }
   .nav-cta:hover { background: var(--rojo); }
 
-  /* PORTADA: pregunta, caja de búsqueda, ejemplos, rubros y WhatsApp */
-  .hero {
-    position: relative;
-    padding: 52px 20px 44px;
-    text-align: center;
-    background: radial-gradient(60% 55% at 50% 38%, rgba(214, 40, 40, 0.07), transparent 70%);
+  /* PORTADA: a la izquierda el pedido, a la derecha la red (fotos de verdad) */
+  .hero { padding: 56px 0 40px; }
+  .hero .adentro {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: 48px;
+    align-items: center;
   }
   .hero h1 {
-    font-family: var(--letra);
-    font-weight: 500;
-    font-size: clamp(30px, 4.8vw, 46px);
-    line-height: 1.12;
-    letter-spacing: -0.025em;
-    max-width: 760px;
-    margin: 0 auto 26px;
+    font-size: clamp(36px, 5.2vw, 62px);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.02;
+    margin-bottom: 18px;
   }
-  .hero h1 .acento { color: var(--rojo); font-weight: 700; }
+  .hero-sub {
+    font-size: 18px;
+    color: var(--texto-suave);
+    max-width: 520px;
+    margin-bottom: 26px;
+  }
 
-  /* BUSCADOR: la caja grande del centro. Mientras hay algo escrito, los resultados
+  /* BUSCADOR: la caja del pedido. Mientras hay algo escrito, los resultados
      ocupan el lugar de los rubros (así se ven sobre el teclado del celular). */
   .buscador {
     position: relative;
-    max-width: 680px;
-    margin: 0 auto 14px;
-    padding: 16px 18px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    max-width: 600px;
+    padding: 8px 8px 8px 20px;
     background: var(--blanco);
     border: 1px solid var(--borde);
-    border-radius: 28px;
-    box-shadow: 0 1px 2px rgba(17, 17, 17, 0.05), 0 18px 48px rgba(214, 40, 40, 0.10);
-    text-align: left;
+    border-radius: var(--pildora);
+    box-shadow: 0 12px 32px rgba(23, 22, 26, 0.08);
     scroll-margin-top: calc(var(--nav-h) + 12px);
     transition: border-color .2s, box-shadow .2s;
   }
-  .buscador:focus-within { border-color: rgba(214, 40, 40, 0.35); box-shadow: 0 1px 2px rgba(17, 17, 17, 0.05), 0 18px 48px rgba(214, 40, 40, 0.16); }
+  .buscador:focus-within { border-color: var(--tinta); box-shadow: 0 12px 32px rgba(23, 22, 26, 0.12); }
   .buscador input {
-    width: 100%;
-    min-height: 44px;
-    padding: 4px 2px;
+    flex: 1;
+    min-width: 0;
+    min-height: 48px;
     background: transparent;
     border: none;
-    color: var(--texto);
+    color: var(--tinta);
     font-size: 18px;                    /* con menos de 16px el iPhone hace zoom al tocar */
     font-weight: 500;
-    line-height: 1.4;
     -webkit-appearance: none;
     appearance: none;
   }
-  .buscador input::placeholder { color: #9A98A0; opacity: 1; }
+  .buscador input::placeholder { color: #9A96A0; opacity: 1; }
   .buscador input::-webkit-search-cancel-button { display: none; }
   .buscador input:focus { outline: none; }
-  .buscador .acciones { display: flex; align-items: center; justify-content: flex-end; gap: 6px; margin-top: 2px; }
-  @media (max-width: 480px) { .buscador { padding: 14px 16px 12px; } .buscador input { font-size: 17px; } }
   .buscador .borrar {
+    flex: none;
     width: 44px; height: 44px;
     background: none;
     border: none;
@@ -193,24 +185,24 @@
     font-size: 24px;
     line-height: 1;
     cursor: pointer;
-    transition: background .15s;
   }
-  .buscador .borrar:hover { background: var(--gris); }
+  .buscador .borrar:hover { background: var(--arena); }
   .buscador .borrar[hidden] { display: none; }
   .buscador .enviar {
-    width: 44px; height: 44px;
+    flex: none;
+    width: 48px; height: 48px;
     display: flex; align-items: center; justify-content: center;
-    background: var(--gris);
+    background: var(--arena);
     color: var(--texto-suave);
     border: none;
     border-radius: 50%;
     cursor: pointer;
-    transition: background .15s, color .15s, transform .15s;
+    transition: background .15s, color .15s;
   }
-  .buscador .enviar .ico { width: 20px; height: 20px; stroke-width: 2.4; }
+  .buscador .enviar .ico { width: 22px; height: 22px; stroke-width: 2.4; }
   /* Con algo escrito, la flecha se pone roja. */
   .buscador.con-texto .enviar { background: var(--rojo); color: var(--blanco); }
-  .buscador.con-texto .enviar:hover { background: var(--rojo-oscuro); transform: translateY(-1px); }
+  .buscador.con-texto .enviar:hover { background: var(--rojo-oscuro); }
   .solo-lectores {
     position: absolute;
     width: 1px; height: 1px;
@@ -220,199 +212,232 @@
   }
 
   /* EJEMPLOS: chips que rellenan el buscador (la lista está en datos/config.js). */
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-    max-width: 680px;
-    margin: 0 auto 20px;
-  }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 0; max-width: 600px; }
   .chips:empty { display: none; }
   .chip {
     display: inline-flex;
     align-items: center;
     min-height: 40px;
     padding: 0 16px;
-    background: var(--blanco);
-    border: 1px solid var(--borde);
+    background: var(--arena);
+    border: 1px solid transparent;
     border-radius: var(--pildora);
-    color: var(--texto);
+    color: var(--tinta);
     font-size: 14px;
     font-weight: 500;
     white-space: nowrap;
     cursor: pointer;
-    transition: border-color .15s, background .15s, transform .15s;
+    transition: background .15s, border-color .15s;
   }
-  .chip:hover { border-color: rgba(17, 17, 17, 0.22); background: var(--gris); transform: translateY(-1px); }
-  @media (max-width: 600px) {
-    /* En el celular van en una sola fila que se desliza con el dedo. */
-    .chips {
-      flex-wrap: nowrap;
-      justify-content: flex-start;
-      max-width: none;
-      margin: 0 -20px 20px;
-      padding: 2px 20px;
-      overflow-x: auto;
-      scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
-    }
+  .chip:hover { background: #E9E2D8; }
+
+  /* LA RED: fotos de verdad de la gente que ya está en Zeus (las arma app.js). */
+  .red {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto;
+  }
+  .red .rayo-grande {
+    position: absolute;
+    left: 18%; top: 6%;
+    width: 64%;
+    height: 88%;
+    fill: var(--rojo);
+    opacity: 0.12;
+  }
+  .red .cara {
+    position: absolute;
+    width: var(--d);
+    height: var(--d);
+    border-radius: 50%;
+    object-fit: cover;
+    background: var(--arena);
+    border: 4px solid var(--papel);
+    box-shadow: 0 10px 24px rgba(23, 22, 26, 0.14);
+  }
+  .red .sin-foto {
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--titulos); font-weight: 800; font-size: calc(var(--d) * 0.36);
+    color: var(--texto-suave);
+  }
+  .red .oficio {
+    position: absolute;
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 12px;
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: var(--pildora);
+    font-size: 13px; font-weight: 600;
+    box-shadow: 0 6px 16px rgba(23, 22, 26, 0.10);
+    white-space: nowrap;
+  }
+  .red .oficio .dibujo { width: 16px; height: 16px; }
+  .red:empty { display: none; }
+  /* Dónde va cada cara (hasta 6) y las etiquetas de oficio */
+  .red .c1 { --d: 38%; left: 31%; top: 28%; }
+  .red .c2 { --d: 24%; left: 2%;  top: 8%; }
+  .red .c3 { --d: 20%; left: 72%; top: 4%; }
+  .red .c4 { --d: 26%; left: 70%; top: 60%; }
+  .red .c5 { --d: 18%; left: 8%;  top: 66%; }
+  .red .c6 { --d: 15%; left: 50%; top: 2%; }
+  .red .e1 { left: 42%; top: 63%; }     /* debajo de la cara grande */
+  .red .e2 { left: 4%;  top: 32%; }     /* debajo de la de arriba a la izquierda */
+  .red .e3 { left: 68%; top: 25%; }     /* debajo de la de arriba a la derecha */
+
+  /* Debajo de los ejemplos: cuántas personas hay en la red hoy (número real) */
+  .hero-red {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 22px;
+    font-size: 14.5px;
+    color: var(--texto-suave);
+  }
+  .hero-red .pila { display: flex; }
+  .hero-red .pila img, .hero-red .pila .sin-foto {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--papel);
+    margin-left: -8px;
+    background: var(--arena);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; color: var(--texto-suave);
+  }
+  .hero-red .pila > :first-child { margin-left: 0; }
+  .hero-red strong { color: var(--tinta); font-weight: 600; }
+  .hero-red:empty { display: none; }
+
+  .hero.buscando { padding-bottom: 24px; }
+  .hero.buscando .hero-red,
+  .hero.buscando .red,
+  .hero.buscando .rubros-bloque,
+  .hero.buscando .hero-wa { display: none; }
+  @media (max-width: 860px) {
+    .hero { padding: 40px 0 36px; }
+    .hero .adentro { grid-template-columns: minmax(0, 1fr); gap: 0; }   /* minmax(0, …): los chips no ensanchan la página */
+    .red { display: none; }           /* en el celular, la red se ve en la pila de fotos de abajo */
+    .hero h1 { margin-bottom: 14px; }
+    .hero-sub { font-size: 17px; margin-bottom: 22px; }
+    .chips { flex-wrap: nowrap; overflow-x: auto; margin: 12px -20px 0; padding: 2px 20px; max-width: none; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
     .chips::-webkit-scrollbar { display: none; }
   }
 
-  .hero-dato {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 4px 10px;
-    font-size: 14px;
-    color: var(--texto-suave);
-    margin-bottom: 40px;
-  }
-  .hero-dato .ico-wa { display: inline-block; width: 16px; height: 16px; vertical-align: -3px; margin-right: 6px; color: #25D366; }
-  .hero-dato .punto { color: #C9C7CC; }
-  @media (max-width: 600px) { .hero-dato { flex-direction: column; } .hero-dato .punto { display: none; } }
-
+  /* RUBROS: ícono en un círculo y nombre debajo. 4 por fila en celular, una fila en pantalla grande. */
+  .rubros-bloque { grid-column: 1 / -1; margin-top: 36px; }
   .rubros-titulo {
-    font-family: var(--letra);
-    font-size: 12.5px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 600;
     color: var(--texto-suave);
-    margin-bottom: 14px;
+    margin-bottom: 16px;
     scroll-margin-top: calc(var(--nav-h) + 12px);
   }
-  .hero.buscando { padding-bottom: 24px; }
-  .hero.buscando .hero-dato,
-  .hero.buscando .rubros-titulo,
-  .hero.buscando .rubros,
-  .hero.buscando .hero-wa { display: none; }
-
-  /* Los rubros: 4 por fila en celular, una sola fila centrada en pantalla grande. */
   .rubros {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 8px;
-    max-width: 960px;
-    margin: 0 auto;
+    gap: 10px 6px;
     scroll-margin-top: calc(var(--nav-h) + 12px);
   }
   .rubro {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    gap: 8px;
-    min-height: 88px;
-    padding: 14px 4px 12px;
-    background: var(--blanco);
-    border: 1px solid var(--borde);
-    border-radius: 18px;
-    box-shadow: 0 1px 2px rgba(17, 17, 17, 0.03);
-    color: var(--texto);
+    gap: 9px;
+    padding: 6px 2px;
+    background: none;
+    border: none;
+    border-radius: 14px;
+    color: var(--tinta);
     cursor: pointer;
-    transition: border-color .15s, background .15s, transform .15s, box-shadow .15s;
   }
-  .rubro:hover { border-color: rgba(17, 17, 17, 0.22); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(17, 17, 17, 0.06); }
-  .rubro.active { border-color: var(--rojo); background: var(--rojo-suave); color: var(--rojo); box-shadow: 0 0 0 3px rgba(214, 40, 40, 0.12); }
-  .rubro .icon { font-size: 26px; line-height: 1; height: 28px; display: flex; align-items: center; }
-  .rubro .label { font-size: 11.5px; font-weight: 600; line-height: 1.2; }
+  .rubro .icon {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: var(--arena);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 27px; line-height: 1;
+    box-shadow: 0 0 0 0 var(--rojo);
+    transition: background .15s, box-shadow .15s, transform .15s;
+  }
+  .rubro:hover .icon { background: #E9E2D8; transform: translateY(-2px); }
+  .rubro .label { font-size: 12.5px; font-weight: 600; line-height: 1.2; text-align: center; }
+  .rubro.active .icon { background: var(--rojo-suave); box-shadow: 0 0 0 3px var(--rojo); }
+  .rubro.active .label { color: var(--rojo); }
   /* Dibujos propios donde no hay emoji (rodillo, armario), del tamaño de un emoji */
   .dibujo { width: 1.1em; height: 1.1em; display: inline-block; vertical-align: -0.18em; }
-  .rubro .icon .dibujo { width: 28px; height: 28px; }
+  .rubro .icon .dibujo { width: 30px; height: 30px; }
   @media (min-width: 720px) {
-    .rubros { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+    .rubros { display: flex; flex-wrap: wrap; gap: 8px 4px; }
     .rubro { width: 108px; }
-    .rubro .label { font-size: 12.5px; }
+    .rubro .icon { width: 64px; height: 64px; font-size: 29px; }
   }
-  .hero-wa { margin-top: 32px; }
-  /* Con un panel abierto se esconde, para que los profesionales queden pegados a los rubros.
-     "Pedir servicio" sigue arriba. */
+  .hero-wa { grid-column: 1 / -1; margin-top: 36px; display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+  .hero-wa p { font-size: 15px; color: var(--texto-suave); }
+  /* Con un panel abierto se esconde, para que los profesionales queden pegados a los rubros. */
   .hero.con-panel { padding-bottom: 24px; }
   .hero.con-panel .hero-wa { display: none; }
-  .hero-wa p { font-size: 15px; color: var(--texto-suave); margin-bottom: 14px; }
 
   /* PANEL DE PROFESIONALES: se abre justo debajo de los rubros */
   .providers-panel {
     display: none;
-    background: var(--gris);
-    border-top: 1px solid var(--borde);
-    border-bottom: 1px solid var(--borde);
-    padding: 28px 20px 36px;
+    background: var(--arena);
+    padding: 32px 0 40px;
   }
   .providers-panel.open { display: block; }
-  .providers-panel .adentro { max-width: var(--ancho); margin: 0 auto; }
-  .providers-panel h3 {
-    font-size: 19px;
-    margin-bottom: 18px;
-  }
+  .providers-panel h3 { font-size: 22px; margin-bottom: 18px; }
   .providers-panel h3.subsection-title { margin-top: 32px; }
   .providers-panel h3 .subtitle {
     font-family: var(--letra);
     font-weight: 500;
-    font-size: 13.5px;
+    font-size: 14px;
     letter-spacing: 0;
     color: var(--texto-suave);
     margin-left: 4px;
   }
-  .providers-panel .rubro-desc {
-    font-size: 14.5px;
-    color: var(--texto-suave);
-    margin: -10px 0 18px;
-  }
-  .providers-panel .vacio { font-size: 14.5px; color: var(--texto-suave); }
+  .providers-panel .rubro-desc { font-size: 15px; color: var(--texto-suave); margin: -10px 0 18px; max-width: 640px; }
+  .providers-panel .vacio { font-size: 15px; color: var(--texto-suave); }
   .providers-grid {
     /* Grilla que se acomoda sola: 2 columnas en celular, hasta 6 en pantalla grande. */
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
-    gap: 14px;
+    gap: 12px;
   }
   .provider-card {
     background: var(--blanco);
     border: 1px solid var(--borde);
     border-radius: var(--radio);
     padding: 20px 14px 14px;
-    box-shadow: 0 1px 2px rgba(17, 17, 17, 0.03);
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 6px;
     text-align: center;
-    transition: transform .15s, box-shadow .15s, border-color .15s;
   }
-  .provider-card:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(17, 17, 17, 0.08); border-color: rgba(17, 17, 17, 0.14); }
   .provider-card img,
   .provider-card .sin-foto {
     width: 84px;
     height: 84px;
     border-radius: 50%;
     object-fit: cover;
-    background: var(--gris);            /* mientras llega la foto se ve un círculo gris, no un hueco */
-    border: 3px solid var(--blanco);
-    box-shadow: 0 0 0 1px var(--borde);
+    background: var(--arena);            /* mientras llega la foto se ve un círculo, no un hueco */
   }
   .provider-card .sin-foto {
     color: var(--texto-suave);
     display: flex; align-items: center; justify-content: center;
     font-family: var(--titulos);
-    font-size: 28px; font-weight: 700;
+    font-size: 28px; font-weight: 800;
   }
-  .provider-card .prov-name { font-family: var(--titulos); font-size: 16px; font-weight: 700; letter-spacing: -0.01em; margin-top: 4px; }
-  .provider-card .prov-desc {
-    font-size: 13px;
-    color: var(--texto-suave);
-    line-height: 1.4;
-    margin-bottom: 6px;
-  }
+  .provider-card .prov-name { font-family: var(--titulos); font-size: 17px; font-weight: 700; letter-spacing: -0.01em; margin-top: 4px; }
+  .provider-card .prov-desc { font-size: 13.5px; color: var(--texto-suave); line-height: 1.4; margin-bottom: 6px; }
   .provider-card .prov-wa {
     margin-top: auto;
     width: 100%;
     min-height: 44px;                   /* tamaño cómodo para el dedo */
     padding: 0 10px;
     border-radius: var(--pildora);
-    background: var(--negro);
+    background: var(--tinta);
     color: var(--blanco);
     font-size: 14px;
     font-weight: 600;
@@ -434,127 +459,97 @@
     padding: 5px 12px;
     margin-bottom: 6px;
   }
-  .providers-panel .otra { font-size: 14.5px; color: var(--texto-suave); margin-top: 22px; }
-  .providers-panel .otra a { color: var(--texto); font-weight: 600; }
+  .providers-panel .otra { font-size: 15px; color: var(--texto-suave); margin-top: 22px; }
+  .providers-panel .otra a { color: var(--tinta); font-weight: 600; }
   @media (max-width: 480px) {
-    .providers-panel { padding: 22px 16px 28px; }
+    .providers-panel { padding: 24px 0 28px; }
     .providers-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
     .provider-card { padding: 16px 10px 10px; }
     .provider-card img, .provider-card .sin-foto { width: 72px; height: 72px; }
   }
 
   /* SECCIONES */
-  .section {
-    padding: 88px 24px;
-    max-width: var(--ancho);
-    margin: 0 auto;
-  }
-  .section h2 {
-    font-size: clamp(28px, 3.4vw, 40px);
-    line-height: 1.15;
-    max-width: 720px;
-    margin-bottom: 40px;
-  }
-  .section h2 .suave { color: var(--texto-suave); }
-  .franja-blanca { background: var(--blanco); border-top: 1px solid var(--borde); border-bottom: 1px solid var(--borde); }
-  @media (max-width: 600px) {
-    .section { padding: 64px 20px; }
-    .section h2 { margin-bottom: 28px; }
-  }
+  .seccion { padding: 96px 0; }
+  .seccion h2 { max-width: 640px; margin-bottom: 40px; }
+  @media (max-width: 600px) { .seccion { padding: 64px 0; } .seccion h2 { margin-bottom: 28px; } }
 
-  /* CÓMO FUNCIONA: tres tarjetas numeradas, cada una con un ejemplo de la charla */
-  .pasos { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  .paso {
+  /* CÓMO FUNCIONA: una charla de ejemplo y los tres pasos al lado */
+  .como .adentro { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 56px; align-items: center; }
+  .como h2 { grid-column: 1 / -1; }
+  .telefono {
+    max-width: 360px;
+    margin: 0 auto;
     background: var(--blanco);
     border: 1px solid var(--borde);
-    border-radius: 24px;
-    box-shadow: var(--sombra);
-    padding: 12px 12px 26px;
-    display: flex;
-    flex-direction: column;
+    border-radius: 36px;
+    padding: 18px 16px 22px;
+    box-shadow: 0 24px 60px rgba(23, 22, 26, 0.12);
   }
-  .paso .charla {
-    background: var(--gris);
-    border-radius: 16px;
-    padding: 20px 16px;
-    height: 200px;                  /* las tres iguales, así los títulos quedan alineados */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 22px;
+  .telefono .cabecera {
+    display: flex; align-items: center; gap: 10px;
+    padding: 4px 6px 14px;
+    border-bottom: 1px solid var(--borde);
+    margin-bottom: 14px;
   }
+  .telefono .cabecera .sello {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--tinta);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .telefono .cabecera .sello .rayo { width: 11px; height: 19px; }
+  .telefono .cabecera strong { font-family: var(--titulos); font-size: 16px; display: block; line-height: 1.1; }
+  .telefono .cabecera span { font-size: 12.5px; color: var(--texto-suave); }
+  .charla { display: flex; flex-direction: column; gap: 8px; }
   .burbuja {
-    max-width: 88%;
+    max-width: 86%;
     padding: 10px 14px;
-    border-radius: 16px;
-    font-size: 13.5px;
+    border-radius: 18px;
+    font-size: 14px;
     line-height: 1.4;
-    background: var(--blanco);
-    color: var(--texto);
-    box-shadow: 0 1px 2px rgba(17, 17, 17, 0.06);
+    background: var(--arena);
+    color: var(--tinta);
     align-self: flex-start;
-    border-bottom-left-radius: 4px;
+    border-bottom-left-radius: 6px;
   }
   .burbuja.cliente {
     align-self: flex-end;
-    background: var(--negro);
+    background: var(--tinta);
     color: var(--blanco);
-    border-bottom-left-radius: 16px;
-    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 6px;
   }
-  .burbuja .quien {
-    display: flex; align-items: center; gap: 5px;
-    font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
-    color: var(--rojo); margin-bottom: 3px;
-  }
-  .burbuja .quien .rayo { width: 8px; height: 14px; }
-  .charla .nota {
-    align-self: center;
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 12px; font-weight: 600;
-    color: var(--texto-suave);
-    background: var(--blanco);
-    border: 1px solid var(--borde);
-    border-radius: var(--pildora);
-    padding: 5px 12px;
-  }
-  .charla .nota .ico { width: 14px; height: 14px; color: #1E9E5A; }
-  .paso .cuerpo { padding: 0 12px; }
+  .burbuja .hora { display: block; font-size: 11px; opacity: 0.55; margin-top: 3px; text-align: right; }
+  .pasos { list-style: none; display: flex; flex-direction: column; gap: 28px; }
+  .paso { display: grid; grid-template-columns: 52px 1fr; gap: 16px; align-items: start; }
   .paso .num {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 28px; height: 28px;
-    border-radius: 50%;
-    background: var(--rojo-suave);
-    color: var(--rojo);
     font-family: var(--titulos);
-    font-size: 13px; font-weight: 700;
-    margin-bottom: 12px;
+    font-weight: 800;
+    font-size: 40px;
+    line-height: 1;
+    color: var(--rojo);
+    letter-spacing: -0.04em;
   }
-  .paso h3 { font-size: 19px; margin-bottom: 6px; }
-  .paso p { font-size: 15px; color: var(--texto-suave); }
-  .pasos-cta { text-align: center; margin-top: 40px; }
-  @media (max-width: 860px) { .pasos { grid-template-columns: 1fr; } .paso .charla { height: auto; } }
+  .paso h3 { font-size: 21px; margin-bottom: 6px; }
+  .paso p { font-size: 16px; color: var(--texto-suave); max-width: 460px; }
+  .pasos-cta { margin-top: 8px; }
+  @media (max-width: 860px) {
+    .como .adentro { grid-template-columns: 1fr; gap: 40px; }
+    .telefono { order: 2; }
+    .paso .num { font-size: 34px; }
+  }
 
   /* POR QUÉ ZEUS: una frase y tres cosas que hoy pasan de verdad */
-  .porque .lead { font-size: 17px; color: var(--texto-suave); max-width: 640px; margin: -16px 0 44px; }
-  .valores { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px 28px; }
-  .valor { display: grid; grid-template-columns: 44px 1fr; gap: 16px; }
-  .valor .circulo {
-    width: 44px; height: 44px;
-    border-radius: 50%;
-    background: var(--rojo-suave);
-    color: var(--rojo);
-    display: flex; align-items: center; justify-content: center;
-  }
-  .valor .circulo .ico { width: 22px; height: 22px; }
-  .valor h3 { font-size: 17px; margin-bottom: 4px; }
-  .valor p { font-size: 15px; color: var(--texto-suave); }
+  .porque { background: var(--arena); }
+  .porque .lead { font-size: 18px; color: var(--texto-suave); max-width: 600px; margin: -16px 0 48px; }
+  .valores { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .valor { border-top: 3px solid var(--rojo); padding-top: 18px; }
+  .valor h3 { font-size: 22px; margin-bottom: 8px; }
+  .valor p { font-size: 15.5px; color: var(--texto-suave); }
   @media (max-width: 860px) { .valores { grid-template-columns: 1fr; gap: 24px; } }
 
-  /* PREGUNTAS FRECUENTES: a la izquierda el título, a la derecha el acordeón */
-  .faq { display: grid; grid-template-columns: 1fr 1.4fr; gap: 48px; align-items: start; }
-  .faq .intro h2 { margin-bottom: 28px; }
+  /* PREGUNTAS FRECUENTES */
+  .faq h2 { margin-bottom: 28px; }
+  .faq .lista { max-width: 760px; }
   .faq details { border-top: 1px solid var(--borde); }
   .faq details:last-child { border-bottom: 1px solid var(--borde); }
   .faq summary {
@@ -562,59 +557,72 @@
     display: flex; align-items: center; justify-content: space-between; gap: 16px;
     padding: 20px 0;
     font-family: var(--titulos);
-    font-size: 17px; font-weight: 700; letter-spacing: -0.01em;
+    font-size: 19px; font-weight: 700; letter-spacing: -0.01em;
     cursor: pointer;
   }
   .faq summary::-webkit-details-marker { display: none; }
-  .faq summary .mas {
-    flex: none;
-    width: 32px; height: 32px;
-    border-radius: 50%;
-    background: var(--rojo-suave);
-    color: var(--rojo);
-    display: flex; align-items: center; justify-content: center;
-    transition: transform .2s, background .15s;
-  }
-  .faq summary .mas .ico { width: 16px; height: 16px; }
-  .faq details[open] summary .mas { transform: rotate(45deg); }
-  .faq summary:hover .mas { background: #F8DADA; }
-  .faq details p { font-size: 15px; color: var(--texto-suave); padding: 0 48px 20px 0; max-width: 560px; }
-  @media (max-width: 860px) {
-    .faq { grid-template-columns: 1fr; gap: 8px; }
-    .faq summary { padding: 18px 0; font-size: 16px; }
-    .faq details p { padding-right: 0; }
-  }
+  .faq summary .flecha { flex: none; width: 22px; height: 22px; color: var(--rojo); transition: transform .2s; }
+  .faq details[open] summary .flecha { transform: rotate(180deg); }
+  .faq details p { font-size: 16px; color: var(--texto-suave); padding: 0 40px 22px 0; max-width: 620px; }
+  .faq .mas { margin-top: 28px; font-size: 16px; color: var(--texto-suave); }
+  .faq .mas a { color: var(--tinta); font-weight: 600; }
+  @media (max-width: 600px) { .faq summary { padding: 16px 0; font-size: 17px; } .faq details p { padding-right: 0; } }
 
-  /* CIERRE: una caja roja dentro de la página */
-  .cta-final { max-width: var(--ancho); margin: 0 auto; padding: 0 24px 88px; }
-  .cta-caja {
-    background: var(--rojo);
+  /* CIERRE: banda oscura con el rayo */
+  .cierre {
+    position: relative;
+    overflow: hidden;
+    background: var(--tormenta);
     color: var(--blanco);
-    border-radius: 32px;
-    padding: 64px 32px;
-    text-align: center;
-    box-shadow: 0 20px 50px rgba(214, 40, 40, 0.22);
+    padding: 96px 0;
   }
-  .cta-caja h2 { color: var(--blanco); font-size: clamp(28px, 3.4vw, 40px); margin-bottom: 12px; }
-  .cta-caja p { font-size: 17px; opacity: 0.92; margin-bottom: 30px; }
-  @media (max-width: 600px) { .cta-final { padding: 0 20px 64px; } .cta-caja { padding: 48px 24px; border-radius: 24px; } }
+  .cierre .rayo-fondo {
+    position: absolute;
+    right: -4%; top: -22%;
+    width: 40%;
+    height: 150%;
+    fill: var(--rojo);
+    opacity: 0.9;
+  }
+  .cierre .adentro { position: relative; }
+  .cierre h2 { color: var(--blanco); max-width: 560px; margin-bottom: 14px; }
+  .cierre p { font-size: 18px; opacity: 0.82; max-width: 520px; margin-bottom: 30px; }
+  @media (max-width: 600px) { .cierre { padding: 64px 0; } .cierre .rayo-fondo { right: -30%; width: 70%; opacity: 0.5; } }
 
   /* PARA PROFESIONALES: aparte, para que no compita con el pedido de servicio */
-  .sumate { text-align: center; padding: 72px 24px; }
-  .sumate h2 { font-size: clamp(24px, 3vw, 32px); margin-bottom: 10px; }
-  .sumate p { font-size: 16px; color: var(--texto-suave); margin-bottom: 24px; }
+  .sumate { padding: 72px 0; }
+  .sumate .adentro { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .sumate h2 { font-size: clamp(24px, 3vw, 32px); margin-bottom: 6px; }
+  .sumate p { font-size: 16px; color: var(--texto-suave); }
 
   /* PIE */
   footer {
     border-top: 1px solid var(--borde);
     color: var(--texto-suave);
-    text-align: center;
-    padding: 32px 24px 40px;
-    font-size: 13.5px;
+    padding: 32px 0 40px;
+    font-size: 14px;
     line-height: 1.8;
   }
-  footer a { color: var(--texto-suave); display: inline-block; padding: 6px 2px; text-decoration-color: rgba(95, 94, 102, 0.4); }
-  footer a:hover { color: var(--texto); }
+  footer .adentro { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  footer a { color: var(--texto-suave); display: inline-block; padding: 6px 2px; text-decoration-color: rgba(107, 103, 112, 0.4); }
+  footer a:hover { color: var(--tinta); }
+
+  /* BARRA DE WHATSAPP EN EL CELULAR: aparece cuando la portada ya pasó */
+  .barra-wa {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 90;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+    background: rgba(251, 250, 247, 0.92);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border-top: 1px solid var(--borde);
+    transform: translateY(110%);
+    transition: transform .25s;
+  }
+  .barra-wa.visible { transform: none; }
+  .barra-wa .btn-primary { width: 100%; }
+  @media (min-width: 861px) { .barra-wa { display: none; } }
 
   /* VENTANA "QUIERO SER PROVEEDOR" */
   dialog.elegir {
@@ -623,35 +631,35 @@
     border: none;
     border-radius: 24px;
     padding: 28px 24px 24px;
-    color: var(--texto);
+    color: var(--tinta);
     background: var(--blanco);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   }
-  dialog.elegir::backdrop { background: rgba(17, 17, 17, 0.55); }
-  .elegir h3 { font-size: 21px; margin-bottom: 8px; }
-  .elegir .elegir-texto { font-size: 14px; color: var(--texto-suave); margin-bottom: 20px; }
+  dialog.elegir::backdrop { background: rgba(23, 22, 26, 0.55); }
+  .elegir h3 { font-size: 24px; margin-bottom: 8px; }
+  .elegir .elegir-texto { font-size: 15px; color: var(--texto-suave); margin-bottom: 20px; }
   .elegir .opcion {
     display: flex; align-items: center; gap: 12px;
     padding: 14px 16px; margin-bottom: 10px;
-    border: 1.5px solid var(--borde); border-radius: 16px;
-    text-decoration: none; color: var(--texto);
+    border: 1.5px solid var(--borde); border-radius: var(--radio);
+    text-decoration: none; color: var(--tinta);
     transition: border-color .15s, background .15s;
   }
-  .elegir .opcion:hover { border-color: var(--rojo); background: #FFF5F5; }
+  .elegir .opcion:hover { border-color: var(--rojo); background: var(--rojo-suave); }
   .elegir .opcion .icon { font-size: 26px; }
   .elegir .opcion strong { display: block; font-size: 15px; font-weight: 700; }
-  .elegir .opcion span span { display: block; font-size: 12.5px; color: var(--texto-suave); margin-top: 2px; }
-  .elegir .aviso { font-size: 12.5px; color: var(--texto-suave); margin-top: 6px; }
+  .elegir .opcion span span { display: block; font-size: 13px; color: var(--texto-suave); margin-top: 2px; }
+  .elegir .aviso { font-size: 13px; color: var(--texto-suave); margin-top: 6px; }
   .elegir .cerrar {
     position: absolute; top: 8px; right: 8px;
     width: 44px; height: 44px;
     background: none; border: none; border-radius: 50%;
     font-size: 24px; color: var(--texto-suave); cursor: pointer;
   }
-  .elegir .cerrar:hover { background: var(--gris); }
+  .elegir .cerrar:hover { background: var(--arena); }
   a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid var(--rojo); outline-offset: 2px; }
   .buscador .borrar:focus-visible, .buscador .enviar:focus-visible { outline-offset: -3px; }
-  .cta-caja a:focus-visible { outline-color: var(--blanco); }
+  .cierre a:focus-visible { outline-color: var(--blanco); }
 </style>
 </head>
 <body>
@@ -667,33 +675,13 @@
     <symbol id="d-wa" viewBox="0 0 24 24">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
     </symbol>
-    <!-- flecha del buscador (hacia arriba) -->
-    <symbol id="d-flecha-arriba" viewBox="0 0 24 24">
-      <path d="M12 19V5"/><path d="M5 12l7-7 7 7"/>
-    </symbol>
-    <!-- flecha hacia la derecha -->
+    <!-- flecha hacia la derecha (buscador) -->
     <symbol id="d-flecha" viewBox="0 0 24 24">
       <path d="M5 12h14"/><path d="M12 5l7 7-7 7"/>
     </symbol>
-    <!-- más (abre una pregunta) -->
-    <symbol id="d-mas" viewBox="0 0 24 24">
-      <path d="M12 5v14"/><path d="M5 12h14"/>
-    </symbol>
-    <!-- tilde -->
-    <symbol id="d-tilde" viewBox="0 0 24 24">
-      <path d="M20 6L9 17l-5-5"/>
-    </symbol>
-    <!-- escudo con tilde (conocemos a cada uno) -->
-    <symbol id="d-escudo" viewBox="0 0 24 24">
-      <path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/>
-    </symbol>
-    <!-- etiqueta de precio -->
-    <symbol id="d-precio" viewBox="0 0 24 24">
-      <path d="M20.6 13.4l-7.2 7.2a2 2 0 01-2.8 0L3 13V3h10l7.6 7.6a2 2 0 010 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/>
-    </symbol>
-    <!-- globo de chat -->
-    <symbol id="d-chat" viewBox="0 0 24 24">
-      <path d="M21 12a8 8 0 01-11.6 7.1L4 21l1.9-5.4A8 8 0 1121 12z"/>
+    <!-- flecha hacia abajo (preguntas) -->
+    <symbol id="d-abajo" viewBox="0 0 24 24">
+      <path d="M6 9l6 6 6-6"/>
     </symbol>
     <!-- rodillo de pintar paredes -->
     <symbol id="d-rodillo" viewBox="0 0 32 32">
@@ -724,38 +712,42 @@
 </nav>
 
 <section class="hero">
-  <h1>Profesionales para tu casa en Buenos Aires.<br><span class="acento">¿Qué necesitás?</span></h1>
+  <div class="adentro">
+    <div class="pedido">
+      <h1>Profesionales para tu casa, en Buenos Aires.</h1>
+      <p class="hero-sub">Contanos qué necesitás y buscamos a alguien disponible en tu zona. Todo por WhatsApp; suele tardar unos 30 minutos.</p>
 
-  <!-- Buscador: encuentra por nombre, por rubro y por lo puntual que hace cada persona (buscador.js).
-       Cuando se empieza a buscar, la página sube hasta dejar esta caja arriba. -->
-  <form class="buscador" id="buscador" role="search" action="#">
-    <label class="solo-lectores" for="buscar">Buscar un servicio o un profesional</label>
-    <input type="search" id="buscar" placeholder="Contanos qué necesitás…" autocomplete="off" autocapitalize="none" spellcheck="false" enterkeyhint="search">
-    <div class="acciones">
-      <button class="borrar" type="button" id="buscar-borrar" aria-label="Borrar la búsqueda" hidden>×</button>
-      <button class="enviar" type="submit" aria-label="Buscar">
-        <svg class="ico" aria-hidden="true"><use href="#d-flecha-arriba"/></svg>
-      </button>
+      <!-- Buscador: encuentra por nombre, por rubro y por lo puntual que hace cada persona (buscador.js).
+           Cuando se empieza a buscar, la página sube hasta dejar esta caja arriba. -->
+      <form class="buscador" id="buscador" role="search" action="#">
+        <label class="solo-lectores" for="buscar">Buscar un servicio o un profesional</label>
+        <input type="search" id="buscar" placeholder="¿Qué hay que arreglar?" autocomplete="off" autocapitalize="none" spellcheck="false" enterkeyhint="search">
+        <button class="borrar" type="button" id="buscar-borrar" aria-label="Borrar la búsqueda" hidden>×</button>
+        <button class="enviar" type="submit" aria-label="Buscar">
+          <svg class="ico" aria-hidden="true"><use href="#d-flecha"/></svg>
+        </button>
+      </form>
+      <!-- Ejemplos para tocar: se arman con datos/config.js (ejemplos). -->
+      <div class="chips" id="chips" aria-label="Ejemplos de búsqueda"></div>
+      <!-- Cuántas personas hay hoy en la red, con sus fotos (lo arma app.js con datos reales). -->
+      <p class="hero-red" id="hero-red"></p>
     </div>
-  </form>
-  <!-- Ejemplos para tocar: se arman con datos/config.js (ejemplos). -->
-  <div class="chips" id="chips" aria-label="Ejemplos de búsqueda"></div>
 
-  <p class="hero-dato">
-    <span class="dato"><svg class="ico-wa" aria-hidden="true"><use href="#d-wa"/></svg>Por WhatsApp, buscamos a alguien disponible en tu zona</span>
-    <span class="punto" aria-hidden="true">·</span>
-    <span class="dato">Suele tardar unos 30 minutos</span>
-  </p>
+    <!-- La red: fotos de la gente que ya está en Zeus (app.js). -->
+    <div class="red" id="red" aria-hidden="true"></div>
 
-  <p class="rubros-titulo">O elegí el rubro</p>
-  <!-- Los rubros se arman con datos/rubros.js. Tocar uno abre su panel acá abajo. -->
-  <div class="rubros" id="rubros"></div>
+    <div class="rubros-bloque">
+      <p class="rubros-titulo" id="servicios">O elegí el rubro</p>
+      <!-- Los rubros se arman con datos/rubros.js. Tocar uno abre su panel acá abajo. -->
+      <div class="rubros" id="rubros"></div>
+    </div>
 
-  <div class="hero-wa">
-    <p>¿No sabés qué rubro es? Contanos el problema.</p>
-    <a class="btn-primary" data-wa href="#">
-      <svg class="ico-wa" aria-hidden="true"><use href="#d-wa"/></svg> Escribinos por WhatsApp
-    </a>
+    <div class="hero-wa">
+      <a class="btn-primary" data-wa href="#">
+        <svg class="ico-wa" aria-hidden="true"><use href="#d-wa"/></svg> Escribinos por WhatsApp
+      </a>
+      <p>¿No sabés qué rubro es? Contanos el problema y lo vemos.</p>
+    </div>
   </div>
 </section>
 
@@ -769,128 +761,116 @@
 <!-- Los paneles se arman con datos/profesionales.js -->
 <div id="paneles"></div>
 
-<section class="section">
-  <span class="etiqueta">Cómo funciona</span>
-  <h2>Contanos qué necesitás. <span class="suave">Nosotros buscamos a alguien.</span></h2>
-  <ol class="pasos">
-    <li class="paso">
-      <!-- Un ejemplo de cómo es la charla por WhatsApp -->
-      <div class="charla" aria-hidden="true">
-        <div class="burbuja cliente">Hola Zeus! Se me tapó la pileta de la cocina.</div>
-        <div class="burbuja"><span class="quien"><svg class="rayo" aria-hidden="true"><use href="#d-rayo"/></svg>Zeus</span>Dale. ¿En qué zona estás? Te buscamos un plomero disponible.</div>
+<section class="seccion como">
+  <div class="adentro">
+    <h2>Así funciona, por WhatsApp.</h2>
+    <!-- Una charla de ejemplo. Ilustrativa: sin precios ni nombres reales. -->
+    <div class="telefono" aria-hidden="true">
+      <div class="cabecera">
+        <div class="sello"><svg class="rayo" aria-hidden="true"><use href="#d-rayo"/></svg></div>
+        <div><strong>Zeus</strong><span>Servicios para el hogar</span></div>
       </div>
-      <div class="cuerpo">
+      <div class="charla">
+        <div class="burbuja cliente">Hola! Se me tapó la pileta de la cocina.<span class="hora">10:12</span></div>
+        <div class="burbuja">Dale. ¿En qué zona estás? Te buscamos un plomero disponible.<span class="hora">10:13</span></div>
+        <div class="burbuja cliente">Villa Crespo.<span class="hora">10:13</span></div>
+        <div class="burbuja">Tenemos un plomero que puede ir mañana a la mañana. Te paso un precio aproximado; el final lo confirma cuando ve el problema.<span class="hora">10:41</span></div>
+        <div class="burbuja cliente">Dale, que venga. Gracias!<span class="hora">10:45</span></div>
+      </div>
+    </div>
+    <ol class="pasos">
+      <li class="paso">
         <span class="num">1</span>
-        <h3>Contanos qué necesitás</h3>
-        <p>Elegí el rubro acá arriba o escribinos directo por WhatsApp.</p>
-      </div>
-    </li>
-    <li class="paso">
-      <div class="charla" aria-hidden="true">
-        <div class="burbuja"><span class="quien"><svg class="rayo" aria-hidden="true"><use href="#d-rayo"/></svg>Zeus</span>Tenemos un plomero que puede ir mañana a la mañana. Te paso un precio aproximado.</div>
-        <div class="nota"><svg class="ico" aria-hidden="true"><use href="#d-tilde"/></svg>Suele tardar unos 30 minutos</div>
-      </div>
-      <div class="cuerpo">
+        <div>
+          <h3>Contanos qué necesitás</h3>
+          <p>Elegí el rubro acá arriba o escribinos directo por WhatsApp.</p>
+        </div>
+      </li>
+      <li class="paso">
         <span class="num">2</span>
-        <h3>Te conseguimos a alguien</h3>
-        <p>Buscamos un profesional disponible en tu zona y te pasamos un precio aproximado. Suele tardar unos 30 minutos.</p>
-      </div>
-    </li>
-    <li class="paso">
-      <div class="charla" aria-hidden="true">
-        <div class="burbuja"><span class="quien"><svg class="rayo" aria-hidden="true"><use href="#d-rayo"/></svg>Zeus</span>El plomero confirma el precio cuando ve el problema en tu casa.</div>
-        <div class="burbuja cliente">Listo, ya está destapada. Gracias!</div>
-      </div>
-      <div class="cuerpo">
+        <div>
+          <h3>Te conseguimos a alguien</h3>
+          <p>Buscamos un profesional disponible en tu zona y te pasamos un precio aproximado. Suele tardar unos 30 minutos.</p>
+        </div>
+      </li>
+      <li class="paso">
         <span class="num">3</span>
-        <h3>Se hace el trabajo</h3>
-        <p>El profesional va a tu casa, confirma el precio cuando ve el problema y lo resuelve.</p>
-      </div>
-    </li>
-  </ol>
-  <div class="pasos-cta">
-    <a class="btn-primary" data-wa href="#">
-      <svg class="ico-wa" aria-hidden="true"><use href="#d-wa"/></svg> Escribinos por WhatsApp
-    </a>
+        <div>
+          <h3>Se hace el trabajo</h3>
+          <p>El profesional va a tu casa, confirma el precio cuando ve el problema y lo resuelve.</p>
+        </div>
+      </li>
+      <li class="pasos-cta">
+        <a class="btn-primary" data-wa href="#">
+          <svg class="ico-wa" aria-hidden="true"><use href="#d-wa"/></svg> Escribinos por WhatsApp
+        </a>
+      </li>
+    </ol>
   </div>
 </section>
 
-<div class="franja-blanca">
-  <section class="section porque">
-    <span class="etiqueta">Por qué Zeus</span>
-    <h2>Una red propia de profesionales. <span class="suave">Y un precio aproximado antes de que vayan.</span></h2>
-    <p class="lead">Conseguir un plomero o un electricista de confianza en Buenos Aires es un lío. En Zeus nos ocupamos de eso.</p>
+<section class="seccion porque">
+  <div class="adentro">
+    <h2>Conseguir un plomero de confianza en Buenos Aires es un lío. De eso nos ocupamos.</h2>
+    <p class="lead">Zeus no es una lista de teléfonos: es una red propia, de gente que conocemos.</p>
     <div class="valores">
       <div class="valor">
-        <div class="circulo"><svg class="ico" aria-hidden="true"><use href="#d-escudo"/></svg></div>
-        <div>
-          <h3>Conocemos a cada uno</h3>
-          <p>Trabajamos con una red propia de profesionales de Buenos Aires. Nos ocupamos de conocer a cada uno antes de sumarlo.</p>
-        </div>
+        <h3>Conocemos a cada uno</h3>
+        <p>Trabajamos con una red propia de profesionales de Buenos Aires. Nos ocupamos de conocer a cada uno antes de sumarlo.</p>
       </div>
       <div class="valor">
-        <div class="circulo"><svg class="ico" aria-hidden="true"><use href="#d-precio"/></svg></div>
-        <div>
-          <h3>Precio aproximado por adelantado</h3>
-          <p>Vos nos contás qué necesitás y te pasamos un precio aproximado. El profesional lo confirma cuando ve el problema en tu casa.</p>
-        </div>
+        <h3>Precio aproximado antes de que vayan</h3>
+        <p>Vos nos contás qué necesitás y te pasamos un precio aproximado. El profesional lo confirma cuando ve el problema en tu casa.</p>
       </div>
       <div class="valor">
-        <div class="circulo"><svg class="ico" aria-hidden="true"><use href="#d-chat"/></svg></div>
-        <div>
-          <h3>Si algo no salió bien, escribinos</h3>
-          <p>Queremos saberlo. Nos escribís por el mismo WhatsApp y lo vemos.</p>
-        </div>
+        <h3>Si algo no salió bien, escribinos</h3>
+        <p>Queremos saberlo. Nos escribís por el mismo WhatsApp y lo vemos.</p>
       </div>
     </div>
-  </section>
-</div>
+  </div>
+</section>
 
-<section class="section">
-  <div class="faq">
-    <div class="intro">
-      <span class="etiqueta">Preguntas frecuentes</span>
-      <h2>Lo que nos preguntan. <span class="suave">Y si tenés otra duda, escribinos.</span></h2>
-      <a class="btn-primary" data-wa href="#">
-        <svg class="ico-wa" aria-hidden="true"><use href="#d-wa"/></svg> Escribinos por WhatsApp
-      </a>
-    </div>
+<section class="seccion faq">
+  <div class="adentro">
+    <h2>Lo que nos preguntan</h2>
     <div class="lista">
       <details>
-        <summary>¿Qué es Zeus? <span class="mas"><svg class="ico" aria-hidden="true"><use href="#d-mas"/></svg></span></summary>
+        <summary>¿Qué es Zeus? <svg class="ico flecha" aria-hidden="true"><use href="#d-abajo"/></svg></summary>
         <p>Una red propia de profesionales para el hogar en Buenos Aires: plomeros, electricistas, gasistas, limpieza y más. Nos contás qué necesitás por WhatsApp y buscamos a alguien disponible en tu zona.</p>
       </details>
       <details>
-        <summary>¿Cómo pido un servicio? <span class="mas"><svg class="ico" aria-hidden="true"><use href="#d-mas"/></svg></span></summary>
+        <summary>¿Cómo pido un servicio? <svg class="ico flecha" aria-hidden="true"><use href="#d-abajo"/></svg></summary>
         <p>Elegí el rubro en la portada, buscá lo que necesitás o escribinos directo por WhatsApp. Buscamos un profesional disponible en tu zona y te pasamos un precio aproximado. Suele tardar unos 30 minutos.</p>
       </details>
       <details>
-        <summary>¿Cuánto sale? <span class="mas"><svg class="ico" aria-hidden="true"><use href="#d-mas"/></svg></span></summary>
+        <summary>¿Cuánto sale? <svg class="ico flecha" aria-hidden="true"><use href="#d-abajo"/></svg></summary>
         <p>Te pasamos un precio aproximado por WhatsApp. El precio real lo confirma el profesional cuando ve el problema en tu casa.</p>
       </details>
       <details>
-        <summary>¿Quién hace el trabajo? <span class="mas"><svg class="ico" aria-hidden="true"><use href="#d-mas"/></svg></span></summary>
+        <summary>¿Quién hace el trabajo? <svg class="ico flecha" aria-hidden="true"><use href="#d-abajo"/></svg></summary>
         <p>El profesional. Zeus te conecta con alguien de su red, disponible en tu zona, y se ocupa de conocer a cada uno antes de sumarlo.</p>
       </details>
       <details>
-        <summary>¿En qué zonas trabajan? <span class="mas"><svg class="ico" aria-hidden="true"><use href="#d-mas"/></svg></span></summary>
+        <summary>¿En qué zonas trabajan? <svg class="ico flecha" aria-hidden="true"><use href="#d-abajo"/></svg></summary>
         <p>En Buenos Aires. Contanos tu zona y buscamos a alguien disponible cerca tuyo.</p>
       </details>
       <details>
-        <summary>¿Y si algo no salió como esperaba? <span class="mas"><svg class="ico" aria-hidden="true"><use href="#d-mas"/></svg></span></summary>
+        <summary>¿Y si algo no salió como esperaba? <svg class="ico flecha" aria-hidden="true"><use href="#d-abajo"/></svg></summary>
         <p>Escribinos. Queremos saberlo.</p>
       </details>
       <details>
-        <summary>Tengo un oficio, ¿cómo me sumo? <span class="mas"><svg class="ico" aria-hidden="true"><use href="#d-mas"/></svg></span></summary>
+        <summary>Tengo un oficio, ¿cómo me sumo? <svg class="ico flecha" aria-hidden="true"><use href="#d-abajo"/></svg></summary>
         <p>Tocá "Quiero ser proveedor" acá abajo y llená el formulario: lleva unos 5 minutos. Después lo revisamos.</p>
       </details>
     </div>
+    <p class="mas">¿Otra duda? <a data-wa href="#">Escribinos por WhatsApp</a> y te contestamos.</p>
   </div>
 </section>
 
-<section class="cta-final">
-  <div class="cta-caja">
-    <h2>¿Necesitás una mano?</h2>
+<section class="cierre">
+  <svg class="rayo-fondo" aria-hidden="true"><use href="#d-rayo"/></svg>
+  <div class="adentro">
+    <h2>¿Necesitás una mano en casa?</h2>
     <p>Escribinos por WhatsApp y te contestamos a la brevedad.</p>
     <a class="btn-white" data-wa href="#">
       <svg class="ico-wa" aria-hidden="true"><use href="#d-wa"/></svg> Escribinos por WhatsApp
@@ -898,18 +878,29 @@
   </div>
 </section>
 
-<div class="franja-blanca">
-  <section class="sumate">
-    <h2>¿Tenés un oficio?</h2>
-    <p>Sumate a la red de Zeus. Llená el formulario en 5 minutos.</p>
+<section class="sumate">
+  <div class="adentro">
+    <div>
+      <h2>¿Tenés un oficio?</h2>
+      <p>Sumate a la red de Zeus. Llená el formulario en 5 minutos.</p>
+    </div>
     <button class="btn-secondary" type="button" id="abrir-proveedor">Quiero ser proveedor</button>
-  </section>
-</div>
+  </div>
+</section>
 
 <footer>
-  <p>Zeus App S.R.L. — Buenos Aires, Argentina</p>
-  <p><a href="terminos.pdf" target="_blank" rel="noopener">Términos y condiciones</a> &nbsp;·&nbsp; <a href="https://www.instagram.com/zeusba_/" target="_blank" rel="noopener">Instagram</a> &nbsp;·&nbsp; <a data-wa href="#">WhatsApp</a></p>
+  <div class="adentro">
+    <p>Zeus App S.R.L. — Buenos Aires, Argentina</p>
+    <p><a href="terminos.pdf" target="_blank" rel="noopener">Términos y condiciones</a> &nbsp;·&nbsp; <a href="https://www.instagram.com/zeusba_/" target="_blank" rel="noopener">Instagram</a> &nbsp;·&nbsp; <a data-wa href="#">WhatsApp</a></p>
+  </div>
 </footer>
+
+<!-- En el celular, el botón de WhatsApp acompaña abajo cuando la portada ya pasó (app.js) -->
+<div class="barra-wa" id="barra-wa">
+  <a class="btn-primary" data-wa href="#">
+    <svg class="ico-wa" aria-hidden="true"><use href="#d-wa"/></svg> Escribinos por WhatsApp
+  </a>
+</div>
 
 <!-- "Quiero ser proveedor" pregunta a qué se dedica y lleva al formulario que corresponde -->
 <dialog class="elegir" id="ventana-proveedor" aria-labelledby="t-elegir">

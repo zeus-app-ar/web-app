@@ -7,7 +7,7 @@ HTML, CSS y JavaScript sin servidor ni build. Se publica sola en GitHub Pages co
 | Archivo | Qué es |
 |---|---|
 | `index.html` | La página, con sus estilos adentro |
-| `app.js` | Arma los rubros de la portada y los paneles, conecta WhatsApp, el buscador y "Quiero ser proveedor" |
+| `app.js` | Arma los rubros de la portada, la red de fotos y el número de profesionales, los paneles, el buscador, la barra de WhatsApp del celular y "Quiero ser proveedor" |
 | `buscador.js` | Decide qué profesionales aparecen cuando alguien escribe en el buscador, y por qué. Ver "El buscador" más abajo |
 | `datos/config.js` | **Lo que más se cambia**: número de WhatsApp, links de los formularios y los ejemplos que se ven debajo del buscador |
 | `datos/rubros.js` | Los rubros de la portada: íconos, títulos, frases y las palabras con las que el buscador encuentra cada rubro. Mismas claves que el bot |

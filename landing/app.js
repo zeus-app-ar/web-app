@@ -69,6 +69,49 @@
     );
   }).join("");
 
+  // ---------- La red, en la portada ----------
+  // Fotos de verdad de la gente que ya está en Zeus, y cuántos son. Es el único
+  // "dibujo" de la portada: nada inventado. En pantalla grande, un grupo de caras
+  // alrededor del rayo; en el celular, una pila de fotos con el número.
+  var visibles = GENTE.filter(function (p) {
+    return (p.foto || C.mostrarSinFoto || revisar) &&
+      botones.some(function (x) { return x.secciones.some(function (s) { return p.rubros.indexOf(s.rubro) !== -1; }); });
+  });
+  function botonDe(p) {
+    return botones.filter(function (x) {
+      return x.secciones.some(function (s) { return p.rubros.indexOf(s.rubro) !== -1; });
+    })[0];
+  }
+  function cara(p, clase) {
+    return p.foto
+      ? '<img class="' + clase + '" src="' + p.foto + '" alt="" width="84" height="84" decoding="async">'
+      : '<div class="' + clase + ' sin-foto" aria-hidden="true">' + texto(p.nombre.charAt(0)) + "</div>";
+  }
+  // Variedad de oficios: una persona por rubro, en el orden de la barra, hasta llenar.
+  var destacados = [];
+  botones.forEach(function (x) {
+    var p = visibles.filter(function (q) { return destacados.indexOf(q) === -1 && botonDe(q) === x; })[0];
+    if (p) destacados.push(p);
+  });
+  visibles.forEach(function (p) { if (destacados.indexOf(p) === -1) destacados.push(p); });
+
+  var red = document.getElementById("red");
+  if (red && destacados.length >= 3) {
+    var caras = destacados.slice(0, 6).map(function (p, i) { return cara(p, "cara c" + (i + 1)); }).join("");
+    var oficios = destacados.slice(0, 3).map(function (p, i) {
+      var b = botonDe(p).b;
+      return '<span class="oficio e' + (i + 1) + '">' + icono(b.icono) + " " + texto(b.etiqueta) + "</span>";
+    }).join("");
+    red.innerHTML = '<svg class="rayo-grande" aria-hidden="true"><use href="#d-rayo"/></svg>' + caras + oficios;
+  }
+  var heroRed = document.getElementById("hero-red");
+  if (heroRed && visibles.length >= 3) {
+    var n = visibles.length;
+    heroRed.innerHTML =
+      '<span class="pila" aria-hidden="true">' + destacados.slice(0, 4).map(function (p) { return cara(p, ""); }).join("") + "</span>" +
+      "<span><strong>" + n + " profesionales</strong> en la red hoy, en Buenos Aires</span>";
+  }
+
   // ---------- Paneles ----------
   // "porque" (opcional) lo pasa el buscador: el detalle o rubro por el que apareció la persona.
   function tarjeta(p, seccion, porque) {
@@ -286,6 +329,21 @@
       bajarFotos(buscables);
       mostrar();
     }
+  }
+
+  // ---------- Barra de WhatsApp en el celular ----------
+  // Aparece cuando la portada (con su propio botón de WhatsApp) ya quedó arriba.
+  var barraWa = document.getElementById("barra-wa");
+  if (barraWa) {
+    var pendiente = false;
+    var revisarBarra = function () {
+      pendiente = false;
+      barraWa.classList.toggle("visible", window.scrollY > portada.offsetTop + portada.offsetHeight - 80);
+    };
+    window.addEventListener("scroll", function () {
+      if (!pendiente) { pendiente = true; window.requestAnimationFrame(revisarBarra); }
+    }, { passive: true });
+    revisarBarra();
   }
 
   // ---------- "Quiero ser proveedor" ----------
