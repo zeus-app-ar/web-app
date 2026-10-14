@@ -42,14 +42,22 @@ window.ZEUS_BARRA = [
                   subtitulo: "— heladeras, lavarropas, microondas, TV (no aire acondicionado)", nombre: "Técnico electrodom.",
                   buscar: "electrodoméstico heladera freezer lavarropas secarropas lavavajillas microondas horno tele televisor tv" }] },
 
+  // Limpieza (07/10/2026, Pancho): primero las de casas particulares; aparte,
+  // "Limpieza de tapizados" para gente que se dedica solo a eso, con máquinas.
+  // Entra en tapizados quien tenga cargado "Tipos de tapizado" en Airtable
+  // (lo arma herramientas/actualizar_profesionales.py). Una sección sin gente
+  // no se muestra, así que tapizados aparece con el primer profesional.
   { id: "limpieza", etiqueta: "Limpieza", icono: "🧹",
     secciones: [
-      { rubro: "limpieza_profesional", titulo: "Limpieza Profesional", subtitulo: "— equipos, post-obra, oficinas, sillones, alfombras y tapizados",
-        icono: "🧹", nombre: "Limpieza Profesional",
-        buscar: "limpiar profunda post-obra obra oficina empresa sillón sofá alfombra tapizado colchón" },
-      { rubro: "limpieza_particular", titulo: "Limpieza Particular", subtitulo: "— por horas o jornada, una persona",
+      { rubro: "limpieza_particular", titulo: "Limpieza de casas particulares", subtitulo: "— por horas o jornada",
         icono: "🏠", nombre: "Limpieza Particular",
         buscar: "limpiar empleada doméstica casa hogar departamento horas jornada" },
+      { rubro: "limpieza_tapizados", titulo: "Limpieza de tapizados", subtitulo: "— sillones, sillas, colchones y alfombras",
+        icono: "🛋️", nombre: "Limpieza de tapizados",
+        buscar: "limpiar tapizado tapicería sillón sofá silla colchón alfombra" },
+      { rubro: "limpieza_profesional", titulo: "Limpieza Profesional", subtitulo: "— equipos, post-obra, oficinas, eventos",
+        icono: "🧹", nombre: "Limpieza Profesional",
+        buscar: "limpiar profunda post-obra obra oficina empresa evento" },
     ] },
 
   // Se muestra como "Handyman" (06/10/2026, igual que en Instagram). La clave

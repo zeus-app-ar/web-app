@@ -182,7 +182,7 @@ _PINTURA = ["Pintura de interiores", "Pintura de exteriores"]
 DETALLES = [
     # --- Limpieza ---
     {"campo": "Tipo de limpieza", "rubros": ["limpieza_particular", "limpieza_profesional"], "forma": "lista", "plantilla": "{}"},
-    {"campo": "Tipos de tapizado", "rubros": ["limpieza_particular", "limpieza_profesional"], "forma": "lista", "plantilla": "Limpieza de {m}"},
+    {"campo": "Tipos de tapizado", "rubros": ["limpieza_tapizados", "limpieza_particular", "limpieza_profesional"], "forma": "lista", "plantilla": "Limpieza de {m}"},
     {"campo": "Hace planchado", "rubros": ["limpieza_particular"], "forma": "casilla", "texto": "Planchado"},
     # --- Plomero ---
     {"campo": "Tipo de trabajo plomero", "rubros": ["plomero"], "forma": "opcion",
@@ -388,6 +388,13 @@ def main():
             clave = RUBRO_DE_OPCION.get(opcion)
             if clave and clave not in rubros:
                 rubros.append(clave)
+        # Limpieza de tapizados (07/10/2026): no es una opción de "Servicios que
+        # ofrece"; entra quien tiene cargado "Tipos de tapizado" (sillones, sillas,
+        # colchones, alfombras). Se lo muestra ahí y no en Limpieza Profesional.
+        if f.get("Tipos de tapizado"):
+            rubros = [x for x in rubros if x != "limpieza_profesional"]
+            if "limpieza_tapizados" not in rubros:
+                rubros.append("limpieza_tapizados")
         if not rubros:
             sin_rubro.append(f.get("Nombre completo", r["id"]))
             continue
