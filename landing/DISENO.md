@@ -2,43 +2,42 @@
 
 La web y la futura app tienen que sentirse el mismo producto. Si la app usa otros colores, otra letra u otros nombres de rubro, está mal.
 
-El estilo es claro y redondeado (octubre 2026, inspirado en clickie.com.ar): fondo casi blanco, texto casi negro, el rojo de Zeus solo como acento, botones píldora, tarjetas blancas con borde finito y esquinas muy redondeadas, mucho aire entre secciones. Todo lo que cambia de color o de lugar al tocarlo lo hace suave (0,15 s).
+El estilo (octubre 2026) es claro, cálido y directo: papel casi blanco, tinta casi negra, el rojo de Zeus solo como acento, botones píldora y mucho aire. Lo que más identifica a Zeus en la página son dos cosas que ninguna competencia tiene: **la gente de verdad** (las fotos de los profesionales en la portada, con el número real de cuántos hay) y **el rayo**, que aparece grande detrás de la red y en la banda del cierre. Nada de mascotas ni ilustraciones: Zeus muestra lo que hay. Todo lo que cambia de color al tocarlo lo hace suave (0,15 s).
 
 ## Colores
 
 | Nombre | Valor | Para qué |
 |---|---|---|
-| Rojo Zeus | `#D62828` | Botones principales, el rayo del logo, rubro elegido, etiquetas de sección ("CÓMO FUNCIONA"), la caja final |
-| Rojo oscuro | `#B91F1F` | Botones rojos al pasar el mouse |
-| Rojo suave | `#FCEBEB` | Fondo del rubro elegido, de los números de los pasos, de los círculos de íconos y de la etiqueta "por qué apareció" en los resultados |
-| Negro | `#111111` | "Pedir servicio" de la barra, "Pedir a …" de las tarjetas, globos del cliente en las charlas de ejemplo |
-| Texto | `#1B1B1F` | Texto principal y títulos |
-| Texto suave | `#5F5E66` | Texto secundario y la segunda mitad de los títulos |
-| Fondo | `#FBF9F8` | Fondo de toda la página (blanco con un toque cálido) |
-| Blanco | `#FFFFFF` | Tarjetas, la caja del buscador, los chips, las franjas "Por qué Zeus" y "¿Tenés un oficio?" |
-| Gris | `#F4F1F0` | Paneles de profesionales, las charlas de ejemplo |
-| Borde | `rgba(17,17,17,0.08)` | Bordes de tarjetas, chips, rubros y separadores |
+| Rojo Zeus | `#D62828` | Botones principales, el rayo, el rubro elegido, los números de los pasos, la flecha del buscador con algo escrito, la etiqueta "por qué apareció" en los resultados |
+| Rojo oscuro | `#B51F1F` | Botones rojos al pasar el mouse |
+| Rojo suave | `#FBE9E8` | Fondo del rubro elegido y de las etiquetas |
+| Tinta | `#17161A` | Texto, títulos, "Pedir servicio", "Pedir a …", globos del cliente en la charla de ejemplo |
+| Tormenta | `#1C1B21` | La banda oscura del cierre |
+| Texto suave | `#6B6770` | Texto secundario |
+| Papel | `#FBFAF7` | Fondo de toda la página |
+| Arena | `#F1ECE4` | Superficies: chips, círculos de los rubros, paneles de profesionales, la franja "Por qué Zeus", globos de Zeus en la charla |
+| Blanco | `#FFFFFF` | La caja del buscador, tarjetas de profesionales, el teléfono de ejemplo |
+| Borde | `rgba(23,22,26,0.10)` | Bordes y separadores |
 
 Los valores viven en las variables al inicio del `<style>` de `index.html`. Cambiar el acento es cambiar `--rojo`, `--rojo-oscuro` y `--rojo-suave`.
 
 ## Letra
 
-- **Montserrat** (Google Fonts) para todo: párrafos, botones, chips, tarjetas y el título de la portada. Pesos 500 (texto), 600 (botones) y 700 (etiquetas, "¿Qué necesitás?").
-- **Ubuntu** en negrita (700) para los títulos de sección, los de las tarjetas, el nombre de cada profesional y el logo.
-- Nada va en mayúsculas salvo las etiquetas chiquitas de sección ("CÓMO FUNCIONA", "O ELEGÍ EL RUBRO"), que llevan letra espaciada.
-- Los títulos grandes van en dos tonos: la primera frase en texto, la segunda en texto suave ("Contanos qué necesitás. *Nosotros buscamos a alguien.*").
+- **Bricolage Grotesque** (Google Fonts) en negrita (700/800) para los títulos, los números de los pasos, el nombre de cada profesional y el logo. Es la letra con carácter: ancha, redonda, un poco "a mano".
+- **Figtree** (Google Fonts) para todo lo demás: párrafos, botones, chips, etiquetas. Pesos 400 (texto), 500 (chips, buscador), 600 (botones).
+- Nada va en mayúsculas. Nada de etiquetas chiquitas arriba de los títulos ni de una palabra en otro color en el medio de un título: el título se lee solo.
+- Las líneas de texto no pasan de unos 70 caracteres (los párrafos tienen `max-width`).
 
 ## Formas
 
 | Pieza | Esquinas |
 |---|---|
-| Botones y chips | Píldora (`999px`) |
-| Rubros | 18px |
-| Tarjetas (profesionales, pasos) | 20–24px |
-| Caja del buscador | 28px |
-| Caja roja final | 32px |
+| Botones, chips y la caja del buscador | Píldora (`999px`) |
+| Círculos de los rubros, fotos | Círculo |
+| Tarjetas de profesionales, opciones de la ventana | 16px |
+| El teléfono de ejemplo | 36px |
 
-Sombras suaves y apenas visibles; la caja del buscador y la caja roja llevan una sombra con tinte rojo.
+Sombras: casi ninguna. Solo la caja del buscador, las fotos de la red y el teléfono de ejemplo llevan una, suave.
 
 ## Íconos
 
@@ -46,26 +45,28 @@ Sombras suaves y apenas visibles; la caja del buscador y la caja roja llevan una
 - Dibujos propios **solo** donde no existe un emoji adecuado, con colores planos como un emoji: rodillo de pintar paredes (pintor) y armario (armado de muebles).
 - Electricista usa 🔌: el rayo es el logo de Zeus y no se repite.
 - **El rayo de Zeus es siempre el mismo dibujo y siempre rojo** (`#d-rayo` en `index.html`, igual al ícono de la pestaña). No se usa el emoji ⚡, que cada teléfono muestra amarillo y distinto.
-- Los íconos de línea (flechas, "+", tilde, escudo, etiqueta de precio, globo de chat) son trazos simples de 2px, en rojo sobre un círculo rojo suave.
+- Los únicos íconos de línea son la flecha del buscador y la flecha de las preguntas: trazos simples de 2px.
 - El ícono de WhatsApp acompaña a los botones que abren el chat ("Escribinos por WhatsApp"), para que se sepa qué pasa al tocarlos.
 
 ## Piezas
 
 | Pieza | Regla |
 |---|---|
-| Barra de arriba | Lo único fijo: logo y "Pedir servicio" (píldora negra). Es translúcida: la página se ve pasar detrás, desenfocada |
-| Portada | Título con qué es y dónde ("… en Buenos Aires.") y, en rojo, la pregunta "¿Qué necesitás?". Debajo, la caja del buscador, los ejemplos, una línea con cómo funciona (WhatsApp, unos 30 minutos), los rubros y el botón de WhatsApp. La acción principal es pedir un servicio; "Quiero ser proveedor" va aparte, al final |
-| Buscador | La caja grande blanca del centro de la portada. Flecha gris que se pone roja cuando hay algo escrito. Mientras hay algo escrito, los resultados ocupan el lugar de los rubros (así se ven sobre el teclado del celular); al borrar, vuelven los rubros. Si no encuentra a nadie, ofrece escribir por WhatsApp con lo buscado ya en el mensaje |
-| Ejemplos (chips) | Píldoras blancas debajo del buscador con pedidos típicos ("Canilla que gotea"). Tocar una es como escribirla. La lista está en `datos/config.js`; solo se muestran las que hoy encuentran a alguien. En celular van en una fila que se desliza con el dedo |
-| Rubros | Tarjetas blancas con emoji y nombre: 4 por fila en celular, una fila en pantalla grande. Tocar un rubro abre su panel justo debajo; tocarlo de nuevo lo cierra. El elegido queda con borde rojo y fondo rojo suave |
-| Panel de rubro | Fondo gris, título "… disponibles"; en los rubros menos conocidos, una línea que lo explica |
-| Tarjeta de profesional | Blanca, con borde. Foto redonda, nombre de pila + inicial, una línea verdadera (años de experiencia, zonas) y la píldora negra "Pedir a <nombre>", que abre el WhatsApp **de Zeus**. No dice "Contratar": Zeus conecta, no contrata. **Nunca** teléfono, apellido completo, barrio ni dirección. En los resultados del buscador suma una etiqueta roja suave con el motivo por el que apareció ("Limpieza de vidrios y ventanas", "Plomero") |
-| Cómo funciona | Tres tarjetas numeradas, cada una con una charla de ejemplo por WhatsApp arriba (globo negro = cliente, globo blanco con el rayo = Zeus). Las charlas son ilustrativas: sin precios, sin nombres reales y sin prometer nada que la página no diga |
-| Por qué Zeus | Título en dos tonos, una frase y tres puntos con ícono: conocemos a cada uno, precio aproximado por adelantado, escribinos si algo no salió bien |
-| Preguntas frecuentes | Acordeón (`<details>`), con el "+" que gira al abrir. Las respuestas solo dicen lo que la página ya afirma en otro lado |
-| Cierre | Caja roja redondeada dentro de la página, con el botón blanco de WhatsApp |
-| Botones | Píldoras. Todo lo que se toca mide al menos 44px de alto. Al pasar el mouse suben 1px y oscurecen |
-| "Quiero ser proveedor" | Sección propia al final ("¿Tenés un oficio?"), píldora con borde negro. Pregunta si es limpieza u otro oficio y lleva al formulario que corresponde |
+| Barra de arriba | Lo único fijo: logo y "Pedir servicio" (píldora de tinta). Es translúcida: la página se ve pasar detrás, desenfocada |
+| Portada | En pantalla grande, dos columnas: a la izquierda el título (qué es y dónde: "… en Buenos Aires."), una línea que explica (WhatsApp, unos 30 minutos), el buscador, los ejemplos y la pila de fotos con el número real de profesionales; a la derecha, la red. Debajo, a todo el ancho, los rubros y el botón de WhatsApp. En el celular, una sola columna y la red se ve solo como la pila de fotos |
+| La red | Hasta seis fotos de verdad alrededor del rayo, con tres etiquetas de oficio. Las elige `app.js`: una persona por rubro, en el orden de la barra. Si hay menos de tres personas con foto, no se muestra. Nunca se inventan caras |
+| Buscador | Píldora blanca con la flecha a la derecha; la flecha se pone roja cuando hay algo escrito. Mientras hay algo escrito, los resultados ocupan el lugar de los rubros (así se ven sobre el teclado del celular); al borrar, vuelven. Si no encuentra a nadie, ofrece escribir por WhatsApp con lo buscado ya en el mensaje |
+| Ejemplos (chips) | Píldoras color arena debajo del buscador con pedidos típicos ("Canilla que gotea"). Tocar una es como escribirla. La lista está en `datos/config.js`; solo se muestran las que hoy encuentran a alguien. En celular van en una fila que se desliza con el dedo |
+| Rubros | Emoji en un círculo color arena y el nombre debajo, sin tarjeta: 4 por fila en celular, una fila en pantalla grande. Tocar un rubro abre su panel justo debajo; tocarlo de nuevo lo cierra. El elegido queda con aro rojo y nombre en rojo |
+| Panel de rubro | Fondo arena, título "… disponibles"; en los rubros menos conocidos, una línea que lo explica |
+| Tarjeta de profesional | Blanca, con borde. Foto redonda, nombre de pila + inicial, una línea verdadera (años de experiencia, zonas) y la píldora de tinta "Pedir a <nombre>", que abre el WhatsApp **de Zeus**. No dice "Contratar": Zeus conecta, no contrata. **Nunca** teléfono, apellido completo, barrio ni dirección. En los resultados del buscador suma una etiqueta roja suave con el motivo por el que apareció |
+| Cómo funciona | A la izquierda, un teléfono con una charla de ejemplo (globo de tinta = cliente, globo arena = Zeus); a la derecha, los tres pasos con el número grande en rojo. La charla es ilustrativa: sin precios, sin nombres reales, sin prometer nada que la página no diga |
+| Por qué Zeus | Franja arena. Un título que dice el problema, una frase y tres puntos con una raya roja arriba: conocemos a cada uno, precio aproximado antes de que vayan, escribinos si algo no salió bien |
+| Preguntas frecuentes | Acordeón (`<details>`), con una flecha roja que gira al abrir. Las respuestas solo dicen lo que la página ya afirma en otro lado |
+| Cierre | Banda oscura (tormenta) a todo el ancho con el rayo rojo grande a la derecha y el botón blanco de WhatsApp |
+| Barra de WhatsApp (celular) | Cuando la portada ya pasó, una barra fija abajo con "Escribinos por WhatsApp". No existe en pantalla grande |
+| Botones | Píldoras. Todo lo que se toca mide al menos 44px de alto. Al pasar el mouse solo cambian de color; nada se mueve ni se agranda |
+| "Quiero ser proveedor" | Sección propia al final ("¿Tenés un oficio?"), píldora con borde. Pregunta si es limpieza u otro oficio y lleva al formulario que corresponde |
 
 ## Rubros: una sola lista
 
