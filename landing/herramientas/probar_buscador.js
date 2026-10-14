@@ -15,6 +15,7 @@
 
 var path = require("path");
 global.window = {};
+require(path.join(__dirname, "..", "datos", "config.js"));
 require(path.join(__dirname, "..", "datos", "rubros.js"));
 var B = require(path.join(__dirname, "..", "buscador.js"));
 
@@ -128,6 +129,13 @@ mismos("arreglar un piano m", ["Alan G."]);    // ...ni sumada a otras palabras
 mismos("electrodoméstico", []);               // no hay técnicos: no tiene que traer electricistas
 mismos("niños", []);
 mismos("heladera", []);
+
+// --- Los ejemplos de la portada (datos/config.js) tienen que encontrar a alguien ---
+// Si uno falla, está escrito con palabras que el buscador no conoce: cambiarlo
+// o agregar la palabra a "buscar" del rubro en datos/rubros.js.
+(window.ZEUS_CONFIG.ejemplos || []).forEach(function (ejemplo) {
+  igual('ejemplo "' + ejemplo + '" encuentra a alguien', nombres(ejemplo).length > 0, true);
+});
 
 // --- Rubros que la página no muestra no se buscan (acá, sin secciones) ---
 igual("sin secciones visibles no hay rubros que buscar",

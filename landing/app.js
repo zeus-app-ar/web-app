@@ -170,9 +170,11 @@
   // Mientras hay algo escrito, los resultados reemplazan a los rubros. Al borrar
   // vuelven los rubros. Busca solo entre quienes la página ya muestra.
   var B = window.ZEUS_BUSCADOR;
+  var formulario = document.getElementById("buscador");
   var campo = document.getElementById("buscar");
   var borrar = document.getElementById("buscar-borrar");
   var resultados = document.getElementById("resultados");
+  var chips = document.getElementById("chips");
   if (B && campo && resultados) {
     var seccionesVisibles = [];
     botones.forEach(function (x) {
@@ -196,6 +198,7 @@
     var mostrar = function () {
       var escrito = campo.value.replace(/\s+/g, " ").trim();
       borrar.hidden = !campo.value;
+      formulario.classList.toggle("con-texto", !!escrito);   // la flecha se pone roja
       var r = escrito.length >= 2 ? B.buscar(indice, escrito) : null;
       if (!r || !r.terminos.length) {
         buscando = false;
@@ -211,7 +214,7 @@
         cerrarPaneles();
         actual = null;
         portada.classList.add("buscando");
-        setTimeout(function () { document.getElementById("servicios").scrollIntoView({ block: "start" }); }, 50);
+        setTimeout(function () { formulario.scrollIntoView({ block: "start" }); }, 50);
       }
       var corto = escrito.slice(0, 80);
       var pedido = linkWhatsApp("Hola Zeus! Estoy buscando: " + corto);
@@ -244,7 +247,7 @@
       if (e.key === "Escape") { campo.value = ""; mostrar(); }
     });
     // "Buscar" en el teclado del celular: no recarga la página, solo esconde el teclado.
-    document.getElementById("buscador").addEventListener("submit", function (e) {
+    formulario.addEventListener("submit", function (e) {
       e.preventDefault();
       clearTimeout(espera);
       mostrar();
@@ -255,6 +258,26 @@
       mostrar();
       campo.focus();
     });
+
+    // ---------- Ejemplos para tocar ----------
+    // Los chips debajo de la caja (datos/config.js, "ejemplos"). Tocar uno es como
+    // escribirlo. Solo se muestran los que hoy encuentran a alguien: si un rubro se
+    // queda sin gente, su ejemplo desaparece solo en vez de llevar a "no encontramos".
+    if (chips) {
+      var ejemplos = (C.ejemplos || []).filter(function (texto) {
+        return B.buscar(indice, texto).resultados.length > 0;
+      });
+      chips.innerHTML = ejemplos.map(function (ej) {
+        return '<button class="chip" type="button">' + texto(ej) + "</button>";
+      }).join("");
+      chips.addEventListener("click", function (e) {
+        var chip = e.target.closest(".chip");
+        if (!chip) return;
+        campo.value = chip.textContent;
+        clearTimeout(espera);
+        mostrar();
+      });
+    }
 
     // somoszeus.com/?buscar=sillones abre la página con esa búsqueda hecha (para compartir un link).
     var pedida = /[?&]buscar=([^&]*)/.exec(window.location.search);
