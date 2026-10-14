@@ -17,6 +17,12 @@ window.ZEUS_CONFIG = {
   // hoy encuentra a alguien; si no, se esconde solo.
   ejemplos: ["Canilla que gotea", "Saltó la térmica", "Limpieza por horas", "Colgar un estante", "Pintar una pared"],
 
+  // En la portada, al lado de la pila de fotos, se dice cuántos profesionales hay
+  // en la red SOLO a partir de este número (decisión de Chiara, 14/10/2026: con
+  // pocos, el número juega en contra). Hasta llegar, se ven las fotos sin número.
+  // Se enciende solo el día que la red llega a esta cantidad.
+  cantidadDesde: 30,
+
   // Links PÚBLICOS de los formularios de alta (los que terminan en /viewform, nunca los de /edit).
   formularios: {
     oficios: "https://docs.google.com/forms/d/e/1FAIpQLSctsV77KvJDRsZw6yMwxKK2JXgPJA2XVT912YEHgWZIuGcDnA/viewform",
