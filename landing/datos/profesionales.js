@@ -49,22 +49,6 @@ window.ZEUS_PROFESIONALES = [
     "foto": "fotos/recWreAgb2cc3uElF.jpg"
   },
   {
-    "id": "recGdB1c7WEl5AUbd",
-    "nombre": "Analia M.",
-    "rubros": [
-      "limpieza_particular"
-    ],
-    "frase": "Limpieza de casas y oficinas, vidrios, post-obra, alfombras, tapizados y sillones. Trabaja por horas en zona norte.",
-    "detalles": [
-      "Limpieza de casas y departamentos",
-      "Limpieza de oficinas",
-      "Limpieza post-obra",
-      "Limpieza de vidrios y ventanas",
-      "Planchado"
-    ],
-    "foto": "fotos/recGdB1c7WEl5AUbd.jpg"
-  },
-  {
     "id": "reciVNjpxufSbXIFo",
     "nombre": "Christian K.",
     "rubros": [
@@ -153,20 +137,6 @@ window.ZEUS_PROFESIONALES = [
     "foto": "fotos/recyaba5QZRoXrgac.jpg"
   },
   {
-    "id": "recBdOWWUaUAKIBKm",
-    "nombre": "Jennifer A.",
-    "rubros": [
-      "limpieza_particular"
-    ],
-    "frase": "Limpieza de casas y oficinas, vidrios, alfombras, tapizados y sillones. Trabaja por horas en zona norte.",
-    "detalles": [
-      "Limpieza de casas y departamentos",
-      "Limpieza de oficinas",
-      "Limpieza de vidrios y ventanas"
-    ],
-    "foto": "fotos/recBdOWWUaUAKIBKm.jpg"
-  },
-  {
     "id": "rec6HLjKSjHF08A2D",
     "nombre": "Karen R.",
     "rubros": [
@@ -202,7 +172,7 @@ window.ZEUS_PROFESIONALES = [
     "rubros": [
       "limpieza_particular"
     ],
-    "frase": "Limpieza de casas y oficinas, vidrios, post-obra, alfombras, tapizados y sillones. Trabaja por horas en toda CABA.",
+    "frase": "Limpieza de casas, oficinas, vidrios y post-obra. Trabaja por horas en toda CABA.",
     "detalles": [
       "Limpieza de casas y departamentos",
       "Limpieza de oficinas",
@@ -252,22 +222,6 @@ window.ZEUS_PROFESIONALES = [
     "foto": "fotos/recCpGFZqSI4XRnkI.jpg"
   },
   {
-    "id": "recbWUMKlJ7GGniJm",
-    "nombre": "Melina E.",
-    "rubros": [
-      "limpieza_particular"
-    ],
-    "frase": "Limpieza de casas, oficinas, vidrios y post-obra. Trabaja por horas en zona norte.",
-    "detalles": [
-      "Limpieza de casas y departamentos",
-      "Limpieza de oficinas",
-      "Limpieza post-obra",
-      "Limpieza de vidrios y ventanas",
-      "Planchado"
-    ],
-    "foto": "fotos/recbWUMKlJ7GGniJm.jpg"
-  },
-  {
     "id": "recaPRFYJXEm6zxJD",
     "nombre": "Nicolas V.",
     "rubros": [
@@ -281,18 +235,6 @@ window.ZEUS_PROFESIONALES = [
     "foto": "fotos/recaPRFYJXEm6zxJD.jpg"
   },
   {
-    "id": "recF0OLgzbUlh2muV",
-    "nombre": "Viviana H.",
-    "rubros": [
-      "limpieza_particular"
-    ],
-    "frase": "Limpieza de oficinas. Trabaja en zona norte y zona oeste de CABA.",
-    "detalles": [
-      "Limpieza de oficinas"
-    ],
-    "foto": "fotos/recF0OLgzbUlh2muV.jpg"
-  },
-  {
     "id": "reczgjDfu11q6c7B4",
     "nombre": "Laura C.",
     "rubros": [
@@ -304,19 +246,6 @@ window.ZEUS_PROFESIONALES = [
       "Limpieza de oficinas",
       "Limpieza post-obra",
       "Limpieza de vidrios y ventanas",
-      "Planchado"
-    ],
-    "foto": null
-  },
-  {
-    "id": "recUXIdqtOMqCaUgr",
-    "nombre": "Sulmira M.",
-    "rubros": [
-      "limpieza_particular"
-    ],
-    "frase": "Limpieza de casas, por día. Trabaja en zona sur.",
-    "detalles": [
-      "Limpieza de casas y departamentos",
       "Planchado"
     ],
     "foto": null
