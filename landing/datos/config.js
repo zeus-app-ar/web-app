@@ -11,6 +11,12 @@ window.ZEUS_CONFIG = {
   // Mensaje que aparece escrito cuando el cliente toca un botón general.
   mensajeGeneral: "Hola Zeus! Quiero contratar un servicio.",
 
+  // Ejemplos que se ven debajo del buscador de la portada. Tocar uno es como
+  // escribirlo. Conviene que sean cosas que la gente pide de verdad, con las
+  // palabras que usa ("canilla", no "grifería"). Un ejemplo solo se muestra si
+  // hoy encuentra a alguien; si no, se esconde solo.
+  ejemplos: ["Canilla que gotea", "Saltó la térmica", "Limpieza por horas", "Colgar un estante", "Pintar una pared"],
+
   // Links PÚBLICOS de los formularios de alta (los que terminan en /viewform, nunca los de /edit).
   formularios: {
     oficios: "https://docs.google.com/forms/d/e/1FAIpQLSctsV77KvJDRsZw6yMwxKK2JXgPJA2XVT912YEHgWZIuGcDnA/viewform",

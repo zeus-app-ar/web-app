@@ -9,27 +9,29 @@ HTML, CSS y JavaScript sin servidor ni build. Se publica sola en GitHub Pages co
 | `index.html` | La página, con sus estilos adentro |
 | `app.js` | Arma los rubros de la portada y los paneles, conecta WhatsApp, el buscador y "Quiero ser proveedor" |
 | `buscador.js` | Decide qué profesionales aparecen cuando alguien escribe en el buscador, y por qué. Ver "El buscador" más abajo |
-| `datos/config.js` | **Lo que más se cambia**: número de WhatsApp y links de los formularios |
+| `datos/config.js` | **Lo que más se cambia**: número de WhatsApp, links de los formularios y los ejemplos que se ven debajo del buscador |
 | `datos/rubros.js` | Los rubros de la portada: íconos, títulos, frases y las palabras con las que el buscador encuentra cada rubro. Mismas claves que el bot |
 | `datos/profesionales.js` | **Generado.** Lo reescribe entero la Action diaria desde Airtable — editarlo a mano no sirve, se pisa a la noche. Para cambiar quién aparece, o lo que hace cada uno, se edita Airtable |
 | `fotos/` | **Generado.** Se bajan solas del campo "Foto" de Airtable. Una foto subida a mano solo sobrevive si esa persona no tiene foto en Airtable |
 | `herramientas/actualizar_profesionales.py` | Regenera `datos/profesionales.js` desde Airtable |
 | `herramientas/nombres_web.json` | Correcciones a mano de cómo figura alguien |
 | `herramientas/armar_vista_previa.py` | Junta todo en un solo `.html` para mandarlo y revisarlo antes de publicar |
+| `herramientas/og.html` | El origen de `og.png`, la imagen que se ve al compartir el link por WhatsApp o redes. Adentro dice cómo regenerarla |
 | `herramientas/probar_buscador.js` | Pruebas del buscador. Corren solas en cada Pull Request que toca `landing/` |
 | `DISENO.md` | Colores, letras y reglas de escritura, para que la app use lo mismo |
 
 ## Cambiar lo más común
 
 - **WhatsApp o formularios** → `datos/config.js`.
+- **Los ejemplos debajo del buscador** ("Canilla que gotea", …) → `ejemplos` en `datos/config.js`. Un ejemplo solo se muestra si hoy encuentra a alguien; las pruebas del buscador avisan si alguno está escrito con palabras que no se entienden.
 - **Sumar, sacar o renombrar un rubro** → `datos/rubros.js`. Un rubro solo aparece si tiene al menos un profesional activo.
 - **Que el buscador encuentre algo que hoy no encuentra** → ver "El buscador", acá abajo.
-- **Textos de la portada, "Cómo funciona" y "Por qué Zeus"** → `index.html`.
-- **Colores** → las variables al inicio del `<style>` en `index.html`.
+- **Textos de la portada, "Cómo funciona", "Por qué Zeus" y las preguntas frecuentes** → `index.html`.
+- **Colores, letras y formas** → las variables al inicio del `<style>` en `index.html`. Qué significa cada una y por qué: `DISENO.md`.
 
 ## El buscador
 
-Está en la portada, arriba de los rubros. Mientras hay algo escrito, los resultados reemplazan a los rubros; al borrar, vuelven. No hay servidor: busca en el navegador, entre las mismas personas que la página ya muestra.
+Es la caja grande del centro de la portada, con ejemplos para tocar debajo. Mientras hay algo escrito, los resultados reemplazan a los rubros; al borrar, vuelven. No hay servidor: busca en el navegador, entre las mismas personas que la página ya muestra.
 
 Busca en cuatro lugares, de más a menos importante:
 

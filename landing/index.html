@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Zeus ⚡ — Servicios para el hogar en Buenos Aires</title>
 <meta name="description" content="Plomeros, electricistas, gasistas, limpieza y más en Buenos Aires. Nos escribís por WhatsApp y te conseguimos a alguien.">
-<meta name="theme-color" content="#111111">
+<meta name="theme-color" content="#FBF9F8">
 <meta property="og:title" content="Zeus ⚡ — Servicios para el hogar en Buenos Aires">
 <meta property="og:description" content="Plomeros, electricistas, gasistas, limpieza y más. Nos escribís por WhatsApp y te conseguimos a alguien.">
 <meta property="og:type" content="website">
@@ -22,48 +22,95 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23111'/%3E%3Cpath d='M37 6 18 36h12l-4 22 20-32H34z' fill='%23D62828'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Ubuntu:wght@700&display=swap">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  /* Los colores y medidas de la página, en un solo lugar (ver DISENO.md). */
   :root {
     --rojo: #D62828;
+    --rojo-oscuro: #B91F1F;         /* botones rojos al pasar el mouse */
+    --rojo-suave: #FCEBEB;          /* fondo de etiquetas y del rubro elegido */
     --negro: #111111;
-    --gris: #F5F5F5;
-    --gris-medio: #E0E0E0;
-    --texto: #222222;
-    --texto-suave: #666666;
+    --texto: #1B1B1F;
+    --texto-suave: #5F5E66;
+    --fondo: #FBF9F8;               /* fondo de toda la página: blanco con un toque cálido */
     --blanco: #FFFFFF;
-    --titulos: 'Abril Fatface', Georgia, 'Times New Roman', serif;
-    --nav-h: 56px;
+    --gris: #F4F1F0;                /* fondo de los paneles de profesionales */
+    --borde: rgba(17, 17, 17, 0.08);
+    --sombra: 0 1px 2px rgba(17, 17, 17, 0.04), 0 10px 30px rgba(17, 17, 17, 0.06);
+    --titulos: 'Ubuntu', 'Segoe UI', Roboto, sans-serif;
+    --letra: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    --radio: 20px;                  /* esquinas de las tarjetas */
+    --pildora: 999px;               /* botones y chips */
+    --ancho: 1120px;
+    --nav-h: 64px;
   }
   html { scroll-behavior: smooth; }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition: none !important; }
+  }
   body {
-    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    font-family: var(--letra);
+    font-weight: 500;
     color: var(--texto);
+    background: var(--fondo);
     padding-top: var(--nav-h);
     line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
   }
-  button { font-family: inherit; }
-  /* Abril Fatface solo en el logo y los títulos grandes. Tiene un solo grosor,
-     así que no se le pide negrita. */
-  .logo, h1, h2 {
-    font-family: var(--titulos);
-    font-weight: 400;
-    font-synthesis: none;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
+  button, input { font-family: inherit; }
+  /* Ubuntu negrita en todos los títulos; Montserrat para el resto. */
+  h1, h2, h3 { font-family: var(--titulos); font-weight: 700; letter-spacing: -0.02em; color: var(--texto); }
+  h1, h2 { text-wrap: balance; }     /* reparte las palabras entre renglones para que no quede uno corto */
   /* El rayo de Zeus: siempre el mismo dibujo y siempre rojo (igual que el ícono de la pestaña). */
   .rayo { fill: var(--rojo); display: block; }
   .ico-wa { width: 20px; height: 20px; fill: currentColor; flex: none; }
+  .ico { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+  /* Etiqueta chiquita arriba de cada sección ("CÓMO FUNCIONA") */
+  .etiqueta {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rojo);
+    margin-bottom: 14px;
+  }
+
+  /* BOTONES: píldoras. Todo lo que se toca mide al menos 44px de alto. */
+  .btn-primary, .btn-white, .btn-secondary, .nav-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 52px;
+    padding: 0 26px;
+    border-radius: var(--pildora);
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: background .15s, color .15s, transform .15s, box-shadow .15s, border-color .15s;
+  }
+  .btn-primary { background: var(--rojo); color: var(--blanco); }
+  .btn-primary:hover { background: var(--rojo-oscuro); transform: translateY(-1px); box-shadow: 0 8px 20px rgba(214, 40, 40, 0.25); }
+  .btn-white { background: var(--blanco); color: var(--rojo); }
+  .btn-white:hover { background: #FFF5F5; transform: translateY(-1px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12); }
+  .btn-secondary { background: transparent; color: var(--negro); border: 2px solid var(--negro); min-height: 50px; }
+  .btn-secondary:hover { background: var(--negro); color: var(--blanco); }
 
   /* BARRA DE ARRIBA: lo único fijo */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
     height: var(--nav-h);
-    background: var(--negro);
+    background: rgba(251, 249, 248, 0.86);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--borde);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -73,92 +120,97 @@
   .logo {
     display: flex;
     align-items: center;
-    gap: 6px;
-    color: var(--blanco);
-    font-size: 22px;
+    gap: 7px;
+    font-family: var(--titulos);
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: -0.02em;
+    color: var(--negro);
     text-decoration: none;
   }
   .logo .rayo { width: 15px; height: 26px; }
-  .nav-cta {
-    background: var(--rojo);
-    color: var(--blanco);
-    padding: 10px 18px;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
-  }
+  .nav-cta { background: var(--negro); color: var(--blanco); min-height: 40px; padding: 0 18px; font-size: 14px; }
+  .nav-cta:hover { background: var(--rojo); }
 
-  /* PORTADA: título, rubros y WhatsApp */
+  /* PORTADA: pregunta, caja de búsqueda, ejemplos, rubros y WhatsApp */
   .hero {
-    background: var(--negro);
-    color: var(--blanco);
-    padding: 44px 20px 48px;
+    position: relative;
+    padding: 52px 20px 44px;
     text-align: center;
+    background: radial-gradient(60% 55% at 50% 38%, rgba(214, 40, 40, 0.07), transparent 70%);
   }
   .hero h1 {
-    font-size: clamp(30px, 5.6vw, 52px);
-    line-height: 1.08;
-    max-width: 820px;
-    margin: 0 auto 14px;
+    font-family: var(--letra);
+    font-weight: 500;
+    font-size: clamp(30px, 4.8vw, 46px);
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+    max-width: 760px;
+    margin: 0 auto 26px;
   }
-  .hero-sub {
-    font-size: 17px;
-    color: #BBBBBB;
-    max-width: 520px;
-    margin: 0 auto 32px;
-  }
-  .rubros-titulo {
-    font-size: 22px;
-    margin-bottom: 14px;
-    scroll-margin-top: calc(var(--nav-h) + 12px);
-  }
-  /* BUSCADOR: arriba de los rubros. Mientras hay algo escrito, los resultados
+  .hero h1 .acento { color: var(--rojo); font-weight: 700; }
+
+  /* BUSCADOR: la caja grande del centro. Mientras hay algo escrito, los resultados
      ocupan el lugar de los rubros (así se ven sobre el teclado del celular). */
   .buscador {
     position: relative;
-    max-width: 520px;
-    margin: 0 auto 16px;
+    max-width: 680px;
+    margin: 0 auto 14px;
+    padding: 16px 18px 12px;
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: 28px;
+    box-shadow: 0 1px 2px rgba(17, 17, 17, 0.05), 0 18px 48px rgba(214, 40, 40, 0.10);
+    text-align: left;
+    scroll-margin-top: calc(var(--nav-h) + 12px);
+    transition: border-color .2s, box-shadow .2s;
   }
+  .buscador:focus-within { border-color: rgba(214, 40, 40, 0.35); box-shadow: 0 1px 2px rgba(17, 17, 17, 0.05), 0 18px 48px rgba(214, 40, 40, 0.16); }
   .buscador input {
     width: 100%;
-    height: 48px;
-    padding: 0 46px 0 44px;
-    background: #1C1C1C;
-    border: 1.5px solid #333333;
-    border-radius: 12px;
-    color: var(--blanco);
-    font-family: inherit;
-    font-size: 16px;                    /* con menos de 16px el iPhone hace zoom al tocar */
+    min-height: 44px;
+    padding: 4px 2px;
+    background: transparent;
+    border: none;
+    color: var(--texto);
+    font-size: 18px;                    /* con menos de 16px el iPhone hace zoom al tocar */
+    font-weight: 500;
+    line-height: 1.4;
     -webkit-appearance: none;
     appearance: none;
   }
-  .buscador input::placeholder { color: #8F8F8F; opacity: 1; }
+  .buscador input::placeholder { color: #9A98A0; opacity: 1; }
   .buscador input::-webkit-search-cancel-button { display: none; }
-  .buscador input:focus { outline: none; border-color: var(--blanco); }
-  .buscador .lupa {
-    position: absolute;
-    left: 15px; top: 15px;
-    width: 18px; height: 18px;
-    fill: none;
-    stroke: #8F8F8F;
-    stroke-width: 2.2;
-    stroke-linecap: round;
-    pointer-events: none;
-  }
+  .buscador input:focus { outline: none; }
+  .buscador .acciones { display: flex; align-items: center; justify-content: flex-end; gap: 6px; margin-top: 2px; }
+  @media (max-width: 480px) { .buscador { padding: 14px 16px 12px; } .buscador input { font-size: 17px; } }
   .buscador .borrar {
-    position: absolute;
-    top: 2px; right: 2px;
     width: 44px; height: 44px;
     background: none;
     border: none;
-    border-radius: 10px;
-    color: #BBBBBB;
+    border-radius: 50%;
+    color: var(--texto-suave);
     font-size: 24px;
     line-height: 1;
     cursor: pointer;
+    transition: background .15s;
   }
+  .buscador .borrar:hover { background: var(--gris); }
   .buscador .borrar[hidden] { display: none; }
+  .buscador .enviar {
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--gris);
+    color: var(--texto-suave);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background .15s, color .15s, transform .15s;
+  }
+  .buscador .enviar .ico { width: 20px; height: 20px; stroke-width: 2.4; }
+  /* Con algo escrito, la flecha se pone roja. */
+  .buscador.con-texto .enviar { background: var(--rojo); color: var(--blanco); }
+  .buscador.con-texto .enviar:hover { background: var(--rojo-oscuro); transform: translateY(-1px); }
   .solo-lectores {
     position: absolute;
     width: 1px; height: 1px;
@@ -166,7 +218,75 @@
     clip-path: inset(50%);
     white-space: nowrap;
   }
-  .hero.buscando { padding-bottom: 20px; }
+
+  /* EJEMPLOS: chips que rellenan el buscador (la lista está en datos/config.js). */
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    max-width: 680px;
+    margin: 0 auto 20px;
+  }
+  .chips:empty { display: none; }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+    padding: 0 16px;
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: var(--pildora);
+    color: var(--texto);
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: border-color .15s, background .15s, transform .15s;
+  }
+  .chip:hover { border-color: rgba(17, 17, 17, 0.22); background: var(--gris); transform: translateY(-1px); }
+  @media (max-width: 600px) {
+    /* En el celular van en una sola fila que se desliza con el dedo. */
+    .chips {
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      max-width: none;
+      margin: 0 -20px 20px;
+      padding: 2px 20px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .chips::-webkit-scrollbar { display: none; }
+  }
+
+  .hero-dato {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 4px 10px;
+    font-size: 14px;
+    color: var(--texto-suave);
+    margin-bottom: 40px;
+  }
+  .hero-dato .ico-wa { display: inline-block; width: 16px; height: 16px; vertical-align: -3px; margin-right: 6px; color: #25D366; }
+  .hero-dato .punto { color: #C9C7CC; }
+  @media (max-width: 600px) { .hero-dato { flex-direction: column; } .hero-dato .punto { display: none; } }
+
+  .rubros-titulo {
+    font-family: var(--letra);
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--texto-suave);
+    margin-bottom: 14px;
+    scroll-margin-top: calc(var(--nav-h) + 12px);
+  }
+  .hero.buscando { padding-bottom: 24px; }
+  .hero.buscando .hero-dato,
+  .hero.buscando .rubros-titulo,
   .hero.buscando .rubros,
   .hero.buscando .hero-wa { display: none; }
 
@@ -174,7 +294,7 @@
   .rubros {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 6px;
+    gap: 8px;
     max-width: 960px;
     margin: 0 auto;
     scroll-margin-top: calc(var(--nav-h) + 12px);
@@ -184,18 +304,19 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    gap: 6px;
-    min-height: 84px;
-    padding: 12px 2px 10px;
-    background: #1C1C1C;
-    border: 1.5px solid #333333;
-    border-radius: 12px;
-    color: #E6E6E6;
+    gap: 8px;
+    min-height: 88px;
+    padding: 14px 4px 12px;
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: 18px;
+    box-shadow: 0 1px 2px rgba(17, 17, 17, 0.03);
+    color: var(--texto);
     cursor: pointer;
-    transition: border-color .15s, background .15s;
+    transition: border-color .15s, background .15s, transform .15s, box-shadow .15s;
   }
-  .rubro:hover { border-color: #666666; }
-  .rubro.active { border-color: var(--rojo); background: #2A1515; color: var(--blanco); }
+  .rubro:hover { border-color: rgba(17, 17, 17, 0.22); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(17, 17, 17, 0.06); }
+  .rubro.active { border-color: var(--rojo); background: var(--rojo-suave); color: var(--rojo); box-shadow: 0 0 0 3px rgba(214, 40, 40, 0.12); }
   .rubro .icon { font-size: 26px; line-height: 1; height: 28px; display: flex; align-items: center; }
   .rubro .label { font-size: 11.5px; font-weight: 600; line-height: 1.2; }
   /* Dibujos propios donde no hay emoji (rodillo, armario), del tamaño de un emoji */
@@ -203,76 +324,65 @@
   .rubro .icon .dibujo { width: 28px; height: 28px; }
   @media (min-width: 720px) {
     .rubros { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
-    .rubro { width: 106px; }
+    .rubro { width: 108px; }
     .rubro .label { font-size: 12.5px; }
   }
-  .hero-wa { margin-top: 28px; }
+  .hero-wa { margin-top: 32px; }
   /* Con un panel abierto se esconde, para que los profesionales queden pegados a los rubros.
      "Pedir servicio" sigue arriba. */
-  .hero.con-panel { padding-bottom: 20px; }
+  .hero.con-panel { padding-bottom: 24px; }
   .hero.con-panel .hero-wa { display: none; }
-  .hero-wa p { font-size: 15px; color: #BBBBBB; margin-bottom: 12px; }
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: var(--rojo);
-    color: white;
-    padding: 14px 26px;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 700;
-    text-decoration: none;
-  }
+  .hero-wa p { font-size: 15px; color: var(--texto-suave); margin-bottom: 14px; }
 
   /* PANEL DE PROFESIONALES: se abre justo debajo de los rubros */
   .providers-panel {
     display: none;
     background: var(--gris);
-    border-bottom: 2px solid var(--gris-medio);
-    padding: 24px 20px 28px;
+    border-top: 1px solid var(--borde);
+    border-bottom: 1px solid var(--borde);
+    padding: 28px 20px 36px;
   }
   .providers-panel.open { display: block; }
-  .providers-panel .adentro { max-width: 1100px; margin: 0 auto; }
+  .providers-panel .adentro { max-width: var(--ancho); margin: 0 auto; }
   .providers-panel h3 {
-    font-size: 17px;
-    font-weight: 700;
-    margin-bottom: 16px;
-    color: var(--negro);
+    font-size: 19px;
+    margin-bottom: 18px;
   }
-  .providers-panel h3.subsection-title { margin-top: 28px; }
+  .providers-panel h3.subsection-title { margin-top: 32px; }
   .providers-panel h3 .subtitle {
-    font-weight: 400;
-    font-size: 13px;
+    font-family: var(--letra);
+    font-weight: 500;
+    font-size: 13.5px;
+    letter-spacing: 0;
     color: var(--texto-suave);
     margin-left: 4px;
   }
   .providers-panel .rubro-desc {
-    font-size: 14px;
+    font-size: 14.5px;
     color: var(--texto-suave);
-    margin: -10px 0 16px;
+    margin: -10px 0 18px;
   }
-  .providers-panel .vacio { font-size: 14px; color: var(--texto-suave); }
+  .providers-panel .vacio { font-size: 14.5px; color: var(--texto-suave); }
   .providers-grid {
     /* Grilla que se acomoda sola: 2 columnas en celular, hasta 6 en pantalla grande. */
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+    gap: 14px;
   }
   .provider-card {
     background: var(--blanco);
-    border-radius: 14px;
-    padding: 18px 12px 12px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-    border: 1px solid transparent;
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    padding: 20px 14px 14px;
+    box-shadow: 0 1px 2px rgba(17, 17, 17, 0.03);
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 6px;
     text-align: center;
-    transition: border-color .15s, box-shadow .15s;
+    transition: transform .15s, box-shadow .15s, border-color .15s;
   }
-  .provider-card:hover { border-color: var(--gris-medio); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+  .provider-card:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(17, 17, 17, 0.08); border-color: rgba(17, 17, 17, 0.14); }
   .provider-card img,
   .provider-card .sin-foto {
     width: 84px;
@@ -281,26 +391,27 @@
     object-fit: cover;
     background: var(--gris);            /* mientras llega la foto se ve un círculo gris, no un hueco */
     border: 3px solid var(--blanco);
-    box-shadow: 0 0 0 1px var(--gris-medio);
+    box-shadow: 0 0 0 1px var(--borde);
   }
   .provider-card .sin-foto {
     color: var(--texto-suave);
     display: flex; align-items: center; justify-content: center;
-    font-size: 28px; font-weight: 800;
+    font-family: var(--titulos);
+    font-size: 28px; font-weight: 700;
   }
-  .provider-card .prov-name { font-size: 15px; font-weight: 700; color: var(--negro); margin-top: 4px; }
+  .provider-card .prov-name { font-family: var(--titulos); font-size: 16px; font-weight: 700; letter-spacing: -0.01em; margin-top: 4px; }
   .provider-card .prov-desc {
     font-size: 13px;
     color: var(--texto-suave);
-    line-height: 1.35;
+    line-height: 1.4;
     margin-bottom: 6px;
   }
   .provider-card .prov-wa {
     margin-top: auto;
     width: 100%;
     min-height: 44px;                   /* tamaño cómodo para el dedo */
-    padding: 0 6px;
-    border-radius: 8px;
+    padding: 0 10px;
+    border-radius: var(--pildora);
     background: var(--negro);
     color: var(--blanco);
     font-size: 14px;
@@ -309,6 +420,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: background .15s;
   }
   .provider-card .prov-wa:hover { background: var(--rojo); }
   /* En los resultados del buscador: por qué aparece esta persona. */
@@ -316,144 +428,235 @@
     font-size: 12px;
     font-weight: 600;
     line-height: 1.3;
-    color: var(--negro);
-    background: var(--gris);
-    border: 1px solid var(--gris-medio);
-    border-radius: 10px;
-    padding: 4px 10px;
+    color: var(--rojo);
+    background: var(--rojo-suave);
+    border-radius: var(--pildora);
+    padding: 5px 12px;
     margin-bottom: 6px;
   }
-  .providers-panel .otra { font-size: 14px; color: var(--texto-suave); margin-top: 20px; }
-  .providers-panel .otra a { color: var(--negro); font-weight: 600; }
+  .providers-panel .otra { font-size: 14.5px; color: var(--texto-suave); margin-top: 22px; }
+  .providers-panel .otra a { color: var(--texto); font-weight: 600; }
   @media (max-width: 480px) {
-    .providers-panel { padding: 20px 16px 24px; }
+    .providers-panel { padding: 22px 16px 28px; }
     .providers-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-    .provider-card { padding: 14px 10px 10px; }
+    .provider-card { padding: 16px 10px 10px; }
     .provider-card img, .provider-card .sin-foto { width: 72px; height: 72px; }
   }
 
-  /* SECCIONES DE TEXTO */
+  /* SECCIONES */
   .section {
-    padding: 56px 24px;
-    max-width: 640px;
+    padding: 88px 24px;
+    max-width: var(--ancho);
     margin: 0 auto;
   }
   .section h2 {
-    font-size: clamp(26px, 4vw, 38px);
-    margin-bottom: 28px;
-    color: var(--negro);
-    text-align: center;
+    font-size: clamp(28px, 3.4vw, 40px);
+    line-height: 1.15;
+    max-width: 720px;
+    margin-bottom: 40px;
   }
-  .pasos { list-style: none; counter-reset: paso; }
-  .pasos li {
-    counter-increment: paso;
-    display: grid;
-    grid-template-columns: 40px 1fr;
-    gap: 12px;
-    padding: 14px 0;
-    border-top: 1px solid var(--gris-medio);
+  .section h2 .suave { color: var(--texto-suave); }
+  .franja-blanca { background: var(--blanco); border-top: 1px solid var(--borde); border-bottom: 1px solid var(--borde); }
+  @media (max-width: 600px) {
+    .section { padding: 64px 20px; }
+    .section h2 { margin-bottom: 28px; }
   }
-  .pasos li:last-child { border-bottom: 1px solid var(--gris-medio); }
-  .pasos li::before {
-    content: counter(paso);
-    font-family: var(--titulos);
-    font-size: 28px;
-    line-height: 1;
-    color: var(--rojo);
-  }
-  .pasos strong { display: block; font-size: 16px; margin-bottom: 2px; }
-  .pasos p { font-size: 15px; color: var(--texto-suave); }
 
-  .porque { background: var(--gris); }
-  .porque p { font-size: 16px; margin-bottom: 14px; }
-  .porque p:last-child { margin-bottom: 0; }
-
-  /* CIERRE */
-  .cta-final {
-    background: var(--rojo);
-    color: white;
-    padding: 56px 24px;
-    text-align: center;
+  /* CÓMO FUNCIONA: tres tarjetas numeradas, cada una con un ejemplo de la charla */
+  .pasos { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .paso {
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: 24px;
+    box-shadow: var(--sombra);
+    padding: 12px 12px 26px;
+    display: flex;
+    flex-direction: column;
   }
-  .cta-final h2 { font-size: clamp(24px, 4vw, 38px); margin-bottom: 12px; }
-  .cta-final p { font-size: 18px; opacity: 0.9; margin-bottom: 28px; }
-  .btn-white {
-    display: inline-flex;
-    align-items: center;
+  .paso .charla {
+    background: var(--gris);
+    border-radius: 16px;
+    padding: 20px 16px;
+    height: 200px;                  /* las tres iguales, así los títulos quedan alineados */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     gap: 10px;
-    background: white;
-    color: var(--rojo);
-    padding: 14px 28px;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 700;
-    text-decoration: none;
+    margin-bottom: 22px;
   }
+  .burbuja {
+    max-width: 88%;
+    padding: 10px 14px;
+    border-radius: 16px;
+    font-size: 13.5px;
+    line-height: 1.4;
+    background: var(--blanco);
+    color: var(--texto);
+    box-shadow: 0 1px 2px rgba(17, 17, 17, 0.06);
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+  }
+  .burbuja.cliente {
+    align-self: flex-end;
+    background: var(--negro);
+    color: var(--blanco);
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 4px;
+  }
+  .burbuja .quien {
+    display: flex; align-items: center; gap: 5px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--rojo); margin-bottom: 3px;
+  }
+  .burbuja .quien .rayo { width: 8px; height: 14px; }
+  .charla .nota {
+    align-self: center;
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; font-weight: 600;
+    color: var(--texto-suave);
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: var(--pildora);
+    padding: 5px 12px;
+  }
+  .charla .nota .ico { width: 14px; height: 14px; color: #1E9E5A; }
+  .paso .cuerpo { padding: 0 12px; }
+  .paso .num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--rojo-suave);
+    color: var(--rojo);
+    font-family: var(--titulos);
+    font-size: 13px; font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .paso h3 { font-size: 19px; margin-bottom: 6px; }
+  .paso p { font-size: 15px; color: var(--texto-suave); }
+  .pasos-cta { text-align: center; margin-top: 40px; }
+  @media (max-width: 860px) { .pasos { grid-template-columns: 1fr; } .paso .charla { height: auto; } }
 
-  /* PARA PROFESIONALES: aparte, para que no compita con el pedido de servicio */
-  .sumate { text-align: center; padding: 48px 24px; }
-  .sumate h2 { font-size: clamp(22px, 3.4vw, 30px); margin-bottom: 10px; color: var(--negro); }
-  .sumate p { font-size: 16px; color: var(--texto-suave); margin-bottom: 22px; }
-  .btn-secondary {
-    background: transparent;
-    color: var(--negro);
-    padding: 13px 26px;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 700;
-    border: 2px solid var(--negro);
+  /* POR QUÉ ZEUS: una frase y tres cosas que hoy pasan de verdad */
+  .porque .lead { font-size: 17px; color: var(--texto-suave); max-width: 640px; margin: -16px 0 44px; }
+  .valores { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px 28px; }
+  .valor { display: grid; grid-template-columns: 44px 1fr; gap: 16px; }
+  .valor .circulo {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--rojo-suave);
+    color: var(--rojo);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .valor .circulo .ico { width: 22px; height: 22px; }
+  .valor h3 { font-size: 17px; margin-bottom: 4px; }
+  .valor p { font-size: 15px; color: var(--texto-suave); }
+  @media (max-width: 860px) { .valores { grid-template-columns: 1fr; gap: 24px; } }
+
+  /* PREGUNTAS FRECUENTES: a la izquierda el título, a la derecha el acordeón */
+  .faq { display: grid; grid-template-columns: 1fr 1.4fr; gap: 48px; align-items: start; }
+  .faq .intro h2 { margin-bottom: 28px; }
+  .faq details { border-top: 1px solid var(--borde); }
+  .faq details:last-child { border-bottom: 1px solid var(--borde); }
+  .faq summary {
+    list-style: none;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding: 20px 0;
+    font-family: var(--titulos);
+    font-size: 17px; font-weight: 700; letter-spacing: -0.01em;
     cursor: pointer;
   }
-  .btn-secondary:hover { background: var(--negro); color: var(--blanco); }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary .mas {
+    flex: none;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--rojo-suave);
+    color: var(--rojo);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform .2s, background .15s;
+  }
+  .faq summary .mas .ico { width: 16px; height: 16px; }
+  .faq details[open] summary .mas { transform: rotate(45deg); }
+  .faq summary:hover .mas { background: #F8DADA; }
+  .faq details p { font-size: 15px; color: var(--texto-suave); padding: 0 48px 20px 0; max-width: 560px; }
+  @media (max-width: 860px) {
+    .faq { grid-template-columns: 1fr; gap: 8px; }
+    .faq summary { padding: 18px 0; font-size: 16px; }
+    .faq details p { padding-right: 0; }
+  }
+
+  /* CIERRE: una caja roja dentro de la página */
+  .cta-final { max-width: var(--ancho); margin: 0 auto; padding: 0 24px 88px; }
+  .cta-caja {
+    background: var(--rojo);
+    color: var(--blanco);
+    border-radius: 32px;
+    padding: 64px 32px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(214, 40, 40, 0.22);
+  }
+  .cta-caja h2 { color: var(--blanco); font-size: clamp(28px, 3.4vw, 40px); margin-bottom: 12px; }
+  .cta-caja p { font-size: 17px; opacity: 0.92; margin-bottom: 30px; }
+  @media (max-width: 600px) { .cta-final { padding: 0 20px 64px; } .cta-caja { padding: 48px 24px; border-radius: 24px; } }
+
+  /* PARA PROFESIONALES: aparte, para que no compita con el pedido de servicio */
+  .sumate { text-align: center; padding: 72px 24px; }
+  .sumate h2 { font-size: clamp(24px, 3vw, 32px); margin-bottom: 10px; }
+  .sumate p { font-size: 16px; color: var(--texto-suave); margin-bottom: 24px; }
 
   /* PIE */
   footer {
-    background: var(--negro);
-    color: #999;
+    border-top: 1px solid var(--borde);
+    color: var(--texto-suave);
     text-align: center;
-    padding: 24px;
-    font-size: 13px;
+    padding: 32px 24px 40px;
+    font-size: 13.5px;
     line-height: 1.8;
   }
-  footer a { color: #999; display: inline-block; padding: 6px 2px; }
+  footer a { color: var(--texto-suave); display: inline-block; padding: 6px 2px; text-decoration-color: rgba(95, 94, 102, 0.4); }
+  footer a:hover { color: var(--texto); }
 
   /* VENTANA "QUIERO SER PROVEEDOR" */
   dialog.elegir {
     margin: auto;
     width: min(440px, calc(100% - 32px));
     border: none;
-    border-radius: 12px;
+    border-radius: 24px;
     padding: 28px 24px 24px;
     color: var(--texto);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    background: var(--blanco);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   }
-  dialog.elegir::backdrop { background: rgba(0,0,0,0.6); }
-  .elegir h3 { font-size: 20px; font-weight: 700; color: var(--negro); margin-bottom: 8px; }
+  dialog.elegir::backdrop { background: rgba(17, 17, 17, 0.55); }
+  .elegir h3 { font-size: 21px; margin-bottom: 8px; }
   .elegir .elegir-texto { font-size: 14px; color: var(--texto-suave); margin-bottom: 20px; }
   .elegir .opcion {
     display: flex; align-items: center; gap: 12px;
     padding: 14px 16px; margin-bottom: 10px;
-    border: 2px solid var(--gris-medio); border-radius: 8px;
+    border: 1.5px solid var(--borde); border-radius: 16px;
     text-decoration: none; color: var(--texto);
+    transition: border-color .15s, background .15s;
   }
-  .elegir .opcion:hover { border-color: var(--rojo); background: #FFF0F0; }
+  .elegir .opcion:hover { border-color: var(--rojo); background: #FFF5F5; }
   .elegir .opcion .icon { font-size: 26px; }
-  .elegir .opcion strong { display: block; font-size: 15px; }
-  .elegir .opcion span span { display: block; font-size: 12px; color: var(--texto-suave); margin-top: 2px; }
-  .elegir .aviso { font-size: 12px; color: var(--texto-suave); margin-top: 6px; }
+  .elegir .opcion strong { display: block; font-size: 15px; font-weight: 700; }
+  .elegir .opcion span span { display: block; font-size: 12.5px; color: var(--texto-suave); margin-top: 2px; }
+  .elegir .aviso { font-size: 12.5px; color: var(--texto-suave); margin-top: 6px; }
   .elegir .cerrar {
-    position: absolute; top: 4px; right: 6px;
+    position: absolute; top: 8px; right: 8px;
     width: 44px; height: 44px;
-    background: none; border: none; font-size: 24px; color: var(--texto-suave); cursor: pointer;
+    background: none; border: none; border-radius: 50%;
+    font-size: 24px; color: var(--texto-suave); cursor: pointer;
   }
-  a:focus-visible, button:focus-visible { outline: 3px solid var(--rojo); outline-offset: 2px; }
-  .buscador .borrar:focus-visible { outline-offset: -4px; }
-  .hero a:focus-visible, .hero button:focus-visible, nav a:focus-visible, .cta-final a:focus-visible { outline-color: var(--blanco); }
+  .elegir .cerrar:hover { background: var(--gris); }
+  a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid var(--rojo); outline-offset: 2px; }
+  .buscador .borrar:focus-visible, .buscador .enviar:focus-visible { outline-offset: -3px; }
+  .cta-caja a:focus-visible { outline-color: var(--blanco); }
 </style>
 </head>
 <body>
 
-<!-- Dibujos propios: el rayo de Zeus, el ícono de WhatsApp y los rubros que no tienen un emoji adecuado -->
+<!-- Dibujos propios: el rayo de Zeus, el ícono de WhatsApp, flechas y los rubros que no tienen un emoji adecuado -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <!-- rayo de Zeus (el mismo del ícono de la pestaña) -->
@@ -464,10 +667,33 @@
     <symbol id="d-wa" viewBox="0 0 24 24">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
     </symbol>
-    <!-- lupa del buscador -->
-    <symbol id="d-lupa" viewBox="0 0 24 24">
-      <circle cx="10.5" cy="10.5" r="7"/>
-      <path d="M21 21l-5.2-5.2"/>
+    <!-- flecha del buscador (hacia arriba) -->
+    <symbol id="d-flecha-arriba" viewBox="0 0 24 24">
+      <path d="M12 19V5"/><path d="M5 12l7-7 7 7"/>
+    </symbol>
+    <!-- flecha hacia la derecha -->
+    <symbol id="d-flecha" viewBox="0 0 24 24">
+      <path d="M5 12h14"/><path d="M12 5l7 7-7 7"/>
+    </symbol>
+    <!-- más (abre una pregunta) -->
+    <symbol id="d-mas" viewBox="0 0 24 24">
+      <path d="M12 5v14"/><path d="M5 12h14"/>
+    </symbol>
+    <!-- tilde -->
+    <symbol id="d-tilde" viewBox="0 0 24 24">
+      <path d="M20 6L9 17l-5-5"/>
+    </symbol>
+    <!-- escudo con tilde (conocemos a cada uno) -->
+    <symbol id="d-escudo" viewBox="0 0 24 24">
+      <path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/>
+    </symbol>
+    <!-- etiqueta de precio -->
+    <symbol id="d-precio" viewBox="0 0 24 24">
+      <path d="M20.6 13.4l-7.2 7.2a2 2 0 01-2.8 0L3 13V3h10l7.6 7.6a2 2 0 010 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/>
+    </symbol>
+    <!-- globo de chat -->
+    <symbol id="d-chat" viewBox="0 0 24 24">
+      <path d="M21 12a8 8 0 01-11.6 7.1L4 21l1.9-5.4A8 8 0 1121 12z"/>
     </symbol>
     <!-- rodillo de pintar paredes -->
     <symbol id="d-rodillo" viewBox="0 0 32 32">
@@ -498,17 +724,30 @@
 </nav>
 
 <section class="hero">
-  <h1>Profesionales para tu casa en Buenos Aires</h1>
-  <p class="hero-sub">Escribinos por WhatsApp, contanos qué necesitás y buscamos a alguien disponible en tu zona.</p>
+  <h1>Profesionales para tu casa en Buenos Aires.<br><span class="acento">¿Qué necesitás?</span></h1>
 
-  <h2 class="rubros-titulo" id="servicios">¿Qué necesitás?</h2>
-  <!-- Buscador: encuentra por nombre, por rubro y por lo puntual que hace cada persona (buscador.js). -->
+  <!-- Buscador: encuentra por nombre, por rubro y por lo puntual que hace cada persona (buscador.js).
+       Cuando se empieza a buscar, la página sube hasta dejar esta caja arriba. -->
   <form class="buscador" id="buscador" role="search" action="#">
     <label class="solo-lectores" for="buscar">Buscar un servicio o un profesional</label>
-    <svg class="lupa" aria-hidden="true"><use href="#d-lupa"/></svg>
-    <input type="search" id="buscar" placeholder="Ej.: canilla, enchufe, sillones" autocomplete="off" autocapitalize="none" spellcheck="false" enterkeyhint="search">
-    <button class="borrar" type="button" id="buscar-borrar" aria-label="Borrar la búsqueda" hidden>×</button>
+    <input type="search" id="buscar" placeholder="Contanos qué necesitás…" autocomplete="off" autocapitalize="none" spellcheck="false" enterkeyhint="search">
+    <div class="acciones">
+      <button class="borrar" type="button" id="buscar-borrar" aria-label="Borrar la búsqueda" hidden>×</button>
+      <button class="enviar" type="submit" aria-label="Buscar">
+        <svg class="ico" aria-hidden="true"><use href="#d-flecha-arriba"/></svg>
+      </button>
+    </div>
   </form>
+  <!-- Ejemplos para tocar: se arman con datos/config.js (ejemplos). -->
+  <div class="chips" id="chips" aria-label="Ejemplos de búsqueda"></div>
+
+  <p class="hero-dato">
+    <span class="dato"><svg class="ico-wa" aria-hidden="true"><use href="#d-wa"/></svg>Por WhatsApp, buscamos a alguien disponible en tu zona</span>
+    <span class="punto" aria-hidden="true">·</span>
+    <span class="dato">Suele tardar unos 30 minutos</span>
+  </p>
+
+  <p class="rubros-titulo">O elegí el rubro</p>
   <!-- Los rubros se arman con datos/rubros.js. Tocar uno abre su panel acá abajo. -->
   <div class="rubros" id="rubros"></div>
 
@@ -531,52 +770,141 @@
 <div id="paneles"></div>
 
 <section class="section">
-  <h2>¿Cómo funciona?</h2>
+  <span class="etiqueta">Cómo funciona</span>
+  <h2>Contanos qué necesitás. <span class="suave">Nosotros buscamos a alguien.</span></h2>
   <ol class="pasos">
-    <li>
-      <div>
-        <strong>Contanos qué necesitás</strong>
+    <li class="paso">
+      <!-- Un ejemplo de cómo es la charla por WhatsApp -->
+      <div class="charla" aria-hidden="true">
+        <div class="burbuja cliente">Hola Zeus! Se me tapó la pileta de la cocina.</div>
+        <div class="burbuja"><span class="quien"><svg class="rayo" aria-hidden="true"><use href="#d-rayo"/></svg>Zeus</span>Dale. ¿En qué zona estás? Te buscamos un plomero disponible.</div>
+      </div>
+      <div class="cuerpo">
+        <span class="num">1</span>
+        <h3>Contanos qué necesitás</h3>
         <p>Elegí el rubro acá arriba o escribinos directo por WhatsApp.</p>
       </div>
     </li>
-    <li>
-      <div>
-        <strong>Te conseguimos a alguien</strong>
+    <li class="paso">
+      <div class="charla" aria-hidden="true">
+        <div class="burbuja"><span class="quien"><svg class="rayo" aria-hidden="true"><use href="#d-rayo"/></svg>Zeus</span>Tenemos un plomero que puede ir mañana a la mañana. Te paso un precio aproximado.</div>
+        <div class="nota"><svg class="ico" aria-hidden="true"><use href="#d-tilde"/></svg>Suele tardar unos 30 minutos</div>
+      </div>
+      <div class="cuerpo">
+        <span class="num">2</span>
+        <h3>Te conseguimos a alguien</h3>
         <p>Buscamos un profesional disponible en tu zona y te pasamos un precio aproximado. Suele tardar unos 30 minutos.</p>
       </div>
     </li>
-    <li>
-      <div>
-        <strong>Se hace el trabajo</strong>
+    <li class="paso">
+      <div class="charla" aria-hidden="true">
+        <div class="burbuja"><span class="quien"><svg class="rayo" aria-hidden="true"><use href="#d-rayo"/></svg>Zeus</span>El plomero confirma el precio cuando ve el problema en tu casa.</div>
+        <div class="burbuja cliente">Listo, ya está destapada. Gracias!</div>
+      </div>
+      <div class="cuerpo">
+        <span class="num">3</span>
+        <h3>Se hace el trabajo</h3>
         <p>El profesional va a tu casa, confirma el precio cuando ve el problema y lo resuelve.</p>
       </div>
     </li>
   </ol>
+  <div class="pasos-cta">
+    <a class="btn-primary" data-wa href="#">
+      <svg class="ico-wa" aria-hidden="true"><use href="#d-wa"/></svg> Escribinos por WhatsApp
+    </a>
+  </div>
 </section>
 
-<section class="porque">
-  <div class="section">
-    <h2>¿Por qué Zeus?</h2>
-    <p>Conseguir un plomero o un electricista de confianza en Buenos Aires es un lío.</p>
-    <p>En Zeus trabajamos con una red propia de profesionales de Buenos Aires. Nos ocupamos de conocer a cada uno antes de sumarlo.</p>
-    <p>Vos nos contás qué necesitás y nosotros buscamos a alguien disponible en tu zona. El precio que te pasamos es aproximado: el profesional lo confirma cuando ve el problema en tu casa.</p>
-    <p>Y si algo no salió como esperabas, escribinos. Queremos saberlo.</p>
+<div class="franja-blanca">
+  <section class="section porque">
+    <span class="etiqueta">Por qué Zeus</span>
+    <h2>Una red propia de profesionales. <span class="suave">Y un precio aproximado antes de que vayan.</span></h2>
+    <p class="lead">Conseguir un plomero o un electricista de confianza en Buenos Aires es un lío. En Zeus nos ocupamos de eso.</p>
+    <div class="valores">
+      <div class="valor">
+        <div class="circulo"><svg class="ico" aria-hidden="true"><use href="#d-escudo"/></svg></div>
+        <div>
+          <h3>Conocemos a cada uno</h3>
+          <p>Trabajamos con una red propia de profesionales de Buenos Aires. Nos ocupamos de conocer a cada uno antes de sumarlo.</p>
+        </div>
+      </div>
+      <div class="valor">
+        <div class="circulo"><svg class="ico" aria-hidden="true"><use href="#d-precio"/></svg></div>
+        <div>
+          <h3>Precio aproximado por adelantado</h3>
+          <p>Vos nos contás qué necesitás y te pasamos un precio aproximado. El profesional lo confirma cuando ve el problema en tu casa.</p>
+        </div>
+      </div>
+      <div class="valor">
+        <div class="circulo"><svg class="ico" aria-hidden="true"><use href="#d-chat"/></svg></div>
+        <div>
+          <h3>Si algo no salió bien, escribinos</h3>
+          <p>Queremos saberlo. Nos escribís por el mismo WhatsApp y lo vemos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<section class="section">
+  <div class="faq">
+    <div class="intro">
+      <span class="etiqueta">Preguntas frecuentes</span>
+      <h2>Lo que nos preguntan. <span class="suave">Y si tenés otra duda, escribinos.</span></h2>
+      <a class="btn-primary" data-wa href="#">
+        <svg class="ico-wa" aria-hidden="true"><use href="#d-wa"/></svg> Escribinos por WhatsApp
+      </a>
+    </div>
+    <div class="lista">
+      <details>
+        <summary>¿Qué es Zeus? <span class="mas"><svg class="ico" aria-hidden="true"><use href="#d-mas"/></svg></span></summary>
+        <p>Una red propia de profesionales para el hogar en Buenos Aires: plomeros, electricistas, gasistas, limpieza y más. Nos contás qué necesitás por WhatsApp y buscamos a alguien disponible en tu zona.</p>
+      </details>
+      <details>
+        <summary>¿Cómo pido un servicio? <span class="mas"><svg class="ico" aria-hidden="true"><use href="#d-mas"/></svg></span></summary>
+        <p>Elegí el rubro en la portada, buscá lo que necesitás o escribinos directo por WhatsApp. Buscamos un profesional disponible en tu zona y te pasamos un precio aproximado. Suele tardar unos 30 minutos.</p>
+      </details>
+      <details>
+        <summary>¿Cuánto sale? <span class="mas"><svg class="ico" aria-hidden="true"><use href="#d-mas"/></svg></span></summary>
+        <p>Te pasamos un precio aproximado por WhatsApp. El precio real lo confirma el profesional cuando ve el problema en tu casa.</p>
+      </details>
+      <details>
+        <summary>¿Quién hace el trabajo? <span class="mas"><svg class="ico" aria-hidden="true"><use href="#d-mas"/></svg></span></summary>
+        <p>El profesional. Zeus te conecta con alguien de su red, disponible en tu zona, y se ocupa de conocer a cada uno antes de sumarlo.</p>
+      </details>
+      <details>
+        <summary>¿En qué zonas trabajan? <span class="mas"><svg class="ico" aria-hidden="true"><use href="#d-mas"/></svg></span></summary>
+        <p>En Buenos Aires. Contanos tu zona y buscamos a alguien disponible cerca tuyo.</p>
+      </details>
+      <details>
+        <summary>¿Y si algo no salió como esperaba? <span class="mas"><svg class="ico" aria-hidden="true"><use href="#d-mas"/></svg></span></summary>
+        <p>Escribinos. Queremos saberlo.</p>
+      </details>
+      <details>
+        <summary>Tengo un oficio, ¿cómo me sumo? <span class="mas"><svg class="ico" aria-hidden="true"><use href="#d-mas"/></svg></span></summary>
+        <p>Tocá "Quiero ser proveedor" acá abajo y llená el formulario: lleva unos 5 minutos. Después lo revisamos.</p>
+      </details>
+    </div>
   </div>
 </section>
 
 <section class="cta-final">
-  <h2>¿Necesitás una mano?</h2>
-  <p>Escribinos por WhatsApp y te contestamos a la brevedad.</p>
-  <a class="btn-white" data-wa href="#">
-    <svg class="ico-wa" aria-hidden="true"><use href="#d-wa"/></svg> Escribinos por WhatsApp
-  </a>
+  <div class="cta-caja">
+    <h2>¿Necesitás una mano?</h2>
+    <p>Escribinos por WhatsApp y te contestamos a la brevedad.</p>
+    <a class="btn-white" data-wa href="#">
+      <svg class="ico-wa" aria-hidden="true"><use href="#d-wa"/></svg> Escribinos por WhatsApp
+    </a>
+  </div>
 </section>
 
-<section class="sumate">
-  <h2>¿Tenés un oficio?</h2>
-  <p>Sumate a la red de Zeus. Llená el formulario en 5 minutos.</p>
-  <button class="btn-secondary" type="button" id="abrir-proveedor">Quiero ser proveedor</button>
-</section>
+<div class="franja-blanca">
+  <section class="sumate">
+    <h2>¿Tenés un oficio?</h2>
+    <p>Sumate a la red de Zeus. Llená el formulario en 5 minutos.</p>
+    <button class="btn-secondary" type="button" id="abrir-proveedor">Quiero ser proveedor</button>
+  </section>
+</div>
 
 <footer>
   <p>Zeus App S.R.L. — Buenos Aires, Argentina</p>
