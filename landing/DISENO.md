@@ -2,7 +2,7 @@
 
 La web y la futura app tienen que sentirse el mismo producto. Si la app usa otros colores, otra letra u otros nombres de rubro, está mal.
 
-El estilo (octubre 2026) es claro, cálido y directo: papel casi blanco, tinta casi negra, el rojo de Zeus solo como acento, botones píldora y mucho aire. Lo que más identifica a Zeus en la página son dos cosas que ninguna competencia tiene: **la gente de verdad** (las fotos de los profesionales en la portada, con el número real de cuántos hay) y **el rayo**, que aparece grande detrás de la red y en la banda del cierre. Nada de mascotas ni ilustraciones: Zeus muestra lo que hay. Todo lo que cambia de color al tocarlo lo hace suave (0,15 s).
+El estilo (octubre 2026) es claro, cálido y directo: papel casi blanco, tinta casi negra, el rojo de Zeus solo como acento, botones píldora y mucho aire. Lo que más identifica a Zeus en la página son dos cosas que ninguna competencia tiene: **la gente de verdad** (las fotos de los profesionales en la portada y, cuando la red sea grande, el número real de cuántos hay) y **el rayo**, que aparece grande detrás de la red y en la banda del cierre. Nada de mascotas ni ilustraciones: Zeus muestra lo que hay. Todo lo que cambia de color al tocarlo lo hace suave (0,15 s).
 
 ## Colores
 
@@ -53,7 +53,7 @@ Sombras: casi ninguna. Solo la caja del buscador, las fotos de la red y el telé
 | Pieza | Regla |
 |---|---|
 | Barra de arriba | Lo único fijo: logo y "Pedir servicio" (píldora de tinta). Es translúcida: la página se ve pasar detrás, desenfocada |
-| Portada | En pantalla grande, dos columnas: a la izquierda el título (qué es y dónde: "… en Buenos Aires."), una línea que explica (WhatsApp, unos 30 minutos), el buscador, los ejemplos y la pila de fotos con el número real de profesionales; a la derecha, la red. Debajo, a todo el ancho, los rubros y el botón de WhatsApp. En el celular, una sola columna y la red se ve solo como la pila de fotos |
+| Portada | En pantalla grande, dos columnas: a la izquierda el título (qué es y dónde: "… en Buenos Aires."), una línea que explica (WhatsApp, unos 30 minutos), el buscador, los ejemplos y la pila de fotos (con el número real de profesionales solo a partir de `cantidadDesde`, en `datos/config.js`; antes dice "La red de Zeus, en Buenos Aires"); a la derecha, la red. Debajo, a todo el ancho, los rubros y el botón de WhatsApp. En el celular, una sola columna y la red se ve solo como la pila de fotos |
 | La red | Hasta seis fotos de verdad alrededor del rayo, con tres etiquetas de oficio. Las elige `app.js`: una persona por rubro, en el orden de la barra. Si hay menos de tres personas con foto, no se muestra. Nunca se inventan caras |
 | Buscador | Píldora blanca con la flecha a la derecha; la flecha se pone roja cuando hay algo escrito. Mientras hay algo escrito, los resultados ocupan el lugar de los rubros (así se ven sobre el teclado del celular); al borrar, vuelven. Si no encuentra a nadie, ofrece escribir por WhatsApp con lo buscado ya en el mensaje |
 | Ejemplos (chips) | Píldoras color arena debajo del buscador con pedidos típicos ("Canilla que gotea"). Tocar una es como escribirla. La lista está en `datos/config.js`; solo se muestran las que hoy encuentran a alguien. En celular van en una fila que se desliza con el dedo |

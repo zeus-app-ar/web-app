@@ -107,9 +107,13 @@
   var heroRed = document.getElementById("hero-red");
   if (heroRed && visibles.length >= 3) {
     var n = visibles.length;
+    // El número se dice solo cuando la red ya es grande (cantidadDesde en datos/config.js).
+    var conNumero = typeof C.cantidadDesde === "number" && n >= C.cantidadDesde;
     heroRed.innerHTML =
       '<span class="pila" aria-hidden="true">' + destacados.slice(0, 4).map(function (p) { return cara(p, ""); }).join("") + "</span>" +
-      "<span><strong>" + n + " profesionales</strong> en la red hoy, en Buenos Aires</span>";
+      (conNumero
+        ? "<span><strong>" + n + " profesionales</strong> en la red hoy, en Buenos Aires</span>"
+        : "<span><strong>La red de Zeus</strong>, en Buenos Aires</span>");
   }
 
   // ---------- Paneles ----------

@@ -9,7 +9,7 @@ HTML, CSS y JavaScript sin servidor ni build. Se publica sola en GitHub Pages co
 | `index.html` | La página, con sus estilos adentro |
 | `app.js` | Arma los rubros de la portada, la red de fotos y el número de profesionales, los paneles, el buscador, la barra de WhatsApp del celular y "Quiero ser proveedor" |
 | `buscador.js` | Decide qué profesionales aparecen cuando alguien escribe en el buscador, y por qué. Ver "El buscador" más abajo |
-| `datos/config.js` | **Lo que más se cambia**: número de WhatsApp, links de los formularios y los ejemplos que se ven debajo del buscador |
+| `datos/config.js` | **Lo que más se cambia**: número de WhatsApp, links de los formularios, los ejemplos que se ven debajo del buscador y a partir de cuántos profesionales se dice el número en la portada |
 | `datos/rubros.js` | Los rubros de la portada: íconos, títulos, frases y las palabras con las que el buscador encuentra cada rubro. Mismas claves que el bot |
 | `datos/profesionales.js` | **Generado.** Lo reescribe entero la Action diaria desde Airtable — editarlo a mano no sirve, se pisa a la noche. Para cambiar quién aparece, o lo que hace cada uno, se edita Airtable |
 | `fotos/` | **Generado.** Se bajan solas del campo "Foto" de Airtable. Una foto subida a mano solo sobrevive si esa persona no tiene foto en Airtable |
