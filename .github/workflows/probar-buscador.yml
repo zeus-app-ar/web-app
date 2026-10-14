@@ -1,0 +1,38 @@
+# Corre las pruebas del buscador de la portada en cada Pull Request que toca
+# la página.
+#
+# El problema que resuelve: el buscador depende de buscador.js y de las palabras
+# "buscar" de datos/rubros.js. Un cambio chico en cualquiera de los dos puede
+# hacer que "sillón" deje de encontrar a quien limpia sillones, o que "ana"
+# empiece a traer gasistas, sin que nadie lo note mirando la página.
+#
+# Si falla: abrir el detalle del check para ver qué búsqueda dejó de dar lo
+# esperado. Para correrlo en la compu: cd landing && node herramientas/probar_buscador.js
+
+name: Probar el buscador
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "landing/**"
+      - ".github/workflows/probar-buscador.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  probar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el código
+        uses: actions/checkout@v4
+
+      - name: Preparar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Correr las pruebas del buscador
+        working-directory: landing
+        run: node herramientas/probar_buscador.js

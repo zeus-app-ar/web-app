@@ -2,8 +2,10 @@
 // Zeus ⚡ web — Comportamiento de la página
 // ============================================
 // Arma los rubros de la portada y los paneles de profesionales a partir de
-// datos/, conecta los botones de WhatsApp y la ventana "Quiero ser proveedor".
-// Tocar un rubro abre su panel debajo de la portada; tocarlo de nuevo lo cierra.
+// datos/, conecta los botones de WhatsApp, el buscador y la ventana "Quiero ser
+// proveedor". Tocar un rubro abre su panel debajo de la portada; tocarlo de
+// nuevo lo cierra. Escribir en el buscador reemplaza los rubros por los
+// resultados (qué encuentra y por qué lo decide buscador.js).
 
 (function () {
   "use strict";
@@ -68,7 +70,8 @@
   }).join("");
 
   // ---------- Paneles ----------
-  function tarjeta(p, seccion) {
+  // "porque" (opcional) lo pasa el buscador: el detalle o rubro por el que apareció la persona.
+  function tarjeta(p, seccion, porque) {
     var cara = p.foto
       ? '<img src="' + p.foto + '" alt="' + texto(p.nombre) + '" width="84" height="84" decoding="async">'
       : '<div class="sin-foto" aria-hidden="true">' + texto(p.nombre.charAt(0)) + "</div>";
@@ -80,6 +83,7 @@
         cara +
         '<div class="prov-name">' + texto(p.nombre) + "</div>" +
         (p.frase ? '<div class="prov-desc">' + texto(p.frase) + "</div>" : "") +
+        (porque ? '<div class="prov-match">' + texto(porque) + "</div>" : "") +
         '<a class="prov-wa" href="' + linkWhatsApp(mensaje) + '" target="_blank" rel="noopener">Pedir a ' + texto(pila) + "</a>" +
       "</div>"
     );
@@ -106,13 +110,18 @@
 
   // ---------- Abrir / cerrar paneles ----------
   var actual = null;
+  var portada = document.querySelector(".hero");
+  function cerrarPaneles() {
+    document.querySelectorAll("#paneles .providers-panel").forEach(function (p) { p.classList.remove("open"); });
+    barra.querySelectorAll(".rubro").forEach(function (b) { b.classList.remove("active"); b.setAttribute("aria-expanded", "false"); });
+    portada.classList.remove("con-panel");
+  }
   function togglePanel(id) {
     var panel = document.getElementById("panel-" + id);
-    var btns = barra.querySelectorAll(".rubro");
-    document.querySelectorAll(".providers-panel").forEach(function (p) { p.classList.remove("open"); });
-    btns.forEach(function (b) { b.classList.remove("active"); b.setAttribute("aria-expanded", "false"); });
-    var portada = document.querySelector(".hero");
-    if (actual === id) { actual = null; portada.classList.remove("con-panel"); return; }
+    var eraElMismo = actual === id;
+    cerrarPaneles();
+    actual = null;
+    if (eraElMismo) return;
     portada.classList.add("con-panel");
     panel.classList.add("open");
     actual = id;
@@ -155,6 +164,105 @@
     window.addEventListener("load", function () {
       setTimeout(function () { botones.forEach(function (x) { fotosDe(x.b.id); }); }, 800);
     });
+  }
+
+  // ---------- Buscador ----------
+  // Mientras hay algo escrito, los resultados reemplazan a los rubros. Al borrar
+  // vuelven los rubros. Busca solo entre quienes la página ya muestra.
+  var B = window.ZEUS_BUSCADOR;
+  var campo = document.getElementById("buscar");
+  var borrar = document.getElementById("buscar-borrar");
+  var resultados = document.getElementById("resultados");
+  if (B && campo && resultados) {
+    var seccionesVisibles = [];
+    botones.forEach(function (x) {
+      x.secciones.forEach(function (s) {
+        seccionesVisibles.push({ rubro: s.rubro, nombre: s.nombre, descripcion: s.descripcion, buscar: s.buscar, etiqueta: x.b.etiqueta });
+      });
+    });
+    var buscables = GENTE.filter(function (p) {
+      return (p.foto || C.mostrarSinFoto || revisar) &&
+        seccionesVisibles.some(function (s) { return p.rubros.indexOf(s.rubro) !== -1; });
+    });
+    var indice = B.armarIndice(buscables, seccionesVisibles);
+
+    // La sección con la que se arma el mensaje de "Pedir a …": la que coincidió
+    // con la búsqueda o, si coincidió por nombre o frase, su primer rubro visible.
+    var seccionDe = function (p) {
+      return seccionesVisibles.filter(function (s) { return p.rubros.indexOf(s.rubro) !== -1; })[0];
+    };
+
+    var buscando = false;
+    var mostrar = function () {
+      var escrito = campo.value.replace(/\s+/g, " ").trim();
+      borrar.hidden = !campo.value;
+      var r = escrito.length >= 2 ? B.buscar(indice, escrito) : null;
+      if (!r || !r.terminos.length) {
+        buscando = false;
+        portada.classList.remove("buscando");
+        resultados.classList.remove("open");
+        resultados.innerHTML = "";
+        return;
+      }
+      if (!buscando) {
+        // Entra en modo búsqueda: se cierran los paneles de rubro y la página sube
+        // hasta dejar el buscador arriba, con los resultados a la vista sobre el teclado.
+        buscando = true;
+        cerrarPaneles();
+        actual = null;
+        portada.classList.add("buscando");
+        setTimeout(function () { document.getElementById("servicios").scrollIntoView({ block: "start" }); }, 50);
+      }
+      var corto = escrito.slice(0, 80);
+      var pedido = linkWhatsApp("Hola Zeus! Estoy buscando: " + corto);
+      var cuerpo;
+      if (r.resultados.length) {
+        cuerpo =
+          "<h3>Profesionales para “" + texto(corto) + "”</h3>" +
+          '<div class="providers-grid">' +
+            r.resultados.map(function (e) { return tarjeta(e.persona, e.seccion || seccionDe(e.persona), e.porque); }).join("") +
+          "</div>" +
+          '<p class="otra">¿No es lo que buscabas? <a href="' + pedido + '" target="_blank" rel="noopener">Contanos por WhatsApp</a> qué necesitás.</p>';
+      } else {
+        cuerpo =
+          "<h3>No encontramos a nadie para “" + texto(corto) + "”</h3>" +
+          '<p class="rubro-desc">Contanos qué necesitás y buscamos a alguien.</p>' +
+          '<a class="btn-primary" href="' + pedido + '" target="_blank" rel="noopener">' +
+            '<svg class="ico-wa" aria-hidden="true"><use href="#d-wa"/></svg> Escribinos por WhatsApp</a>';
+      }
+      resultados.innerHTML = '<div class="adentro">' + cuerpo + "</div>";
+      resultados.classList.add("open");
+    };
+
+    var espera = null;
+    campo.addEventListener("input", function () {
+      clearTimeout(espera);
+      espera = setTimeout(mostrar, 120);
+    });
+    campo.addEventListener("focus", function () { bajarFotos(buscables); });
+    campo.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") { campo.value = ""; mostrar(); }
+    });
+    // "Buscar" en el teclado del celular: no recarga la página, solo esconde el teclado.
+    document.getElementById("buscador").addEventListener("submit", function (e) {
+      e.preventDefault();
+      clearTimeout(espera);
+      mostrar();
+      campo.blur();
+    });
+    borrar.addEventListener("click", function () {
+      campo.value = "";
+      mostrar();
+      campo.focus();
+    });
+
+    // somoszeus.com/?buscar=sillones abre la página con esa búsqueda hecha (para compartir un link).
+    var pedida = /[?&]buscar=([^&]*)/.exec(window.location.search);
+    if (pedida) {
+      try { campo.value = decodeURIComponent(pedida[1].replace(/\+/g, " ")); } catch (e) { campo.value = ""; }
+      bajarFotos(buscables);
+      mostrar();
+    }
   }
 
   // ---------- "Quiero ser proveedor" ----------
