@@ -14,7 +14,7 @@
 //   → Guía paso a paso:
 //     https://chiaradigi2.atlassian.net/wiki/spaces/Zeus/pages/98312
 //
-// Generado el 2026-10-14.
+// Generado el 2026-10-15.
 // ============================================================================
 window.ZEUS_PROFESIONALES = [
   {
@@ -165,6 +165,23 @@ window.ZEUS_PROFESIONALES = [
       "Diagnóstico de equipos inverter"
     ],
     "foto": "fotos/reczkMwivWNRsZuaQ.jpg"
+  },
+  {
+    "id": "recouL5o4sTGdFLn0",
+    "nombre": "Luka M.",
+    "rubros": [
+      "limpieza_particular",
+      "limpieza_tapizados"
+    ],
+    "frase": "Limpia sillones y sofás, sillas, colchones y alfombras. Trabaja en toda CABA.",
+    "detalles": [
+      "Limpieza de alfombras y tapizados",
+      "Limpieza de sillones y sofás",
+      "Limpieza de sillas",
+      "Limpieza de colchones",
+      "Limpieza de alfombras"
+    ],
+    "foto": "fotos/recouL5o4sTGdFLn0.jpg"
   },
   {
     "id": "recUy8ZuciFvUqX9c",
