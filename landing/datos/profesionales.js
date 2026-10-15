@@ -164,7 +164,19 @@ window.ZEUS_PROFESIONALES = [
       "Aire acondicionado: mini split",
       "Diagnóstico de equipos inverter"
     ],
-    "foto": "fotos/reczkMwivWNRsZuaQ.jpg"
+    "foto": "fotos/reczkMwivWNRsZuaQ.jpg",
+    "resenas": {
+      "promedio": 5.0,
+      "cantidad": 1,
+      "publicas": [
+        {
+          "nombre": "Cliente de Zeus",
+          "puntaje": 5,
+          "texto": "Muy buena atención por parte de Lucas: sabiendo que estaba demorado, avisó con tiempo por si necesitaba reprogramar.",
+          "fecha": "2026-08"
+        }
+      ]
+    }
   },
   {
     "id": "recouL5o4sTGdFLn0",
