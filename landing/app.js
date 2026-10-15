@@ -6,7 +6,7 @@
 // proveedor". Tocar un rubro abre su panel debajo de la portada; tocarlo de
 // nuevo lo cierra. Escribir en el buscador reemplaza los rubros por los
 // resultados (qué encuentra y por qué lo decide buscador.js). Tocar la foto o
-// el nombre de un profesional (o sus estrellas) abre su ficha: qué hace y sus
+// el nombre de un profesional (o su puntaje) abre su ficha: qué hace y sus
 // reseñas; "?p=<id>" en la dirección la abre directo.
 
 (function () {
@@ -128,8 +128,13 @@
     var m = /^(\d{4})-(\d{2})/.exec(f || "");
     return m ? MESES[parseInt(m[2], 10) - 1] + " " + m[1] : "";
   }
-  function estrella(clase) {
-    return '<svg class="estrella' + (clase ? " " + clase : "") + '" aria-hidden="true"><use href="#d-estrella"/></svg>';
+  // El puntaje se escribe con el rayo de Zeus (el dibujo de la marca, nunca el
+  // emoji ⚡): "4,5⚡ /5⚡". Es la misma idea que las estrellas, con lo nuestro.
+  function rayito() {
+    return '<svg class="rayito" aria-hidden="true"><use href="#d-rayo"/></svg>';
+  }
+  function puntajeHtml(valor) {
+    return '<span class="puntaje"><strong>' + texto(valor) + rayito() + "</strong><span class=\"de\">/5" + rayito() + "</span></span>";
   }
   function conResenas(p) {
     var minimo = typeof C.resenasDesde === "number" ? C.resenasDesde : 1;
@@ -141,7 +146,7 @@
     return (
       '<button class="prov-rating" type="button" data-ficha="' + texto(p.id) + '" aria-label="' +
         texto(numero(p.resenas.promedio) + " de 5, " + cuantas(p.resenas.cantidad) + ". Ver reseñas de " + p.nombre) + '">' +
-        estrella("") + texto(numero(p.resenas.promedio)) + "<span>&nbsp;· " + texto(cuantas(p.resenas.cantidad)) + "</span>" +
+        puntajeHtml(numero(p.resenas.promedio)) + "<span>&nbsp;· " + texto(cuantas(p.resenas.cantidad)) + "</span>" +
       "</button>"
     );
   }
@@ -370,7 +375,7 @@
   }
 
   // ---------- Ficha de un profesional ----------
-  // Se abre tocando la foto, el nombre o las estrellas de una tarjeta, o entrando
+  // Se abre tocando la foto, el nombre o el puntaje de una tarjeta, o entrando
   // con somoszeus.com/?p=<id>. Mientras está abierta, la dirección lleva ?p=<id>
   // (así se puede copiar y compartir); al cerrar, vuelve a la de antes.
   var ficha = document.getElementById("ficha");
@@ -392,12 +397,10 @@
   }
 
   function resenaHtml(r) {
-    var estrellas = "";
-    for (var i = 1; i <= 5; i++) estrellas += estrella(i <= r.puntaje ? "llena" : "");
     var quien = [r.nombre, mesDe(r.fecha)].filter(Boolean).join(" · ");
     return (
       '<div class="resena">' +
-        '<span class="estrellas" role="img" aria-label="' + r.puntaje + ' de 5">' + estrellas + "</span>" +
+        '<span role="img" aria-label="' + r.puntaje + ' de 5">' + puntajeHtml(String(r.puntaje)) + "</span>" +
         '<span class="quien">' + texto(quien) + "</span>" +
         (r.texto ? "<p>" + texto(r.texto) + "</p>" : "") +
       "</div>"
@@ -422,7 +425,7 @@
     if (conResenas(p)) {
       var r = p.resenas;
       html +=
-        '<div class="resumen"><strong>' + estrella("") + texto(numero(r.promedio)) + "</strong>" +
+        '<div class="resumen">' + puntajeHtml(numero(r.promedio)) +
         "<span>" + texto(cuantas(r.cantidad) + " de clientes de Zeus") + "</span></div>";
       if (r.publicas && r.publicas.length) {
         html += "<h4>Lo que dicen</h4>" + r.publicas.map(resenaHtml).join("");

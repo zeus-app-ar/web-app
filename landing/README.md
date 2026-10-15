@@ -9,7 +9,7 @@ HTML, CSS y JavaScript sin servidor ni build. Se publica sola en GitHub Pages co
 | `index.html` | La página, con sus estilos adentro |
 | `app.js` | Arma los rubros de la portada, la red de fotos y el número de profesionales, los paneles, el buscador, la ficha de cada profesional (con sus reseñas), la barra de WhatsApp del celular y "Quiero ser proveedor" |
 | `buscador.js` | Decide qué profesionales aparecen cuando alguien escribe en el buscador, y por qué. Ver "El buscador" más abajo |
-| `datos/config.js` | **Lo que más se cambia**: número de WhatsApp, links de los formularios, los ejemplos que se ven debajo del buscador, a partir de cuántos profesionales se dice el número en la portada y a partir de cuántas reseñas se ven las estrellas |
+| `datos/config.js` | **Lo que más se cambia**: número de WhatsApp, links de los formularios, los ejemplos que se ven debajo del buscador, a partir de cuántos profesionales se dice el número en la portada y a partir de cuántas reseñas se ve el puntaje |
 | `datos/rubros.js` | Los rubros de la portada: íconos, títulos, frases y las palabras con las que el buscador encuentra cada rubro. Mismas claves que el bot |
 | `datos/profesionales.js` | **Generado.** Lo reescribe entero la Action diaria desde Airtable — editarlo a mano no sirve, se pisa a la noche. Para cambiar quién aparece, lo que hace cada uno o qué reseñas se publican, se edita Airtable |
 | `fotos/` | **Generado.** Se bajan solas del campo "Foto" de Airtable. Una foto subida a mano solo sobrevive si esa persona no tiene foto en Airtable |
@@ -69,15 +69,15 @@ Las mismas pruebas corren solas en cada Pull Request (`.github/workflows/probar-
 
 ## Las reseñas y la ficha de cada profesional
 
-Tocar la foto o el nombre de un profesional (o sus estrellas) abre su **ficha**: rubros, la frase, qué hace y sus reseñas. `somoszeus.com/?p=<id>` (el id de Airtable, el mismo del archivo de la foto) abre la ficha directo: mientras está abierta la dirección del navegador ya lleva ese `?p=`, así que alcanza con copiarla para compartirla.
+Tocar la foto o el nombre de un profesional (o su puntaje) abre su **ficha**: rubros, la frase, qué hace y sus reseñas. `somoszeus.com/?p=<id>` (el id de Airtable, el mismo del archivo de la foto) abre la ficha directo: mientras está abierta la dirección del navegador ya lleva ese `?p=`, así que alcanza con copiarla para compartirla.
 
 Las reseñas salen de la tabla **Reseñas** de Airtable y las baja la misma Action de todas las noches. Las carga sola el bot cuando un cliente opina por WhatsApp (ver el repo `Zeus-app`, `resenas.py`). Reglas:
 
 | Qué | Regla |
 |---|---|
-| Estrellas y cantidad en la tarjeta ("★ 4,7 · 3 reseñas") | Promedio de **todas** las reseñas de clientes del profesional con puntaje (`Origen = Cliente`), publicadas o no. Así no es "el promedio de las buenas". Se muestran a partir de `resenasDesde` reseñas (`datos/config.js`; hoy 1) |
+| Puntaje y cantidad en la tarjeta ("4,7⚡ /5⚡ · 3 reseñas", con el rayo de Zeus en vez de estrellas) | Promedio de **todas** las reseñas de clientes del profesional con puntaje (`Origen = Cliente`), publicadas o no. Así no es "el promedio de las buenas". Se muestran a partir de `resenasDesde` reseñas (`datos/config.js`; hoy 1) |
 | Qué reseñas se leen en la ficha | Solo las que tienen **"Visible al público"** tildado en Airtable. Eso lo tilda una persona, nunca el bot |
-| Qué texto se ve | **"Texto público"**: el recorte que revisó el equipo. Nunca el comentario crudo (puede tener nombres de otras personas, teléfonos o insultos). Sin "Texto público", la reseña se ve solo con sus estrellas |
+| Qué texto se ve | **"Texto público"**: el recorte que revisó el equipo. Nunca el comentario crudo (puede tener nombres de otras personas, teléfonos o insultos). Sin "Texto público", la reseña se ve solo con su puntaje |
 | Con qué nombre | **Sin nombre**: todas salen como "Cliente de Zeus" (decisión de Chiara, 15/10/2026; así no hay que pedirle permiso a nadie, y los T&C ya cubren que se publican). Si algún día se quiere el nombre de pila: `PUBLICAR_NOMBRE = True` en `actualizar_profesionales.py` lo muestra solo con "Permiso para publicar" = Sí, y hay que prender `PUBLICAR_CON_NOMBRE` en el bot para que lo pregunte |
 | Fecha | Solo el mes ("ago 2026"), nunca el día |
 | Reseñas del equipo o de familiares | `Origen = Equipo Zeus`: no cuentan ni se publican |
