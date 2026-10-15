@@ -23,6 +23,13 @@ window.ZEUS_CONFIG = {
   // Se enciende solo el día que la red llega a esta cantidad.
   cantidadDesde: 30,
 
+  // Reseñas: en la tarjeta de cada profesional se ven las estrellas (promedio
+  // sobre TODAS sus reseñas de clientes, no solo las publicadas) y cuántas son,
+  // a partir de esta cantidad de reseñas. 1 = desde la primera. Las reseñas
+  // publicadas (con "Visible al público" tildado en Airtable) se leen en la
+  // ficha de la persona, que se abre tocando su foto o su nombre.
+  resenasDesde: 1,
+
   // Links PÚBLICOS de los formularios de alta (los que terminan en /viewform, nunca los de /edit).
   formularios: {
     oficios: "https://docs.google.com/forms/d/e/1FAIpQLSctsV77KvJDRsZw6yMwxKK2JXgPJA2XVT912YEHgWZIuGcDnA/viewform",

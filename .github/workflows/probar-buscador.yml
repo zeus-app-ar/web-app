@@ -8,8 +8,12 @@
 #
 # Si falla: abrir el detalle del check para ver qué búsqueda dejó de dar lo
 # esperado. Para correrlo en la compu: cd landing && node herramientas/probar_buscador.js
+#
+# Corre también las pruebas de cómo se arman las reseñas para la página
+# (herramientas/probar_resenas_web.py): qué cuenta para el promedio, qué se
+# publica y con qué nombre.
 
-name: Probar el buscador
+name: Probar el buscador y las reseñas
 
 on:
   pull_request:
@@ -36,3 +40,14 @@ jobs:
       - name: Correr las pruebas del buscador
         working-directory: landing
         run: node herramientas/probar_buscador.js
+
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Correr las pruebas de las reseñas
+        working-directory: landing
+        run: |
+          pip install requests pillow
+          python herramientas/probar_resenas_web.py

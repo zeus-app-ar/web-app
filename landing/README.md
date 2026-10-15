@@ -7,17 +7,18 @@ HTML, CSS y JavaScript sin servidor ni build. Se publica sola en GitHub Pages co
 | Archivo | Qué es |
 |---|---|
 | `index.html` | La página, con sus estilos adentro |
-| `app.js` | Arma los rubros de la portada, la red de fotos y el número de profesionales, los paneles, el buscador, la barra de WhatsApp del celular y "Quiero ser proveedor" |
+| `app.js` | Arma los rubros de la portada, la red de fotos y el número de profesionales, los paneles, el buscador, la ficha de cada profesional (con sus reseñas), la barra de WhatsApp del celular y "Quiero ser proveedor" |
 | `buscador.js` | Decide qué profesionales aparecen cuando alguien escribe en el buscador, y por qué. Ver "El buscador" más abajo |
-| `datos/config.js` | **Lo que más se cambia**: número de WhatsApp, links de los formularios, los ejemplos que se ven debajo del buscador y a partir de cuántos profesionales se dice el número en la portada |
+| `datos/config.js` | **Lo que más se cambia**: número de WhatsApp, links de los formularios, los ejemplos que se ven debajo del buscador, a partir de cuántos profesionales se dice el número en la portada y a partir de cuántas reseñas se ven las estrellas |
 | `datos/rubros.js` | Los rubros de la portada: íconos, títulos, frases y las palabras con las que el buscador encuentra cada rubro. Mismas claves que el bot |
-| `datos/profesionales.js` | **Generado.** Lo reescribe entero la Action diaria desde Airtable — editarlo a mano no sirve, se pisa a la noche. Para cambiar quién aparece, o lo que hace cada uno, se edita Airtable |
+| `datos/profesionales.js` | **Generado.** Lo reescribe entero la Action diaria desde Airtable — editarlo a mano no sirve, se pisa a la noche. Para cambiar quién aparece, lo que hace cada uno o qué reseñas se publican, se edita Airtable |
 | `fotos/` | **Generado.** Se bajan solas del campo "Foto" de Airtable. Una foto subida a mano solo sobrevive si esa persona no tiene foto en Airtable |
 | `herramientas/actualizar_profesionales.py` | Regenera `datos/profesionales.js` desde Airtable |
 | `herramientas/nombres_web.json` | Correcciones a mano de cómo figura alguien |
 | `herramientas/armar_vista_previa.py` | Junta todo en un solo `.html` para mandarlo y revisarlo antes de publicar |
 | `herramientas/og.html` | El origen de `og.png`, la imagen que se ve al compartir el link por WhatsApp o redes. Adentro dice cómo regenerarla |
 | `herramientas/probar_buscador.js` | Pruebas del buscador. Corren solas en cada Pull Request que toca `landing/` |
+| `herramientas/probar_resenas_web.py` | Pruebas de cómo se arman las reseñas para la página (qué cuenta, qué se publica, con qué nombre). Corren en el mismo Pull Request |
 | `DISENO.md` | Colores, letras y reglas de escritura, para que la app use lo mismo |
 
 ## Cambiar lo más común
@@ -65,6 +66,23 @@ node herramientas/probar_buscador.js
 ```
 
 Las mismas pruebas corren solas en cada Pull Request (`.github/workflows/probar-buscador.yml`).
+
+## Las reseñas y la ficha de cada profesional
+
+Tocar la foto o el nombre de un profesional (o sus estrellas) abre su **ficha**: rubros, la frase, qué hace y sus reseñas. `somoszeus.com/?p=<id>` (el id de Airtable, el mismo del archivo de la foto) abre la ficha directo: mientras está abierta la dirección del navegador ya lleva ese `?p=`, así que alcanza con copiarla para compartirla.
+
+Las reseñas salen de la tabla **Reseñas** de Airtable y las baja la misma Action de todas las noches. Las carga sola el bot cuando un cliente opina por WhatsApp (ver el repo `Zeus-app`, `resenas.py`). Reglas:
+
+| Qué | Regla |
+|---|---|
+| Estrellas y cantidad en la tarjeta ("★ 4,7 · 3 reseñas") | Promedio de **todas** las reseñas de clientes del profesional con puntaje (`Origen = Cliente`), publicadas o no. Así no es "el promedio de las buenas". Se muestran a partir de `resenasDesde` reseñas (`datos/config.js`; hoy 1) |
+| Qué reseñas se leen en la ficha | Solo las que tienen **"Visible al público"** tildado en Airtable. Eso lo tilda una persona, nunca el bot |
+| Qué texto se ve | **"Texto público"**: el recorte que revisó el equipo. Nunca el comentario crudo (puede tener nombres de otras personas, teléfonos o insultos). Sin "Texto público", la reseña se ve solo con sus estrellas |
+| Con qué nombre | El nombre de pila del cliente solo si **"Permiso para publicar" = Sí** (el bot se lo pregunta). Si no, "Cliente de Zeus" |
+| Fecha | Solo el mes ("ago 2026"), nunca el día |
+| Reseñas del equipo o de familiares | `Origen = Equipo Zeus`: no cuentan ni se publican |
+
+Para publicar una reseña: en Airtable, tabla Reseñas, escribir (o revisar) "Texto público" y tildar "Visible al público". Aparece a la noche; para verla ya, correr la Action "Actualizar profesionales".
 
 ## Actualizar los profesionales
 

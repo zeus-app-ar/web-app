@@ -5,7 +5,9 @@
 // datos/, conecta los botones de WhatsApp, el buscador y la ventana "Quiero ser
 // proveedor". Tocar un rubro abre su panel debajo de la portada; tocarlo de
 // nuevo lo cierra. Escribir en el buscador reemplaza los rubros por los
-// resultados (qué encuentra y por qué lo decide buscador.js).
+// resultados (qué encuentra y por qué lo decide buscador.js). Tocar la foto o
+// el nombre de un profesional (o sus estrellas) abre su ficha: qué hace y sus
+// reseñas; "?p=<id>" en la dirección la abre directo.
 
 (function () {
   "use strict";
@@ -116,19 +118,51 @@
         : "<span><strong>La red de Zeus</strong>, en Buenos Aires</span>");
   }
 
+  // ---------- Reseñas: cómo se escriben ----------
+  // Los datos vienen en datos/profesionales.js ("resenas": promedio, cantidad y
+  // las publicadas), armados por la Action desde Airtable. Acá solo se muestran.
+  var MESES = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
+  function numero(n) { return n.toFixed(1).replace(".", ","); }          // 4.5 -> "4,5"
+  function cuantas(n) { return n + (n === 1 ? " reseña" : " reseñas"); }
+  function mesDe(f) {                                                     // "2026-08" -> "ago 2026"
+    var m = /^(\d{4})-(\d{2})/.exec(f || "");
+    return m ? MESES[parseInt(m[2], 10) - 1] + " " + m[1] : "";
+  }
+  function estrella(clase) {
+    return '<svg class="estrella' + (clase ? " " + clase : "") + '" aria-hidden="true"><use href="#d-estrella"/></svg>';
+  }
+  function conResenas(p) {
+    var minimo = typeof C.resenasDesde === "number" ? C.resenasDesde : 1;
+    return !!(p.resenas && p.resenas.cantidad >= minimo && typeof p.resenas.promedio === "number");
+  }
+  // La línea "★ 4,8 · 3 reseñas" de la tarjeta (vacía si no corresponde mostrarla).
+  function lineaResenas(p) {
+    if (!conResenas(p)) return "";
+    return (
+      '<button class="prov-rating" type="button" data-ficha="' + texto(p.id) + '" aria-label="' +
+        texto(numero(p.resenas.promedio) + " de 5, " + cuantas(p.resenas.cantidad) + ". Ver reseñas de " + p.nombre) + '">' +
+        estrella("") + texto(numero(p.resenas.promedio)) + "<span>&nbsp;· " + texto(cuantas(p.resenas.cantidad)) + "</span>" +
+      "</button>"
+    );
+  }
+
   // ---------- Paneles ----------
   // "porque" (opcional) lo pasa el buscador: el detalle o rubro por el que apareció la persona.
   function tarjeta(p, seccion, porque) {
     var cara = p.foto
-      ? '<img src="' + p.foto + '" alt="' + texto(p.nombre) + '" width="84" height="84" decoding="async">'
-      : '<div class="sin-foto" aria-hidden="true">' + texto(p.nombre.charAt(0)) + "</div>";
+      ? '<img src="' + p.foto + '" alt="" width="84" height="84" decoding="async">'
+      : '<span class="sin-foto" aria-hidden="true">' + texto(p.nombre.charAt(0)) + "</span>";
     // El botón abre el chat con Zeus (no con la persona): por eso dice "Pedir a …" y no "Contratar".
     var mensaje = "Hola Zeus! Quiero pedir a " + p.nombre + " (" + seccion.nombre + ").";
     var pila = String(p.nombre).split(" ")[0];
     return (
       '<div class="provider-card">' +
-        cara +
-        '<div class="prov-name">' + texto(p.nombre) + "</div>" +
+        // La foto y el nombre abren la ficha (qué hace, reseñas)
+        '<button class="prov-abrir" type="button" data-ficha="' + texto(p.id) + '" aria-label="' + texto("Ver la ficha de " + p.nombre) + '">' +
+          cara +
+          '<span class="prov-name">' + texto(p.nombre) + "</span>" +
+        "</button>" +
+        lineaResenas(p) +
         (p.frase ? '<div class="prov-desc">' + texto(p.frase) + "</div>" : "") +
         (porque ? '<div class="prov-match">' + texto(porque) + "</div>" : "") +
         '<a class="prov-wa" href="' + linkWhatsApp(mensaje) + '" target="_blank" rel="noopener">Pedir a ' + texto(pila) + "</a>" +
@@ -222,24 +256,24 @@
   var borrar = document.getElementById("buscar-borrar");
   var resultados = document.getElementById("resultados");
   var chips = document.getElementById("chips");
-  if (B && campo && resultados) {
-    var seccionesVisibles = [];
-    botones.forEach(function (x) {
-      x.secciones.forEach(function (s) {
-        seccionesVisibles.push({ rubro: s.rubro, nombre: s.nombre, descripcion: s.descripcion, buscar: s.buscar, etiqueta: x.b.etiqueta });
-      });
+  var seccionesVisibles = [];
+  botones.forEach(function (x) {
+    x.secciones.forEach(function (s) {
+      seccionesVisibles.push({ rubro: s.rubro, nombre: s.nombre, descripcion: s.descripcion, buscar: s.buscar, etiqueta: x.b.etiqueta });
     });
+  });
+  // La sección con la que se arma el mensaje de "Pedir a …": la que coincidió
+  // con la búsqueda o, si coincidió por nombre o frase, su primer rubro visible.
+  // (También la usa la ficha.)
+  var seccionDe = function (p) {
+    return seccionesVisibles.filter(function (s) { return p.rubros.indexOf(s.rubro) !== -1; })[0];
+  };
+  if (B && campo && resultados) {
     var buscables = GENTE.filter(function (p) {
       return (p.foto || C.mostrarSinFoto || revisar) &&
         seccionesVisibles.some(function (s) { return p.rubros.indexOf(s.rubro) !== -1; });
     });
     var indice = B.armarIndice(buscables, seccionesVisibles);
-
-    // La sección con la que se arma el mensaje de "Pedir a …": la que coincidió
-    // con la búsqueda o, si coincidió por nombre o frase, su primer rubro visible.
-    var seccionDe = function (p) {
-      return seccionesVisibles.filter(function (s) { return p.rubros.indexOf(s.rubro) !== -1; })[0];
-    };
 
     var buscando = false;
     var mostrar = function () {
@@ -332,6 +366,117 @@
       try { campo.value = decodeURIComponent(pedida[1].replace(/\+/g, " ")); } catch (e) { campo.value = ""; }
       bajarFotos(buscables);
       mostrar();
+    }
+  }
+
+  // ---------- Ficha de un profesional ----------
+  // Se abre tocando la foto, el nombre o las estrellas de una tarjeta, o entrando
+  // con somoszeus.com/?p=<id>. Mientras está abierta, la dirección lleva ?p=<id>
+  // (así se puede copiar y compartir); al cerrar, vuelve a la de antes.
+  var ficha = document.getElementById("ficha");
+  var fichaCuerpo = document.getElementById("ficha-cuerpo");
+  var direccionAnterior = null;
+
+  function rubrosDe(p) {
+    // Solo los rubros que la página muestra, con el ícono y el nombre de la barra.
+    var vistos = [];
+    botones.forEach(function (x) {
+      x.secciones.forEach(function (s) {
+        if (p.rubros.indexOf(s.rubro) !== -1 && vistos.indexOf(x.b.etiqueta) === -1) vistos.push(x.b.etiqueta);
+      });
+    });
+    return vistos.map(function (etiqueta) {
+      var b = botones.filter(function (x) { return x.b.etiqueta === etiqueta; })[0].b;
+      return "<span>" + icono(b.icono) + " " + texto(etiqueta) + "</span>";
+    }).join("");
+  }
+
+  function resenaHtml(r) {
+    var estrellas = "";
+    for (var i = 1; i <= 5; i++) estrellas += estrella(i <= r.puntaje ? "llena" : "");
+    var quien = [r.nombre, mesDe(r.fecha)].filter(Boolean).join(" · ");
+    return (
+      '<div class="resena">' +
+        '<span class="estrellas" role="img" aria-label="' + r.puntaje + ' de 5">' + estrellas + "</span>" +
+        '<span class="quien">' + texto(quien) + "</span>" +
+        (r.texto ? "<p>" + texto(r.texto) + "</p>" : "") +
+      "</div>"
+    );
+  }
+
+  function armarFicha(p) {
+    var seccion = seccionDe ? seccionDe(p) : null;
+    var pila = String(p.nombre).split(" ")[0];
+    var mensaje = "Hola Zeus! Quiero pedir a " + p.nombre + (seccion ? " (" + seccion.nombre + ")" : "") + ".";
+    var cara = p.foto
+      ? '<img src="' + p.foto + '" alt="" width="88" height="88">'
+      : '<div class="sin-foto" aria-hidden="true">' + texto(p.nombre.charAt(0)) + "</div>";
+    var html =
+      '<div class="cabecera">' + cara + '<h3 id="ficha-nombre">' + texto(p.nombre) + "</h3></div>" +
+      '<div class="rubros">' + rubrosDe(p) + "</div>" +
+      (p.frase ? '<p class="frase">' + texto(p.frase) + "</p>" : "");
+    if (p.detalles && p.detalles.length) {
+      html += "<h4>Qué hace</h4>" +
+        '<div class="hace">' + p.detalles.map(function (d) { return "<span>" + texto(d) + "</span>"; }).join("") + "</div>";
+    }
+    if (conResenas(p)) {
+      var r = p.resenas;
+      html +=
+        '<div class="resumen"><strong>' + estrella("") + texto(numero(r.promedio)) + "</strong>" +
+        "<span>" + texto(cuantas(r.cantidad) + " de clientes de Zeus") + "</span></div>";
+      if (r.publicas && r.publicas.length) {
+        html += "<h4>Lo que dicen</h4>" + r.publicas.map(resenaHtml).join("");
+        if (r.publicas.length < r.cantidad) {
+          html += '<p class="nota">Se publican solo las reseñas que cada cliente autorizó. El promedio cuenta todas.</p>';
+        }
+      } else {
+        html += '<p class="nota">Las reseñas se publican con la autorización de cada cliente. El promedio cuenta todas.</p>';
+      }
+    }
+    html += '<div class="pie"><a class="prov-wa" href="' + linkWhatsApp(mensaje) + '" target="_blank" rel="noopener">Pedir a ' + texto(pila) + "</a></div>";
+    return html;
+  }
+
+  function abrirFicha(id) {
+    var p = GENTE.filter(function (q) { return q.id === id; })[0];
+    if (!p || !ficha || typeof ficha.showModal !== "function") return;
+    fichaCuerpo.innerHTML = armarFicha(p);
+    fichaCuerpo.scrollTop = 0;
+    if (direccionAnterior === null) direccionAnterior = window.location.search;
+    try {
+      var params = new URLSearchParams(window.location.search);
+      params.set("p", id);
+      window.history.replaceState(null, "", "?" + params.toString() + window.location.hash);
+    } catch (e) { /* sin historial, la ficha abre igual */ }
+    ficha.showModal();
+    // El foco va al contenido (no al botón de cerrar, que quedaría marcado en rojo).
+    try { fichaCuerpo.focus({ preventScroll: true }); } catch (e) { /* nada */ }
+  }
+
+  if (ficha) {
+    ["paneles", "resultados"].forEach(function (id) {
+      var zona = document.getElementById(id);
+      if (!zona) return;
+      zona.addEventListener("click", function (e) {
+        var btn = e.target.closest && e.target.closest("[data-ficha]");
+        if (btn) abrirFicha(btn.getAttribute("data-ficha"));
+      });
+    });
+    ficha.addEventListener("click", function (e) {
+      if (e.target === ficha || e.target.hasAttribute("data-cerrar")) ficha.close();
+    });
+    ficha.addEventListener("close", function () {
+      if (direccionAnterior !== null) {
+        try { window.history.replaceState(null, "", (direccionAnterior || window.location.pathname) + window.location.hash); } catch (e) { /* nada */ }
+        direccionAnterior = null;
+      }
+    });
+    // somoszeus.com/?p=recXXXX abre la ficha de esa persona (link para compartir)
+    var pedidaFicha = /[?&]p=(rec[A-Za-z0-9]+)/.exec(window.location.search);
+    if (pedidaFicha) {
+      direccionAnterior = window.location.search.replace(/[?&]p=rec[A-Za-z0-9]+/, "").replace(/^&/, "?");
+      if (direccionAnterior === "?") direccionAnterior = "";
+      abrirFicha(pedidaFicha[1]);
     }
   }
 

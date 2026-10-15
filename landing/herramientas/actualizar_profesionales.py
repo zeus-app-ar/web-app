@@ -45,6 +45,16 @@
 # "heladera" encuentra a quien lo hace aunque su frase no lo diga.
 # Nunca se usa texto libre ("Descripción personal", "Contanos sobre vos"): ahí
 # la gente escribe teléfonos, redes, barrios y nombres de empresa.
+#
+# RESEÑAS: cada persona lleva "resenas" con el promedio y la cantidad de reseñas
+# de clientes (tabla "Reseñas" de Airtable, Origen = Cliente, con puntaje; se
+# cuentan TODAS, publicadas o no, así el promedio no es "solo las buenas") y la
+# lista de las publicables: solo las que tienen "Visible al público" tildado.
+# De cada una sale el puntaje, el mes, el "Texto público" (el recorte que
+# revisó el equipo; NUNCA el comentario crudo) y el nombre de pila del cliente
+# solo si dio permiso ("Permiso para publicar" = Sí); si no, "Cliente de Zeus".
+# Las reseñas del equipo o de familiares (Origen = Equipo Zeus) no cuentan ni
+# se publican. Si una persona no tiene reseñas de clientes, no lleva "resenas".
 
 import argparse
 import datetime
@@ -276,6 +286,88 @@ def detalles_para_web(f: dict, rubros: list) -> list:
     return salida
 
 
+# ---------- Reseñas ----------
+
+ORIGEN_CLIENTE = "Cliente"
+PERMISO_SI = "Sí"
+NOMBRE_SIN_PERMISO = "Cliente de Zeus"
+MAX_RESENAS_PUBLICAS = 10
+
+
+def _mes(fecha: str) -> str:
+    """'2026-08-31T00:00:00.000Z' -> '2026-08'. Nunca el día: con el día y el rubro se podría ubicar el pedido."""
+    return (fecha or "")[:7] if len(fecha or "") >= 7 else ""
+
+
+def resenas_por_prestador(registros: list, nombres_clientes: dict) -> dict:
+    """
+    {record_id del prestador: {"promedio", "cantidad", "publicas": [...]}} a partir
+    de los registros de la tabla "Reseñas". Ver las reglas en la cabecera.
+    `nombres_clientes` es {record_id del cliente: nombre de pila}.
+    """
+    por_prestador = {}
+    for r in registros:
+        f = r.get("fields", {})
+        if f.get("Origen") != ORIGEN_CLIENTE:
+            continue
+        puntaje = f.get("Puntaje")
+        if not isinstance(puntaje, (int, float)):
+            continue
+        for pid in f.get("Prestador") or []:
+            datos = por_prestador.setdefault(pid, {"puntajes": [], "publicas": []})
+            datos["puntajes"].append(puntaje)
+            if f.get("Visible al público") is True:
+                con_permiso = f.get("Permiso para publicar") == PERMISO_SI
+                nombre = ""
+                if con_permiso:
+                    for cid in f.get("Cliente") or []:
+                        nombre = nombres_clientes.get(cid, "")
+                        if nombre:
+                            break
+                datos["publicas"].append({
+                    "nombre": nombre or NOMBRE_SIN_PERMISO,
+                    "puntaje": int(round(puntaje)),
+                    "texto": " ".join(str(f.get("Texto público") or "").split()),
+                    "fecha": _mes(f.get("Fecha") or r.get("createdTime", "")),
+                })
+    salida = {}
+    for pid, datos in por_prestador.items():
+        publicas = sorted(datos["publicas"], key=lambda x: x["fecha"], reverse=True)[:MAX_RESENAS_PUBLICAS]
+        salida[pid] = {
+            "promedio": round(sum(datos["puntajes"]) / len(datos["puntajes"]), 1),
+            "cantidad": len(datos["puntajes"]),
+            "publicas": publicas,
+        }
+    return salida
+
+
+def leer_resenas(api, base_id: str) -> dict:
+    """Lee las tablas Reseñas y Clientes y arma lo que la página necesita. Si falla, {} (la página sale sin reseñas)."""
+    try:
+        resenas = api.table(base_id, "tbl1O0sXhlhdJPdDL").all()   # Reseñas
+    except Exception as e:
+        print(f"No se pudieron leer las reseñas (la página sale sin reseñas): {e}")
+        return {}
+    ids_clientes = sorted({cid for r in resenas for cid in (r.get("fields", {}).get("Cliente") or [])
+                           if r.get("fields", {}).get("Visible al público") is True})
+    nombres = {}
+    if ids_clientes:
+        try:
+            formula = "OR(" + ",".join(f"RECORD_ID()='{i}'" for i in ids_clientes) + ")"
+            for c in api.table(base_id, "tblu5ptVLTEDAayu4").all(formula=formula, fields=["Nombre"]):   # Clientes
+                nombres[c["id"]] = nombre_de_pila(c.get("fields", {}).get("Nombre", ""))
+        except Exception as e:
+            print(f"No se pudieron leer los nombres de los clientes (salen como '{NOMBRE_SIN_PERMISO}'): {e}")
+    return resenas_por_prestador(resenas, nombres)
+
+
+def nombre_de_pila(completo: str) -> str:
+    partes = [p for p in (completo or "").split() if p]
+    if not partes or partes[0].lower() in ("cliente", "sin"):
+        return ""
+    return partes[0].capitalize()
+
+
 def nombre_para_web(completo: str) -> str:
     partes = [p for p in (completo or "").split() if p]
     if not partes:
@@ -380,6 +472,8 @@ def main():
     ruta_origen = os.path.join(WEB, "fotos", ".origen.json")
     origen = json.load(io.open(ruta_origen, encoding="utf-8")) if os.path.exists(ruta_origen) else {}
 
+    resenas = leer_resenas(api, os.environ["AIRTABLE_BASE_ID"])
+
     salida, sin_rubro = [], []
     for r in tabla.all(formula="AND({Estado} = 'Activo', {Disponibilidad} = 'Disponible')"):
         f = r["fields"]
@@ -398,14 +492,17 @@ def main():
         if not rubros:
             sin_rubro.append(f.get("Nombre completo", r["id"]))
             continue
-        salida.append({
+        persona = {
             "id": r["id"],
             "nombre": a_mano.get(r["id"]) or nombre_para_web(f.get("Nombre completo", "")),
             "rubros": rubros,
             "frase": frase_elegida(r["id"], f, frases),
             "detalles": detalles_para_web(f, rubros),
             "foto": bajar_foto(r["id"], f.get("Foto"), origen),
-        })
+        }
+        if r["id"] in resenas:
+            persona["resenas"] = resenas[r["id"]]
+        salida.append(persona)
 
     io.open(ruta_origen, "w", encoding="utf-8").write(json.dumps(origen, indent=2) + "\n")
 
@@ -418,7 +515,9 @@ def main():
     io.open(os.path.join(WEB, "datos", "profesionales.js"), "w", encoding="utf-8").write(js)
 
     con_foto = sum(1 for p in salida if p["foto"])
-    print(f"{len(salida)} profesionales activos ({con_foto} con foto).")
+    con_resenas = sum(1 for p in salida if p.get("resenas"))
+    publicas = sum(len(p["resenas"]["publicas"]) for p in salida if p.get("resenas"))
+    print(f"{len(salida)} profesionales activos ({con_foto} con foto, {con_resenas} con reseñas de clientes, {publicas} reseñas publicadas).")
     if sin_rubro:
         print("Sin ningún rubro que ofrezca el bot (no aparecen):", ", ".join(sin_rubro))
     sin_foto = [p["nombre"] for p in salida if not p["foto"]]
