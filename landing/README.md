@@ -78,11 +78,11 @@ Las reseñas salen de la tabla **Reseñas** de Airtable y las baja la misma Acti
 | Estrellas y cantidad en la tarjeta ("★ 4,7 · 3 reseñas") | Promedio de **todas** las reseñas de clientes del profesional con puntaje (`Origen = Cliente`), publicadas o no. Así no es "el promedio de las buenas". Se muestran a partir de `resenasDesde` reseñas (`datos/config.js`; hoy 1) |
 | Qué reseñas se leen en la ficha | Solo las que tienen **"Visible al público"** tildado en Airtable. Eso lo tilda una persona, nunca el bot |
 | Qué texto se ve | **"Texto público"**: el recorte que revisó el equipo. Nunca el comentario crudo (puede tener nombres de otras personas, teléfonos o insultos). Sin "Texto público", la reseña se ve solo con sus estrellas |
-| Con qué nombre | El nombre de pila del cliente solo si **"Permiso para publicar" = Sí** (el bot se lo pregunta). Si no, "Cliente de Zeus" |
+| Con qué nombre | **Sin nombre**: todas salen como "Cliente de Zeus" (decisión de Chiara, 15/10/2026; así no hay que pedirle permiso a nadie, y los T&C ya cubren que se publican). Si algún día se quiere el nombre de pila: `PUBLICAR_NOMBRE = True` en `actualizar_profesionales.py` lo muestra solo con "Permiso para publicar" = Sí, y hay que prender `PUBLICAR_CON_NOMBRE` en el bot para que lo pregunte |
 | Fecha | Solo el mes ("ago 2026"), nunca el día |
 | Reseñas del equipo o de familiares | `Origen = Equipo Zeus`: no cuentan ni se publican |
 
-Para publicar una reseña: en Airtable, tabla Reseñas, escribir (o revisar) "Texto público" y tildar "Visible al público". Aparece a la noche; para verla ya, correr la Action "Actualizar profesionales".
+Para publicar una reseña: en Airtable, tabla Reseñas, revisar "Texto público" (que no identifique al cliente: nada de direcciones, nombres de familiares ni detalles muy puntuales) y tildar "Visible al público". Aparece a la noche; para verla ya, correr la Action "Actualizar profesionales".
 
 ## Actualizar los profesionales
 

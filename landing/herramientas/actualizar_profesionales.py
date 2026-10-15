@@ -50,9 +50,12 @@
 # de clientes (tabla "Reseñas" de Airtable, Origen = Cliente, con puntaje; se
 # cuentan TODAS, publicadas o no, así el promedio no es "solo las buenas") y la
 # lista de las publicables: solo las que tienen "Visible al público" tildado.
-# De cada una sale el puntaje, el mes, el "Texto público" (el recorte que
-# revisó el equipo; NUNCA el comentario crudo) y el nombre de pila del cliente
-# solo si dio permiso ("Permiso para publicar" = Sí); si no, "Cliente de Zeus".
+# De cada una sale el puntaje, el mes y el "Texto público" (el recorte que
+# revisó el equipo; NUNCA el comentario crudo). SIN el nombre del cliente:
+# todas salen como "Cliente de Zeus" (decisión de Chiara, 15/10/2026; así no
+# hay que pedirle permiso a nadie). Si algún día se quiere el nombre de pila,
+# PUBLICAR_NOMBRE = True lo muestra solo cuando "Permiso para publicar" = Sí
+# (y hay que prender PUBLICAR_CON_NOMBRE en el bot, que es quien pregunta).
 # Las reseñas del equipo o de familiares (Origen = Equipo Zeus) no cuentan ni
 # se publican. Si una persona no tiene reseñas de clientes, no lleva "resenas".
 
@@ -292,6 +295,7 @@ ORIGEN_CLIENTE = "Cliente"
 PERMISO_SI = "Sí"
 NOMBRE_SIN_PERMISO = "Cliente de Zeus"
 MAX_RESENAS_PUBLICAS = 10
+PUBLICAR_NOMBRE = False   # ver la cabecera: las reseñas salen sin nombre
 
 
 def _mes(fecha: str) -> str:
@@ -317,7 +321,7 @@ def resenas_por_prestador(registros: list, nombres_clientes: dict) -> dict:
             datos = por_prestador.setdefault(pid, {"puntajes": [], "publicas": []})
             datos["puntajes"].append(puntaje)
             if f.get("Visible al público") is True:
-                con_permiso = f.get("Permiso para publicar") == PERMISO_SI
+                con_permiso = PUBLICAR_NOMBRE and f.get("Permiso para publicar") == PERMISO_SI
                 nombre = ""
                 if con_permiso:
                     for cid in f.get("Cliente") or []:
@@ -351,7 +355,7 @@ def leer_resenas(api, base_id: str) -> dict:
     ids_clientes = sorted({cid for r in resenas for cid in (r.get("fields", {}).get("Cliente") or [])
                            if r.get("fields", {}).get("Visible al público") is True})
     nombres = {}
-    if ids_clientes:
+    if ids_clientes and PUBLICAR_NOMBRE:
         try:
             formula = "OR(" + ",".join(f"RECORD_ID()='{i}'" for i in ids_clientes) + ")"
             for c in api.table(base_id, "tblu5ptVLTEDAayu4").all(formula=formula, fields=["Nombre"]):   # Clientes

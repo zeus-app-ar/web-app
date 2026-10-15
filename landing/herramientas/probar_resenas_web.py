@@ -6,7 +6,8 @@
 #   - solo cuentan las reseñas de clientes (Origen = Cliente) con puntaje;
 #   - el promedio es sobre TODAS las de clientes, publicadas o no;
 #   - se publica solo lo que tiene "Visible al público" tildado;
-#   - el nombre de pila sale solo con "Permiso para publicar" = Sí;
+#   - nunca sale el nombre del cliente ("Cliente de Zeus"); el nombre de pila
+#     solo con PUBLICAR_NOMBRE prendida y "Permiso para publicar" = Sí;
 #   - nunca sale el comentario crudo, solo "Texto público";
 #   - la fecha es solo el mes.
 #
@@ -17,6 +18,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import actualizar_profesionales as ap  # noqa: E402
 from actualizar_profesionales import resenas_por_prestador, nombre_de_pila, NOMBRE_SIN_PERMISO  # noqa: E402
 
 FALLAS = []
@@ -58,12 +60,18 @@ revisar("promedio sobre las de clientes con puntaje (5 y 4 → 4,5)", lucas.get(
 revisar("cantidad = 2 (no cuenta la del equipo, la sin puntaje ni la sin Origen)", lucas.get("cantidad") == 2, str(lucas.get("cantidad")))
 revisar("publicada solo la que tiene Visible al público (y es de cliente con puntaje)", len(lucas.get("publicas", [])) == 1, str(lucas.get("publicas")))
 pub = (lucas.get("publicas") or [{}])[0]
-revisar("con el nombre de pila porque dio permiso", pub.get("nombre") == "Santiago", str(pub))
+revisar("sin nombre aunque haya dado permiso (PUBLICAR_NOMBRE apagada)", pub.get("nombre") == NOMBRE_SIN_PERMISO, str(pub))
+revisar("la llave viene apagada", ap.PUBLICAR_NOMBRE is False)
 revisar("con el Texto público, nunca el comentario crudo", pub.get("texto") == "muy puntual" and "teléfono" not in str(pub))
 revisar("solo el mes, no el día", pub.get("fecha") == "2026-08", str(pub.get("fecha")))
 revisar("puntaje entero", pub.get("puntaje") == 4)
 
-print("\nPermiso y nombre")
+print("\nPermiso y nombre (solo con la llave prendida)")
+ap.PUBLICAR_NOMBRE = True
+datos = resenas_por_prestador([
+    resena("recLUCAS", 4, visible=True, permiso="Sí", texto="muy puntual"),
+], NOMBRES)
+revisar("prendida y con permiso: nombre de pila", datos["recLUCAS"]["publicas"][0]["nombre"] == "Santiago")
 datos = resenas_por_prestador([
     resena("recMARCELA", 5, visible=True, permiso="No", texto="excelente", cliente="recC2"),
     resena("recMARCELA", 5, visible=True, permiso="Sin preguntar", texto="todo bien", cliente="recC2"),
@@ -72,6 +80,7 @@ datos = resenas_por_prestador([
 pubs = datos["recMARCELA"]["publicas"]
 revisar("sin permiso (No / Sin preguntar / vacío) el nombre es genérico", all(p["nombre"] == NOMBRE_SIN_PERMISO for p in pubs), str(pubs))
 revisar("tres publicadas, promedio 5,0", len(pubs) == 3 and datos["recMARCELA"]["promedio"] == 5.0)
+ap.PUBLICAR_NOMBRE = False
 
 print("\nCasos borde")
 revisar("sin reseñas de clientes, la persona no aparece", resenas_por_prestador([resena("recX", 5, origen="Equipo Zeus")], {}) == {})

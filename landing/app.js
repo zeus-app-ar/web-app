@@ -426,11 +426,9 @@
         "<span>" + texto(cuantas(r.cantidad) + " de clientes de Zeus") + "</span></div>";
       if (r.publicas && r.publicas.length) {
         html += "<h4>Lo que dicen</h4>" + r.publicas.map(resenaHtml).join("");
-        if (r.publicas.length < r.cantidad) {
-          html += '<p class="nota">Se publican solo las reseñas que cada cliente autorizó. El promedio cuenta todas.</p>';
-        }
+        html += '<p class="nota">Reseñas de clientes de Zeus, publicadas sin nombre. El promedio cuenta todas.</p>';
       } else {
-        html += '<p class="nota">Las reseñas se publican con la autorización de cada cliente. El promedio cuenta todas.</p>';
+        html += '<p class="nota">El promedio cuenta todas sus reseñas de clientes de Zeus.</p>';
       }
     }
     html += '<div class="pie"><a class="prov-wa" href="' + linkWhatsApp(mensaje) + '" target="_blank" rel="noopener">Pedir a ' + texto(pila) + "</a></div>";
