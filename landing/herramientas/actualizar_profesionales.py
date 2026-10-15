@@ -292,7 +292,7 @@ def detalles_para_web(f: dict, rubros: list) -> list:
 # ---------- Reseñas ----------
 
 ORIGEN_CLIENTE = "Cliente"
-PERMISO_SI = "Sí"
+PERMISOS_SI = ("Si", "Sí")   # en Airtable la opción quedó sin tilde; se aceptan las dos
 NOMBRE_SIN_PERMISO = "Cliente de Zeus"
 MAX_RESENAS_PUBLICAS = 10
 PUBLICAR_NOMBRE = False   # ver la cabecera: las reseñas salen sin nombre
@@ -321,7 +321,7 @@ def resenas_por_prestador(registros: list, nombres_clientes: dict) -> dict:
             datos = por_prestador.setdefault(pid, {"puntajes": [], "publicas": []})
             datos["puntajes"].append(puntaje)
             if f.get("Visible al público") is True:
-                con_permiso = PUBLICAR_NOMBRE and f.get("Permiso para publicar") == PERMISO_SI
+                con_permiso = PUBLICAR_NOMBRE and f.get("Permiso para publicar") in PERMISOS_SI
                 nombre = ""
                 if con_permiso:
                     for cid in f.get("Cliente") or []:

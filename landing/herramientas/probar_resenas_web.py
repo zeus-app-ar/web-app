@@ -72,6 +72,8 @@ datos = resenas_por_prestador([
     resena("recLUCAS", 4, visible=True, permiso="Sí", texto="muy puntual"),
 ], NOMBRES)
 revisar("prendida y con permiso: nombre de pila", datos["recLUCAS"]["publicas"][0]["nombre"] == "Santiago")
+datos = resenas_por_prestador([resena("recLUCAS", 4, visible=True, permiso="Si", texto="x")], NOMBRES)
+revisar("'Si' sin tilde (como está en Airtable) también vale", datos["recLUCAS"]["publicas"][0]["nombre"] == "Santiago")
 datos = resenas_por_prestador([
     resena("recMARCELA", 5, visible=True, permiso="No", texto="excelente", cliente="recC2"),
     resena("recMARCELA", 5, visible=True, permiso="Sin preguntar", texto="todo bien", cliente="recC2"),
