@@ -228,7 +228,14 @@ window.ZEUS_PROFESIONALES = [
     "resenas": {
       "promedio": 5.0,
       "cantidad": 1,
-      "publicas": []
+      "publicas": [
+        {
+          "nombre": "Cliente de Zeus",
+          "puntaje": 5,
+          "texto": "",
+          "fecha": "2026-10"
+        }
+      ]
     }
   },
   {
