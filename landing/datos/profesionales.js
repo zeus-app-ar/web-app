@@ -170,12 +170,10 @@ window.ZEUS_PROFESIONALES = [
     "id": "recouL5o4sTGdFLn0",
     "nombre": "Luka M.",
     "rubros": [
-      "limpieza_particular",
       "limpieza_tapizados"
     ],
     "frase": "Limpia sillones y sofás, sillas, colchones y alfombras. Trabaja en toda CABA.",
     "detalles": [
-      "Limpieza de alfombras y tapizados",
       "Limpieza de sillones y sofás",
       "Limpieza de sillas",
       "Limpieza de colchones",
@@ -226,7 +224,12 @@ window.ZEUS_PROFESIONALES = [
       "Muebles de Garbarino",
       "Anclaje de muebles a la pared"
     ],
-    "foto": "fotos/recdm5DSnyDCngZf9.jpg"
+    "foto": "fotos/recdm5DSnyDCngZf9.jpg",
+    "resenas": {
+      "promedio": 5.0,
+      "cantidad": 1,
+      "publicas": []
+    }
   },
   {
     "id": "recCpGFZqSI4XRnkI",
