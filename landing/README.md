@@ -81,6 +81,7 @@ Las reseñas salen de la tabla **Reseñas** de Airtable y las baja la misma Acti
 | Con qué nombre | **Sin nombre**: todas salen como "Cliente de Zeus" (decisión de Chiara, 15/10/2026; así no hay que pedirle permiso a nadie, y los T&C ya cubren que se publican). Si algún día se quiere el nombre de pila: `PUBLICAR_NOMBRE = True` en `actualizar_profesionales.py` lo muestra solo con "Permiso para publicar" = Sí, y hay que prender `PUBLICAR_CON_NOMBRE` en el bot para que lo pregunte |
 | Fecha | Solo el mes ("ago 2026"), nunca el día |
 | Reseñas del equipo o de familiares | `Origen = Equipo Zeus`: no cuentan ni se publican |
+| Aclaraciones en la ficha | Ninguna: la ficha muestra el promedio, la cantidad y las reseñas, sin notas al pie tipo "publicadas sin nombre" o "el promedio cuenta todas" (Chiara, 15/10/2026). Esas reglas viven acá, en el README |
 
 Para publicar una reseña: en Airtable, tabla Reseñas, revisar "Texto público" (que no identifique al cliente: nada de direcciones, nombres de familiares ni detalles muy puntuales) y tildar "Visible al público". Aparece a la noche; para verla ya, correr la Action "Actualizar profesionales".
 
