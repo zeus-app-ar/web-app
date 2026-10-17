@@ -14,7 +14,7 @@
 //   → Guía paso a paso:
 //     https://chiaradigi2.atlassian.net/wiki/spaces/Zeus/pages/98312
 //
-// Generado el 2026-10-16.
+// Generado el 2026-10-17.
 // ============================================================================
 window.ZEUS_PROFESIONALES = [
   {
@@ -103,7 +103,25 @@ window.ZEUS_PROFESIONALES = [
       "Electricidad en comercios",
       "Tableros eléctricos"
     ],
-    "foto": "fotos/recVANJArNPDh5CRl.jpg"
+    "foto": "fotos/recVANJArNPDh5CRl.jpg",
+    "resenas": {
+      "promedio": 5.0,
+      "cantidad": 2,
+      "publicas": [
+        {
+          "nombre": "Cliente de Zeus",
+          "puntaje": 5,
+          "texto": "Perfecto, divino.",
+          "fecha": "2026-10"
+        },
+        {
+          "nombre": "Cliente de Zeus",
+          "puntaje": 5,
+          "texto": "Todo bien.",
+          "fecha": "2026-10"
+        }
+      ]
+    }
   },
   {
     "id": "recHQSCrESlq3QgS3",
@@ -244,7 +262,7 @@ window.ZEUS_PROFESIONALES = [
         {
           "nombre": "Cliente de Zeus",
           "puntaje": 5,
-          "texto": "",
+          "texto": "Muy conforme con el trabajo.",
           "fecha": "2026-10"
         }
       ]
