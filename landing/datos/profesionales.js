@@ -14,7 +14,7 @@
 //   → Guía paso a paso:
 //     https://chiaradigi2.atlassian.net/wiki/spaces/Zeus/pages/98312
 //
-// Generado el 2026-10-19.
+// Generado el 2026-10-20.
 // ============================================================================
 window.ZEUS_PROFESIONALES = [
   {
@@ -160,7 +160,7 @@ window.ZEUS_PROFESIONALES = [
     "rubros": [
       "limpieza_particular"
     ],
-    "frase": "Limpieza de casas, oficinas y post-obra. Trabaja por horas en zona norte, Microcentro y Recoleta.",
+    "frase": "Trabaja en zona norte y Microcentro y Recoleta.",
     "detalles": [
       "Limpieza de casas y departamentos",
       "Limpieza de oficinas",
@@ -225,7 +225,19 @@ window.ZEUS_PROFESIONALES = [
       "Limpieza de vidrios y ventanas",
       "Planchado"
     ],
-    "foto": "fotos/recUy8ZuciFvUqX9c.jpg"
+    "foto": "fotos/recUy8ZuciFvUqX9c.jpg",
+    "resenas": {
+      "promedio": 5.0,
+      "cantidad": 1,
+      "publicas": [
+        {
+          "nombre": "Cliente de Zeus",
+          "puntaje": 5,
+          "texto": "Impecable",
+          "fecha": "2026-10"
+        }
+      ]
+    }
   },
   {
     "id": "reclsGOoROBu1OJfw",
