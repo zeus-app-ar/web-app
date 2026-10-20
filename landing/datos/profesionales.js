@@ -155,21 +155,6 @@ window.ZEUS_PROFESIONALES = [
     "foto": "fotos/recyaba5QZRoXrgac.jpg"
   },
   {
-    "id": "rec6HLjKSjHF08A2D",
-    "nombre": "Karen R.",
-    "rubros": [
-      "limpieza_particular"
-    ],
-    "frase": "Trabaja en zona norte y Microcentro y Recoleta.",
-    "detalles": [
-      "Limpieza de casas y departamentos",
-      "Limpieza de oficinas",
-      "Limpieza post-obra",
-      "Planchado"
-    ],
-    "foto": "fotos/rec6HLjKSjHF08A2D.jpg"
-  },
-  {
     "id": "reczkMwivWNRsZuaQ",
     "nombre": "Lucas M.",
     "rubros": [
@@ -228,13 +213,19 @@ window.ZEUS_PROFESIONALES = [
     "foto": "fotos/recUy8ZuciFvUqX9c.jpg",
     "resenas": {
       "promedio": 5.0,
-      "cantidad": 1,
+      "cantidad": 2,
       "publicas": [
         {
           "nombre": "Cliente de Zeus",
           "puntaje": 5,
           "texto": "Impecable",
           "fecha": "2026-10"
+        },
+        {
+          "nombre": "Cliente de Zeus",
+          "puntaje": 5,
+          "texto": "Muy cuidadosa, dejó la casa en muy buenas condiciones. Impecable.",
+          "fecha": "2026-08"
         }
       ]
     }
