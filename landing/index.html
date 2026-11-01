@@ -617,8 +617,9 @@
   .sumate p { font-size: 16px; color: var(--texto-suave); }
   .sumate .btn-secondary { margin-top: 20px; }
   /* Redes de Zeus: círculos de tinta con el ícono en blanco; al pasar el mouse se ponen rojos */
+  /* Ojo: la clase es .red-social y no .red, porque .red ya es la constelación de fotos de la portada */
   .redes { display: flex; gap: 14px; }
-  .red {
+  .red-social {
     width: 56px; height: 56px;
     border-radius: 50%;
     display: inline-flex; align-items: center; justify-content: center;
@@ -626,8 +627,8 @@
     color: var(--blanco);
     transition: background .15s;
   }
-  .red:hover, .red:focus-visible { background: var(--rojo); }
-  .red svg { width: 26px; height: 26px; fill: currentColor; }
+  .red-social:hover, .red-social:focus-visible { background: var(--rojo); }
+  .red-social svg { width: 26px; height: 26px; fill: currentColor; }
 
   /* PIE */
   footer {
@@ -985,13 +986,13 @@
     </div>
     <!-- Redes de Zeus: solo los íconos, cada uno abre la red en otra pestaña -->
     <div class="redes">
-      <a class="red" href="https://www.instagram.com/zeusba_/" target="_blank" rel="noopener" aria-label="Instagram de Zeus" title="Instagram">
+      <a class="red-social" href="https://www.instagram.com/zeusba_/" target="_blank" rel="noopener" aria-label="Instagram de Zeus" title="Instagram">
         <svg aria-hidden="true"><use href="#d-ig"/></svg>
       </a>
-      <a class="red" data-wa href="#" aria-label="WhatsApp de Zeus" title="WhatsApp">
+      <a class="red-social" data-wa href="#" aria-label="WhatsApp de Zeus" title="WhatsApp">
         <svg aria-hidden="true"><use href="#d-wa"/></svg>
       </a>
-      <a class="red" href="https://www.facebook.com/profile.php?id=61594309526163" target="_blank" rel="noopener" aria-label="Facebook de Zeus" title="Facebook">
+      <a class="red-social" href="https://www.facebook.com/profile.php?id=61594309526163" target="_blank" rel="noopener" aria-label="Facebook de Zeus" title="Facebook">
         <svg aria-hidden="true"><use href="#d-fb"/></svg>
       </a>
     </div>
