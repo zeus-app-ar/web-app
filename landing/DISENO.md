@@ -47,6 +47,7 @@ Sombras: casi ninguna. Solo la caja del buscador, las fotos de la red y el telé
 - **El rayo de Zeus es siempre el mismo dibujo y siempre rojo** (`#d-rayo` en `index.html`, igual al ícono de la pestaña). No se usa el emoji ⚡, que cada teléfono muestra amarillo y distinto. Los puntajes de las reseñas se escriben con ese rayo ("4,7⚡ /5⚡"), no con estrellas.
 - Los únicos íconos de línea son la flecha del buscador y la flecha de las preguntas: trazos simples de 2px.
 - El ícono de WhatsApp acompaña a los botones que abren el chat ("Escribinos por WhatsApp"), para que se sepa qué pasa al tocarlos.
+- Instagram, WhatsApp y Facebook tienen su ícono propio (`#d-ig`, `#d-wa`, `#d-fb`), en un color solo, como el de WhatsApp. Se usan en los accesos a las redes de Zeus.
 
 ## Piezas
 
@@ -67,7 +68,8 @@ Sombras: casi ninguna. Solo la caja del buscador, las fotos de la red y el telé
 | Cierre | Banda oscura (tormenta) a todo el ancho con el rayo rojo grande a la derecha y el botón blanco de WhatsApp |
 | Barra de WhatsApp (celular) | Cuando la portada ya pasó, una barra fija abajo con "Escribinos por WhatsApp". No existe en pantalla grande |
 | Botones | Píldoras. Todo lo que se toca mide al menos 44px de alto. Al pasar el mouse solo cambian de color; nada se mueve ni se agranda |
-| "Quiero ser proveedor" | Sección propia al final ("¿Tenés un oficio?"), píldora con borde. Pregunta si es limpieza u otro oficio y lleva al formulario que corresponde |
+| "Quiero ser proveedor" | Sección propia al final ("¿Tenés un oficio?"), píldora con borde debajo del texto. Pregunta si es limpieza u otro oficio y lleva al formulario que corresponde |
+| Redes de Zeus | En la sección "¿Tenés un oficio?", a la derecha (abajo en el celular): Instagram, WhatsApp y Facebook, solo los íconos, en círculos de tinta de 56px con el ícono blanco; al pasar el mouse se ponen rojos. Cada uno abre la red en otra pestaña (WhatsApp, el chat de Zeus). Están acá y no solo en el pie porque ahí quedaban muy chiquitas (pedido de Tomás, 31/10/2026) |
 
 ## Rubros: una sola lista
 
