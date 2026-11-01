@@ -14,7 +14,7 @@
 //   → Guía paso a paso:
 //     https://chiaradigi2.atlassian.net/wiki/spaces/Zeus/pages/98312
 //
-// Generado el 2026-10-31.
+// Generado el 2026-11-01.
 // ============================================================================
 window.ZEUS_PROFESIONALES = [
   {
