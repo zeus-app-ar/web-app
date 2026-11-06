@@ -14,7 +14,7 @@
 //   → Guía paso a paso:
 //     https://chiaradigi2.atlassian.net/wiki/spaces/Zeus/pages/98312
 //
-// Generado el 2026-11-05.
+// Generado el 2026-11-06.
 // ============================================================================
 window.ZEUS_PROFESIONALES = [
   {
@@ -71,7 +71,12 @@ window.ZEUS_PROFESIONALES = [
       "Limpieza post-obra",
       "Planchado"
     ],
-    "foto": "fotos/recmUDKSA6Yp67Q3Q.jpg"
+    "foto": "fotos/recmUDKSA6Yp67Q3Q.jpg",
+    "resenas": {
+      "promedio": 5.0,
+      "cantidad": 1,
+      "publicas": []
+    }
   },
   {
     "id": "recc5KHJk4shnZw4t",
@@ -106,7 +111,7 @@ window.ZEUS_PROFESIONALES = [
     "foto": "fotos/recVANJArNPDh5CRl.jpg",
     "resenas": {
       "promedio": 5.0,
-      "cantidad": 2,
+      "cantidad": 3,
       "publicas": [
         {
           "nombre": "Cliente de Zeus",
