@@ -14,7 +14,7 @@
 //   → Guía paso a paso:
 //     https://chiaradigi2.atlassian.net/wiki/spaces/Zeus/pages/98312
 //
-// Generado el 2026-11-10.
+// Generado el 2026-11-11.
 // ============================================================================
 window.ZEUS_PROFESIONALES = [
   {
@@ -127,21 +127,6 @@ window.ZEUS_PROFESIONALES = [
         }
       ]
     }
-  },
-  {
-    "id": "recHQSCrESlq3QgS3",
-    "nombre": "Florencia O.",
-    "rubros": [
-      "limpieza_particular"
-    ],
-    "frase": "Limpieza de casas, oficinas y vidrios. Trabaja por horas en zona norte.",
-    "detalles": [
-      "Limpieza de casas y departamentos",
-      "Limpieza de oficinas",
-      "Limpieza de vidrios y ventanas",
-      "Planchado"
-    ],
-    "foto": "fotos/recHQSCrESlq3QgS3.jpg"
   },
   {
     "id": "recyaba5QZRoXrgac",
