@@ -14,7 +14,7 @@
 //   → Guía paso a paso:
 //     https://chiaradigi2.atlassian.net/wiki/spaces/Zeus/pages/98312
 //
-// Generado el 2026-11-11.
+// Generado el 2026-11-12.
 // ============================================================================
 window.ZEUS_PROFESIONALES = [
   {
@@ -160,8 +160,14 @@ window.ZEUS_PROFESIONALES = [
     "foto": "fotos/reczkMwivWNRsZuaQ.jpg",
     "resenas": {
       "promedio": 5.0,
-      "cantidad": 1,
+      "cantidad": 2,
       "publicas": [
+        {
+          "nombre": "Cliente de Zeus",
+          "puntaje": 5,
+          "texto": "es un amor y re prolijo",
+          "fecha": "2026-11"
+        },
         {
           "nombre": "Cliente de Zeus",
           "puntaje": 5,
