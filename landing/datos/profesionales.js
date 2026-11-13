@@ -14,26 +14,9 @@
 //   → Guía paso a paso:
 //     https://chiaradigi2.atlassian.net/wiki/spaces/Zeus/pages/98312
 //
-// Generado el 2026-11-12.
+// Generado el 2026-11-13.
 // ============================================================================
 window.ZEUS_PROFESIONALES = [
-  {
-    "id": "recqX6Aihw8iKgEIr",
-    "nombre": "Alan G.",
-    "rubros": [
-      "arreglatodo",
-      "electricista",
-      "pintor",
-      "plomero"
-    ],
-    "frase": "Pintura, electricidad, durlock y mantenimiento de casas y edificios. 3 años de experiencia.",
-    "detalles": [
-      "Pintura de interiores",
-      "Pintura de exteriores",
-      "Yeso y enduido"
-    ],
-    "foto": "fotos/recqX6Aihw8iKgEIr.jpg"
-  },
   {
     "id": "recWreAgb2cc3uElF",
     "nombre": "Alejandro M.",
