@@ -14,7 +14,7 @@
 //   → Guía paso a paso:
 //     https://chiaradigi2.atlassian.net/wiki/spaces/Zeus/pages/98312
 //
-// Generado el 2026-11-14.
+// Generado el 2026-11-15.
 // ============================================================================
 window.ZEUS_PROFESIONALES = [
   {
@@ -83,7 +83,8 @@ window.ZEUS_PROFESIONALES = [
     "rubros": [
       "armado_muebles",
       "electricista",
-      "plomero"
+      "plomero",
+      "arreglatodo"
     ],
     "frase": "5 años de experiencia en electricidad, instalaciones sanitarias y mantenimiento, en casas y comercios.",
     "detalles": [
