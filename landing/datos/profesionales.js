@@ -14,7 +14,7 @@
 //   → Guía paso a paso:
 //     https://chiaradigi2.atlassian.net/wiki/spaces/Zeus/pages/98312
 //
-// Generado el 2026-11-16.
+// Generado el 2026-11-17.
 // ============================================================================
 window.ZEUS_PROFESIONALES = [
   {
@@ -39,7 +39,19 @@ window.ZEUS_PROFESIONALES = [
     ],
     "frase": "15 años de experiencia armando muebles. Trabaja en zona norte.",
     "detalles": [],
-    "foto": "fotos/reciVNjpxufSbXIFo.jpg"
+    "foto": "fotos/reciVNjpxufSbXIFo.jpg",
+    "resenas": {
+      "promedio": 5.0,
+      "cantidad": 1,
+      "publicas": [
+        {
+          "nombre": "Cliente de Zeus",
+          "puntaje": 5,
+          "texto": "Crack. Muy educado y puntual.",
+          "fecha": "2026-11"
+        }
+      ]
+    }
   },
   {
     "id": "recmUDKSA6Yp67Q3Q",
@@ -193,7 +205,7 @@ window.ZEUS_PROFESIONALES = [
     "foto": "fotos/recUy8ZuciFvUqX9c.jpg",
     "resenas": {
       "promedio": 5.0,
-      "cantidad": 3,
+      "cantidad": 4,
       "publicas": [
         {
           "nombre": "Cliente de Zeus",
@@ -279,6 +291,19 @@ window.ZEUS_PROFESIONALES = [
       "Electricidad en comercios"
     ],
     "foto": "fotos/recaPRFYJXEm6zxJD.jpg"
+  },
+  {
+    "id": "recGIowXo0iuxlM2Z",
+    "nombre": "Cecilia L.",
+    "rubros": [
+      "limpieza_particular"
+    ],
+    "frase": "Trabaja en zona norte, el centro y zona oeste de CABA.",
+    "detalles": [
+      "Limpieza de casas y departamentos",
+      "Limpieza post-obra"
+    ],
+    "foto": null
   },
   {
     "id": "reczgjDfu11q6c7B4",
