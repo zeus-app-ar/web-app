@@ -14,7 +14,7 @@
 //   → Guía paso a paso:
 //     https://chiaradigi2.atlassian.net/wiki/spaces/Zeus/pages/98312
 //
-// Generado el 2026-11-17.
+// Generado el 2026-11-18.
 // ============================================================================
 window.ZEUS_PROFESIONALES = [
   {
@@ -239,7 +239,12 @@ window.ZEUS_PROFESIONALES = [
       "Instalación de aire acondicionado",
       "Aire acondicionado: mini split"
     ],
-    "foto": "fotos/reclsGOoROBu1OJfw.jpg"
+    "foto": "fotos/reclsGOoROBu1OJfw.jpg",
+    "resenas": {
+      "promedio": 5.0,
+      "cantidad": 1,
+      "publicas": []
+    }
   },
   {
     "id": "recdm5DSnyDCngZf9",
