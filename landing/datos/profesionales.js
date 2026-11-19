@@ -14,7 +14,7 @@
 //   → Guía paso a paso:
 //     https://chiaradigi2.atlassian.net/wiki/spaces/Zeus/pages/98312
 //
-// Generado el 2026-11-18.
+// Generado el 2026-11-19.
 // ============================================================================
 window.ZEUS_PROFESIONALES = [
   {
@@ -35,7 +35,8 @@ window.ZEUS_PROFESIONALES = [
     "id": "reciVNjpxufSbXIFo",
     "nombre": "Christian K.",
     "rubros": [
-      "armado_muebles"
+      "armado_muebles",
+      "arreglatodo"
     ],
     "frase": "15 años de experiencia armando muebles. Trabaja en zona norte.",
     "detalles": [],
@@ -69,8 +70,15 @@ window.ZEUS_PROFESIONALES = [
     "foto": "fotos/recmUDKSA6Yp67Q3Q.jpg",
     "resenas": {
       "promedio": 5.0,
-      "cantidad": 1,
-      "publicas": []
+      "cantidad": 2,
+      "publicas": [
+        {
+          "nombre": "Cliente de Zeus",
+          "puntaje": 5,
+          "texto": "Dejó la casa en perfectas condiciones, muy ordenada.",
+          "fecha": "2026-11"
+        }
+      ]
     }
   },
   {
