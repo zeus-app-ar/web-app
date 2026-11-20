@@ -14,7 +14,7 @@
 //   → Guía paso a paso:
 //     https://chiaradigi2.atlassian.net/wiki/spaces/Zeus/pages/98312
 //
-// Generado el 2026-11-19.
+// Generado el 2026-11-20.
 // ============================================================================
 window.ZEUS_PROFESIONALES = [
   {
@@ -251,7 +251,14 @@ window.ZEUS_PROFESIONALES = [
     "resenas": {
       "promedio": 5.0,
       "cantidad": 1,
-      "publicas": []
+      "publicas": [
+        {
+          "nombre": "Cliente de Zeus",
+          "puntaje": 5,
+          "texto": "Un trato muy cordial y amable y un trabajo impecable.",
+          "fecha": "2026-11"
+        }
+      ]
     }
   },
   {
@@ -330,6 +337,20 @@ window.ZEUS_PROFESIONALES = [
       "Limpieza de oficinas",
       "Limpieza post-obra",
       "Limpieza de vidrios y ventanas",
+      "Planchado"
+    ],
+    "foto": null
+  },
+  {
+    "id": "recGs9h4MsLR8IePl",
+    "nombre": "Mercedes M.",
+    "rubros": [
+      "limpieza_particular"
+    ],
+    "frase": "Trabaja en toda CABA.",
+    "detalles": [
+      "Limpieza de casas y departamentos",
+      "Limpieza de oficinas",
       "Planchado"
     ],
     "foto": null
