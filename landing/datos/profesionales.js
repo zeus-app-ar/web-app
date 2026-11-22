@@ -14,7 +14,7 @@
 //   → Guía paso a paso:
 //     https://chiaradigi2.atlassian.net/wiki/spaces/Zeus/pages/98312
 //
-// Generado el 2026-11-21.
+// Generado el 2026-11-22.
 // ============================================================================
 window.ZEUS_PROFESIONALES = [
   {
@@ -115,8 +115,20 @@ window.ZEUS_PROFESIONALES = [
     "foto": "fotos/recVANJArNPDh5CRl.jpg",
     "resenas": {
       "promedio": 5.0,
-      "cantidad": 3,
+      "cantidad": 4,
       "publicas": [
+        {
+          "nombre": "Cliente de Zeus",
+          "puntaje": 5,
+          "texto": "Todo perfecto!",
+          "fecha": "2026-11"
+        },
+        {
+          "nombre": "Cliente de Zeus",
+          "puntaje": 5,
+          "texto": "Sí, todo perfecto",
+          "fecha": "2026-11"
+        },
         {
           "nombre": "Cliente de Zeus",
           "puntaje": 5,
