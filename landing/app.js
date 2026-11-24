@@ -494,18 +494,13 @@
   }
 
   // ---------- "Quiero ser proveedor" ----------
-  var ventana = document.getElementById("ventana-proveedor");
-  document.getElementById("form-limpieza").href = C.formularios.limpieza;
-  document.getElementById("form-oficios").href = C.formularios.oficios;
-  document.getElementById("aviso-google").hidden = !C.formulariosPidenGoogle;
+  // Desde el 24/11/2026 hay un solo formulario de alta para todos los rubros
+  // (limpieza incluida): el botón lo abre directo, sin preguntar a qué se dedica.
+  if (C.formulariosPidenGoogle) {
+    document.getElementById("texto-proveedor").textContent +=
+      " Te va a pedir que entres con tu cuenta de Google.";
+  }
   document.getElementById("abrir-proveedor").addEventListener("click", function () {
-    if (typeof ventana.showModal === "function") ventana.showModal();
-    else window.open(C.formularios.oficios, "_blank", "noopener");
-  });
-  ventana.addEventListener("click", function (e) {
-    if (e.target === ventana || e.target.hasAttribute("data-cerrar")) ventana.close();
-  });
-  ventana.querySelectorAll(".opcion").forEach(function (a) {
-    a.addEventListener("click", function () { ventana.close(); });
+    window.open(C.formularios.alta, "_blank", "noopener");
   });
 })();
