@@ -981,7 +981,7 @@
   <div class="adentro">
     <div>
       <h2>¿Tenés un oficio?</h2>
-      <p>Sumate a la red de Zeus. Llená el formulario en 5 minutos.</p>
+      <p id="texto-proveedor">Sumate a la red de Zeus. Llená el formulario en 5 minutos.</p>
       <button class="btn-secondary" type="button" id="abrir-proveedor">Quiero ser proveedor</button>
     </div>
     <!-- Redes de Zeus: solo los íconos, cada uno abre la red en otra pestaña -->
@@ -1013,21 +1013,6 @@
   </a>
 </div>
 
-<!-- "Quiero ser proveedor" pregunta a qué se dedica y lleva al formulario que corresponde -->
-<dialog class="elegir" id="ventana-proveedor" aria-labelledby="t-elegir">
-  <button class="cerrar" type="button" aria-label="Cerrar" data-cerrar>×</button>
-  <h3 id="t-elegir">¿A qué te dedicás?</h3>
-  <p class="elegir-texto">Elegí tu caso y te llevamos al formulario. Llenarlo lleva solo un par de minutos.</p>
-  <a class="opcion" id="form-limpieza" href="#" target="_blank" rel="noopener">
-    <span class="icon">🧹</span>
-    <span><strong>Limpieza y casas particulares</strong><span>Limpieza por horas o por jornada, cuidado de la casa</span></span>
-  </a>
-  <a class="opcion" id="form-oficios" href="#" target="_blank" rel="noopener">
-    <span class="icon">🛠️</span>
-    <span><strong>Otro oficio</strong><span>Plomería, electricidad, gas, pintura, arreglos, fletes y más</span></span>
-  </a>
-  <p class="aviso" id="aviso-google" hidden>El formulario te va a pedir que entres con tu cuenta de Google.</p>
-</dialog>
 
 <!-- Ficha de un profesional: la arma app.js al tocar una tarjeta (o con somoszeus.com/?p=<id>) -->
 <dialog class="ficha" id="ficha" aria-labelledby="ficha-nombre">

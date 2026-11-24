@@ -30,18 +30,16 @@ window.ZEUS_CONFIG = {
   // ficha de la persona, que se abre tocando su foto o su nombre.
   resenasDesde: 1,
 
-  // Links PÚBLICOS de los formularios de alta (los que terminan en /viewform, nunca los de /edit).
+  // Link PÚBLICO del formulario de alta (el que termina en /viewform, nunca el de /edit).
   // Desde el 24/11/2026 hay UN SOLO formulario para todos los rubros: Google bloqueó el
-  // de casas particulares y Limpieza Particular se sumó al de prestadores. Los dos botones
-  // de "Quiero ser proveedor" llevan al mismo link.
+  // de casas particulares y Limpieza Particular se sumó al de prestadores.
   formularios: {
-    oficios: "https://docs.google.com/forms/d/e/1FAIpQLSctsV77KvJDRsZw6yMwxKK2JXgPJA2XVT912YEHgWZIuGcDnA/viewform",
-    limpieza: "https://docs.google.com/forms/d/e/1FAIpQLSctsV77KvJDRsZw6yMwxKK2JXgPJA2XVT912YEHgWZIuGcDnA/viewform",
+    alta: "https://docs.google.com/forms/d/e/1FAIpQLSctsV77KvJDRsZw6yMwxKK2JXgPJA2XVT912YEHgWZIuGcDnA/viewform",
   },
 
   // Hoy el formulario exige iniciar sesión con Google. Mientras sea así,
   // se le avisa a la persona antes de mandarla. Pasar a false cuando se cambie
-  // en la configuración de cada formulario.
+  // en la configuración del formulario.
   formulariosPidenGoogle: true,
 
   // Profesionales sin foto: false = solo aparecen quienes tienen foto en fotos/
