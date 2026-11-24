@@ -855,7 +855,7 @@
 <!-- La lógica del buscador. Va acá y no al final con los demás archivos a propósito:
      esas líneas las reescribe la Action todas las noches, y tocarlas en un Pull Request
      termina en conflicto. El ?v= de esta línea también lo cambia la Action. -->
-<script src="buscador.js?v=202611241030"></script>
+<script src="buscador.js?v=202611241052"></script>
 
 <!-- Los paneles se arman con datos/profesionales.js -->
 <div id="paneles"></div>
@@ -982,7 +982,9 @@
     <div>
       <h2>¿Tenés un oficio?</h2>
       <p id="texto-proveedor">Sumate a la red de Zeus. Llená el formulario en 5 minutos.</p>
-      <button class="btn-secondary" type="button" id="abrir-proveedor">Quiero ser proveedor</button>
+      <!-- Link común (no botón): abre el formulario aunque falle el JavaScript o el navegador tenga
+           guardada una versión vieja. app.js lo reemplaza por el link de datos/config.js. -->
+      <a class="btn-secondary" id="abrir-proveedor" href="https://docs.google.com/forms/d/e/1FAIpQLSctsV77KvJDRsZw6yMwxKK2JXgPJA2XVT912YEHgWZIuGcDnA/viewform" target="_blank" rel="noopener">Quiero ser proveedor</a>
     </div>
     <!-- Redes de Zeus: solo los íconos, cada uno abre la red en otra pestaña -->
     <div class="redes">
@@ -1022,9 +1024,9 @@
 
 <!-- ?v= evita que el navegador muestre una versión vieja: la Action lo cambia en cada corrida
      (en los cuatro archivos a la vez, así la página y su comportamiento nunca quedan desparejos). -->
-<script src="datos/config.js?v=202611241030"></script>
-<script src="datos/rubros.js?v=202611241030"></script>
-<script src="datos/profesionales.js?v=202611241030"></script>
-<script src="app.js?v=202611241030"></script>
+<script src="datos/config.js?v=202611241052"></script>
+<script src="datos/rubros.js?v=202611241052"></script>
+<script src="datos/profesionales.js?v=202611241052"></script>
+<script src="app.js?v=202611241052"></script>
 </body>
 </html>
