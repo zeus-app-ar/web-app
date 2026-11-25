@@ -14,7 +14,7 @@
 //   → Guía paso a paso:
 //     https://chiaradigi2.atlassian.net/wiki/spaces/Zeus/pages/98312
 //
-// Generado el 2026-11-22.
+// Generado el 2026-11-25.
 // ============================================================================
 window.ZEUS_PROFESIONALES = [
   {
@@ -290,8 +290,14 @@ window.ZEUS_PROFESIONALES = [
     "foto": "fotos/recdm5DSnyDCngZf9.jpg",
     "resenas": {
       "promedio": 5.0,
-      "cantidad": 1,
+      "cantidad": 2,
       "publicas": [
+        {
+          "nombre": "Cliente de Zeus",
+          "puntaje": 5,
+          "texto": "Me pareció meticuloso, sabía lo que hacía. Muy amable y laburaba bien. Se notaba que no era un improvisado.",
+          "fecha": "2026-10"
+        },
         {
           "nombre": "Cliente de Zeus",
           "puntaje": 5,
