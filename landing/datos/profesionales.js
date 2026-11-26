@@ -14,7 +14,7 @@
 //   → Guía paso a paso:
 //     https://chiaradigi2.atlassian.net/wiki/spaces/Zeus/pages/98312
 //
-// Generado el 2026-11-25.
+// Generado el 2026-11-26.
 // ============================================================================
 window.ZEUS_PROFESIONALES = [
   {
@@ -344,6 +344,28 @@ window.ZEUS_PROFESIONALES = [
     "foto": null
   },
   {
+    "id": "rec8TalC3dUqnHTfi",
+    "nombre": "Gaston F.",
+    "rubros": [
+      "plomero",
+      "electricista",
+      "pintor",
+      "arreglatodo",
+      "cerrajero",
+      "tecnico_electrodomesticos",
+      "armado_muebles"
+    ],
+    "frase": "20 años de experiencia. Trabaja en toda CABA.",
+    "detalles": [
+      "Instalaciones de plomería nuevas",
+      "Reparaciones de plomería",
+      "Destapaciones",
+      "Calefones y termotanques",
+      "Instalación de piletas"
+    ],
+    "foto": null
+  },
+  {
     "id": "reczgjDfu11q6c7B4",
     "nombre": "Laura C.",
     "rubros": [
@@ -360,6 +382,16 @@ window.ZEUS_PROFESIONALES = [
     "foto": null
   },
   {
+    "id": "reciyjhqQ8pZe7KA7",
+    "nombre": "Martín P.",
+    "rubros": [
+      "plomero"
+    ],
+    "frase": "Trabaja en toda CABA.",
+    "detalles": [],
+    "foto": null
+  },
+  {
     "id": "recGs9h4MsLR8IePl",
     "nombre": "Mercedes M.",
     "rubros": [
@@ -370,6 +402,21 @@ window.ZEUS_PROFESIONALES = [
       "Limpieza de casas y departamentos",
       "Limpieza de oficinas",
       "Planchado"
+    ],
+    "foto": null
+  },
+  {
+    "id": "recA40XQOU2BT4baa",
+    "nombre": "Nestor C.",
+    "rubros": [
+      "plomero"
+    ],
+    "frase": "46 años de experiencia. Trabaja en toda CABA.",
+    "detalles": [
+      "Instalaciones de plomería nuevas",
+      "Reparaciones de plomería",
+      "Calefones y termotanques",
+      "Instalación de piletas"
     ],
     "foto": null
   }
